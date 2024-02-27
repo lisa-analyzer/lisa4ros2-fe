@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/perception_channel">
+            <profiles>
+                <profile ns="/" node="perception_channel">
+                    <topics publish="ALLOW">
+                        <topic>/parameter_events</topic>
+                        <topic>/rosout</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/localization/odometry</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/perception_channel/get_parameter_types</service>
+                        <service>/perception_channel/describe_parameters</service>
+                        <service>/perception_channel/get_parameters</service>
+                        <service>/channel</service>
+                        <service>/perception_channel/list_parameters</service>
+                        <service>/perception_channel/get_type_description</service>
+                        <service>/perception_channel/set_parameters</service>
+                        <service>/perception_channel/set_parameters_atomically</service>
+                    </services>
+                    <services request="ALLOW">
+                        <service>/perception/image_buoy_stereo</service>
+                        <service>/perception/lidar_buoy</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

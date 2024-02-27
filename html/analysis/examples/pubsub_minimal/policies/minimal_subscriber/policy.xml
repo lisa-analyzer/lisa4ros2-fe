@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/minimal_subscriber">
+            <profiles>
+                <profile ns="/" node="minimal_subscriber">
+                    <topics publish="ALLOW">
+                        <topic>/parameter_events</topic>
+                        <topic>/rosout</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/topic</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/minimal_subscriber/get_parameter_types</service>
+                        <service>/minimal_subscriber/set_parameters</service>
+                        <service>/minimal_subscriber/get_type_description</service>
+                        <service>/minimal_subscriber/list_parameters</service>
+                        <service>/minimal_subscriber/describe_parameters</service>
+                        <service>/minimal_subscriber/get_parameters</service>
+                        <service>/minimal_subscriber/set_parameters_atomically</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

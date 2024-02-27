@@ -1,0 +1,1829 @@
+<html>
+
+<head>
+  <title>LiSA | ROS Application Report</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://dagrejs.github.io/project/dagre/latest/dagre.min.js"></script>
+  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js"></script>
+  <link rel="icon" href="../../logo.png">
+  <script>hljs.highlightAll();</script>
+  <style>
+    .bg-lisa {
+      background-color: #d9ede0;
+    }
+    body {
+      padding-top: 70px;
+    }
+    .sub-menu {
+      background-color: #d9ede0;
+    }
+    .nav-pills .nav-link-lisa.active {
+      background-color: #199a59;
+    }
+    .nav-link-lisa {
+      border-width: 0;
+      background-color: transparent;
+    }
+    .navbar {
+      height: 70px;
+    }
+
+    .dot-graph {
+      max-width: 100%;
+    }
+
+    .h-scroll {
+      height: 100%; /* %-height of the viewport */
+      position: fixed;
+      overflow-y: scroll;
+    }
+    .logo {
+      max-width: 60px;
+    }
+    #cy {
+      width: 100%;
+      height: 600px;
+    }
+    .warnings {
+      background-color: lightyellow;
+    }
+
+.table td, .table th {
+    border-left: 1px solid#dee2e6;
+}
+
+  </style>
+</head>
+<body style="font-family: 'Raleway', sans-serif;">
+<nav class="navbar bg-lisa fixed-top">
+  <div class="container-fluid justify-content-start">
+      <img src="https://raw.githubusercontent.com/lisa-analyzer/lisa/master/logo.png" alt="" class="d-inline-block align-text-top mr-4 logo" />
+    <div class="ml-4 mr-4"><h4><a href="/">Home</a></h4></div>
+    <ul class="nav nav-pills ml-4" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link nav-link-lisa active" id="pills-rosanalysis-tab" data-bs-toggle="pill" data-target="pills-rosanalysis" data-bs-target="#pills-rosanalysis" type="button" role="tab" aria-controls="pills-rosanalysis" aria-selected="true">ROS2 Report</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link nav-link-lisa" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-lisaanalysis" type="button" role="tab" aria-controls="pills-lisaanalysis" aria-selected="false">LiSA Analysis</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane active" id="pills-rosanalysis" role="tabpanel" aria-labelledby="pills-rosanalysis-tab">
+    <div class="row">
+        
+
+        <div class="col-12">
+
+
+
+    <div class="pt-4 pl-4">
+        <div>
+            <div><h2>Computational Graph</h2></div>
+            <div class="d-flex justify-content-center">
+                <img class="dot-graph" src="graph/graph.svg" />
+            </div>
+           <!-- <pre class="mermaid ros-graph" style="{width: 100%;}">
+---
+config:
+    useMaxWidth: true
+---
+                graph TD
+/camera:::wide
+style /camera fill:limegreen,stroke:#333,stroke-width:2px
+/gui:::wide
+style /gui fill:limegreen,stroke:#333,stroke-width:2px
+/ups_reading:::wide
+style /ups_reading fill:limegreen,stroke:#333,stroke-width:2px
+/serial_interface:::wide
+style /serial_interface fill:limegreen,stroke:#333,stroke-width:2px
+/wifi_stats:::wide
+style /wifi_stats fill:limegreen,stroke:#333,stroke-width:2px
+/read_encoders[//read_encoders/]:::wide
+style /read_encoders fill:gold,stroke:#333,stroke-width:2px
+/camera_sensor_settings[//camera_sensor_settings/]:::wide
+style /camera_sensor_settings fill:gold,stroke:#333,stroke-width:2px
+/log_level[//log_level/]:::wide
+style /log_level fill:gold,stroke:#333,stroke-width:2px
+/keep_alive[//keep_alive/]:::wide
+style /keep_alive fill:gold,stroke:#333,stroke-width:2px
+/set_period[//set_period/]:::wide
+style /set_period fill:gold,stroke:#333,stroke-width:2px
+/log_level[//log_level/]:::wide
+style /log_level fill:gold,stroke:#333,stroke-width:2px
+/read_buzzer[//read_buzzer/]:::wide
+style /read_buzzer fill:gold,stroke:#333,stroke-width:2px
+/ups_sensor_settings[//ups_sensor_settings/]:::wide
+style /ups_sensor_settings fill:gold,stroke:#333,stroke-width:2px
+/telemetry_data_log_enable[//telemetry_data_log_enable/]:::wide
+style /telemetry_data_log_enable fill:gold,stroke:#333,stroke-width:2px
+/set_period[//set_period/]:::wide
+style /set_period fill:gold,stroke:#333,stroke-width:2px
+/read_imu[//read_imu/]:::wide
+style /read_imu fill:gold,stroke:#333,stroke-width:2px
+/read_ups_battery[//read_ups_battery/]:::wide
+style /read_ups_battery fill:gold,stroke:#333,stroke-width:2px
+/camera_frame[//camera_frame/]:::wide
+style /camera_frame fill:gold,stroke:#333,stroke-width:2px
+/read_encoders[//read_encoders/]:::wide
+style /read_encoders fill:gold,stroke:#333,stroke-width:2px
+/read_line_sensors[//read_line_sensors/]:::wide
+style /read_line_sensors fill:gold,stroke:#333,stroke-width:2px
+/read_buzzer[//read_buzzer/]:::wide
+style /read_buzzer fill:gold,stroke:#333,stroke-width:2px
+/play_buzzer[//play_buzzer/]:::wide
+style /play_buzzer fill:gold,stroke:#333,stroke-width:2px
+/keep_alive[//keep_alive/]:::wide
+style /keep_alive fill:gold,stroke:#333,stroke-width:2px
+/log_level[//log_level/]:::wide
+style /log_level fill:gold,stroke:#333,stroke-width:2px
+/enable_read[//enable_read/]:::wide
+style /enable_read fill:gold,stroke:#333,stroke-width:2px
+/ups_sensor_settings[//ups_sensor_settings/]:::wide
+style /ups_sensor_settings fill:gold,stroke:#333,stroke-width:2px
+/telemetry_data_log_enable[//telemetry_data_log_enable/]:::wide
+style /telemetry_data_log_enable fill:gold,stroke:#333,stroke-width:2px
+/read_ups_battery[//read_ups_battery/]:::wide
+style /read_ups_battery fill:gold,stroke:#333,stroke-width:2px
+/telemetry_data_log_enable[//telemetry_data_log_enable/]:::wide
+style /telemetry_data_log_enable fill:gold,stroke:#333,stroke-width:2px
+/enable_read[//enable_read/]:::wide
+style /enable_read fill:gold,stroke:#333,stroke-width:2px
+/wifi_stats[//wifi_stats/]:::wide
+style /wifi_stats fill:gold,stroke:#333,stroke-width:2px
+/log_level[//log_level/]:::wide
+style /log_level fill:gold,stroke:#333,stroke-width:2px
+/enable_read[//enable_read/]:::wide
+style /enable_read fill:gold,stroke:#333,stroke-width:2px
+/log_level[//log_level/]:::wide
+style /log_level fill:gold,stroke:#333,stroke-width:2px
+/play_buzzer[//play_buzzer/]:::wide
+style /play_buzzer fill:gold,stroke:#333,stroke-width:2px
+/zumo_sensor_settings[//zumo_sensor_settings/]:::wide
+style /zumo_sensor_settings fill:gold,stroke:#333,stroke-width:2px
+/enable_read[//enable_read/]:::wide
+style /enable_read fill:gold,stroke:#333,stroke-width:2px
+/camera_frame[//camera_frame/]:::wide
+style /camera_frame fill:gold,stroke:#333,stroke-width:2px
+/read_imu[//read_imu/]:::wide
+style /read_imu fill:gold,stroke:#333,stroke-width:2px
+/read_ups_charging[//read_ups_charging/]:::wide
+style /read_ups_charging fill:gold,stroke:#333,stroke-width:2px
+/telemetry_data_log_enable[//telemetry_data_log_enable/]:::wide
+style /telemetry_data_log_enable fill:gold,stroke:#333,stroke-width:2px
+/telemetry_data_log_enable[//telemetry_data_log_enable/]:::wide
+style /telemetry_data_log_enable fill:gold,stroke:#333,stroke-width:2px
+/set_period[//set_period/]:::wide
+style /set_period fill:gold,stroke:#333,stroke-width:2px
+/read_ups_charging[//read_ups_charging/]:::wide
+style /read_ups_charging fill:gold,stroke:#333,stroke-width:2px
+/motors[//motors/]:::wide
+style /motors fill:gold,stroke:#333,stroke-width:2px
+/read_proximity_sensors[//read_proximity_sensors/]:::wide
+style /read_proximity_sensors fill:gold,stroke:#333,stroke-width:2px
+/wifi_stats[//wifi_stats/]:::wide
+style /wifi_stats fill:gold,stroke:#333,stroke-width:2px
+/motors[//motors/]:::wide
+style /motors fill:gold,stroke:#333,stroke-width:2px
+/keep_alive[//keep_alive/]:::wide
+style /keep_alive fill:gold,stroke:#333,stroke-width:2px
+/zumo_sensor_settings[//zumo_sensor_settings/]:::wide
+style /zumo_sensor_settings fill:gold,stroke:#333,stroke-width:2px
+/set_period[//set_period/]:::wide
+style /set_period fill:gold,stroke:#333,stroke-width:2px
+/read_line_sensors[//read_line_sensors/]:::wide
+style /read_line_sensors fill:gold,stroke:#333,stroke-width:2px
+/camera_sensor_settings[//camera_sensor_settings/]:::wide
+style /camera_sensor_settings fill:gold,stroke:#333,stroke-width:2px
+/read_proximity_sensors[//read_proximity_sensors/]:::wide
+style /read_proximity_sensors fill:gold,stroke:#333,stroke-width:2px
+/camera --&gt; /camera_frame
+/camera --&gt; /keep_alive
+/camera --&gt; /camera_sensor_settings
+/telemetry_data_log_enable --&gt; /camera
+/log_level --&gt; /camera
+/set_period --&gt; /camera
+/enable_read --&gt; /camera
+/gui --&gt; /telemetry_data_log_enable
+/gui --&gt; /set_period
+/gui --&gt; /enable_read
+/gui --&gt; /play_buzzer
+/gui --&gt; /log_level
+/gui --&gt; /motors
+/read_buzzer --&gt; /gui
+/read_line_sensors --&gt; /gui
+/read_proximity_sensors --&gt; /gui
+/zumo_sensor_settings --&gt; /gui
+/read_ups_charging --&gt; /gui
+/ups_sensor_settings --&gt; /gui
+/keep_alive --&gt; /gui
+/wifi_stats --&gt; /gui
+/camera_frame --&gt; /gui
+/camera_sensor_settings --&gt; /gui
+/read_encoders --&gt; /gui
+/read_imu --&gt; /gui
+/read_ups_battery --&gt; /gui
+/ups_reading --&gt; /ups_sensor_settings
+/ups_reading --&gt; /read_ups_battery
+/ups_reading --&gt; /read_ups_charging
+/log_level --&gt; /ups_reading
+/set_period --&gt; /ups_reading
+/enable_read --&gt; /ups_reading
+/telemetry_data_log_enable --&gt; /ups_reading
+/serial_interface --&gt; /read_encoders
+/serial_interface --&gt; /read_line_sensors
+/serial_interface --&gt; /read_imu
+/serial_interface --&gt; /keep_alive
+/serial_interface --&gt; /read_proximity_sensors
+/serial_interface --&gt; /read_buzzer
+/serial_interface --&gt; /zumo_sensor_settings
+/motors --&gt; /serial_interface
+/log_level --&gt; /serial_interface
+/telemetry_data_log_enable --&gt; /serial_interface
+/play_buzzer --&gt; /serial_interface
+/set_period --&gt; /serial_interface
+/enable_read --&gt; /serial_interface
+/wifi_stats --&gt; /wifi_stats
+/log_level --&gt; /wifi_stats
+/telemetry_data_log_enable --&gt; /wifi_stats
+classDef wide padding:50px
+
+            </pre>-->
+        </div>
+        
+            
+            
+            
+        
+        <a id="Nodes"></a>
+        <h2>Nodes</h2>
+        <div class="mt-2 ml-4 mr-4">
+            
+                <div class="ml-4 mr-4">
+                    <a id="Node-camera"></a>
+                    <div><h3>/camera</h3></div>
+                    <div  class="ml-4 mr-4"><h4>Publishers:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Message Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>rt/camera_frame</td>
+                                            <td>telemetry_interfaces.msg.CompressedImage</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/camera.py&#39;:47:86</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/keep_alive</td>
+                                            <td>telemetry_interfaces.msg.String</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/camera.py&#39;:49:79</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/rosout</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/parameter_events</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/camera_sensor_settings</td>
+                                            <td>telemetry_interfaces.msg.CameraSettings</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/camera.py&#39;:48:100</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Subscriptions:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Message Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Callback Function</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>rt/telemetry_data_log_enable</td>
+                                            <td>telemetry_interfaces.msg.Bool</td>
+                                            <td></td>
+                                            <td>self::callback_telemetry_data_log_enable</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/camera.py&#39;:70:151</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/log_level</td>
+                                            <td>telemetry_interfaces.msg.Int</td>
+                                            <td></td>
+                                            <td>self::callback_set_log_level</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/camera.py&#39;:67:107</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/set_period</td>
+                                            <td>telemetry_interfaces.msg.SamplingRate</td>
+                                            <td></td>
+                                            <td>self::callback_set_camera_period</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/camera.py&#39;:52:125</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/enable_read</td>
+                                            <td>telemetry_interfaces.msg.EnableRead</td>
+                                            <td></td>
+                                            <td>self::callback_enable_camera_read</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/camera.py&#39;:55:125</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td></td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Service Servers:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Service Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>/camera/set_parameters</td>
+                                            <td>rcl_interfaces/srv/SetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/camera/describe_parameters</td>
+                                            <td>rcl_interfaces/srv/DescribeParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/camera/list_parameters</td>
+                                            <td>rcl_interfaces/srv/ListParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/camera/get_parameter_types</td>
+                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/camera/set_parameters_atomically</td>
+                                            <td>rcl_interfaces/srv/SetParametersAtomically</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/camera/get_type_description</td>
+                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/camera/get_parameters</td>
+                                            <td>rcl_interfaces/srv/GetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Service Clients:</h4>
+                        
+                            
+                                <p>No Service Clients on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Action Clients:</h4>
+                        
+                            
+                                <p>No Action Clients on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Action Servers:</h4>
+                        
+                            
+                                <p>No Action Servers on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div  class="ml-4 mr-4">
+                        <h4>Generated policy.xml</h4> <a href="policies/camera/policy.xml" download>Download</a>
+                        <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;policy version=&quot;0.2.0&quot;&gt;
+    &lt;enclaves&gt;
+        &lt;enclave path=&quot;/camera&quot;&gt;
+            &lt;profiles&gt;
+                &lt;profile ns=&quot;/&quot; node=&quot;camera&quot;&gt;
+                    &lt;topics publish=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/camera_frame&lt;/topic&gt;
+                        &lt;topic&gt;/keep_alive&lt;/topic&gt;
+                        &lt;topic&gt;/rosout&lt;/topic&gt;
+                        &lt;topic&gt;/parameter_events&lt;/topic&gt;
+                        &lt;topic&gt;/camera_sensor_settings&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;topics subscribe=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/telemetry_data_log_enable&lt;/topic&gt;
+                        &lt;topic&gt;/log_level&lt;/topic&gt;
+                        &lt;topic&gt;/set_period&lt;/topic&gt;
+                        &lt;topic&gt;/enable_read&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;services reply=&quot;ALLOW&quot;&gt;
+                        &lt;service&gt;/camera/set_parameters&lt;/service&gt;
+                        &lt;service&gt;/camera/describe_parameters&lt;/service&gt;
+                        &lt;service&gt;/camera/list_parameters&lt;/service&gt;
+                        &lt;service&gt;/camera/get_parameter_types&lt;/service&gt;
+                        &lt;service&gt;/camera/set_parameters_atomically&lt;/service&gt;
+                        &lt;service&gt;/camera/get_type_description&lt;/service&gt;
+                        &lt;service&gt;/camera/get_parameters&lt;/service&gt;
+                    &lt;/services&gt;
+                &lt;/profile&gt;
+            &lt;/profiles&gt;
+        &lt;/enclave&gt;
+    &lt;/enclaves&gt;
+&lt;/policy&gt;
+</code></pre>
+                    </div>
+                </div>
+            
+                <div class="ml-4 mr-4">
+                    <a id="Node-gui"></a>
+                    <div><h3>/gui</h3></div>
+                    <div  class="ml-4 mr-4"><h4>Publishers:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Message Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>rt/telemetry_data_log_enable</td>
+                                            <td>telemetry_interfaces.msg.Bool</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:140:111</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/rosout</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/set_period</td>
+                                            <td>telemetry_interfaces.msg.SamplingRate</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:83:92</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/enable_read</td>
+                                            <td>telemetry_interfaces.msg.EnableRead</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:84:91</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/play_buzzer</td>
+                                            <td>telemetry_interfaces.msg.PlayBuzzer</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:292:89</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/log_level</td>
+                                            <td>telemetry_interfaces.msg.Int</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:137:78</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/motors</td>
+                                            <td>telemetry_interfaces.msg.Motors</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:463:75</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/parameter_events</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Subscriptions:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Message Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Callback Function</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>rt/read_buzzer</td>
+                                            <td>telemetry_interfaces.msg.Buzzer</td>
+                                            <td></td>
+                                            <td>self::callback_read_buzzer</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:291:116</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/read_line_sensors</td>
+                                            <td>telemetry_interfaces.msg.LineSensors</td>
+                                            <td></td>
+                                            <td>self::callback_read_line_sensors</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:409:139</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/read_proximity_sensors</td>
+                                            <td>telemetry_interfaces.msg.ProximitySensors</td>
+                                            <td></td>
+                                            <td>self::callback_read_proximity_sensors</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:437:159</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/zumo_sensor_settings</td>
+                                            <td>telemetry_interfaces.msg.Zumo</td>
+                                            <td></td>
+                                            <td>self::callback_settings_zumo</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:114:123</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td></td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/read_ups_charging</td>
+                                            <td>telemetry_interfaces.msg.Bool</td>
+                                            <td></td>
+                                            <td>self::callback_read_charging</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:529:124</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/ups_sensor_settings</td>
+                                            <td>telemetry_interfaces.msg.UPSSettings</td>
+                                            <td></td>
+                                            <td>self::callback_settings_ups</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:115:127</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/keep_alive</td>
+                                            <td>telemetry_interfaces.msg.String</td>
+                                            <td></td>
+                                            <td>self::callback_keep_alive</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:118:113</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/wifi_stats</td>
+                                            <td>telemetry_interfaces.msg.WifiStats</td>
+                                            <td></td>
+                                            <td>self::callback_wifi_stats</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:210:116</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/camera_frame</td>
+                                            <td>telemetry_interfaces.msg.CompressedImage</td>
+                                            <td></td>
+                                            <td>self::callback_read_frames</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:607:126</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/camera_sensor_settings</td>
+                                            <td>telemetry_interfaces.msg.CameraSettings</td>
+                                            <td></td>
+                                            <td>self::callback_settings_camera</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:116:139</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/read_encoders</td>
+                                            <td>telemetry_interfaces.msg.Encoders</td>
+                                            <td></td>
+                                            <td>self::callback_read_encoders</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:368:124</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/read_imu</td>
+                                            <td>telemetry_interfaces.msg.Imu</td>
+                                            <td></td>
+                                            <td>self::callback_read_imu</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:328:104</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/read_ups_battery</td>
+                                            <td>telemetry_interfaces.msg.Battery</td>
+                                            <td></td>
+                                            <td>self::callback_read_battery</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/gui.py&#39;:556:124</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Service Servers:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Service Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>/gui/get_type_description</td>
+                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/gui/get_parameters</td>
+                                            <td>rcl_interfaces/srv/GetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/gui/set_parameters</td>
+                                            <td>rcl_interfaces/srv/SetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/gui/describe_parameters</td>
+                                            <td>rcl_interfaces/srv/DescribeParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/gui/get_parameter_types</td>
+                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/gui/set_parameters_atomically</td>
+                                            <td>rcl_interfaces/srv/SetParametersAtomically</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/gui/list_parameters</td>
+                                            <td>rcl_interfaces/srv/ListParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Service Clients:</h4>
+                        
+                            
+                                <p>No Service Clients on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Action Clients:</h4>
+                        
+                            
+                                <p>No Action Clients on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Action Servers:</h4>
+                        
+                            
+                                <p>No Action Servers on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div  class="ml-4 mr-4">
+                        <h4>Generated policy.xml</h4> <a href="policies/gui/policy.xml" download>Download</a>
+                        <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;policy version=&quot;0.2.0&quot;&gt;
+    &lt;enclaves&gt;
+        &lt;enclave path=&quot;/gui&quot;&gt;
+            &lt;profiles&gt;
+                &lt;profile ns=&quot;/&quot; node=&quot;gui&quot;&gt;
+                    &lt;topics publish=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/telemetry_data_log_enable&lt;/topic&gt;
+                        &lt;topic&gt;/rosout&lt;/topic&gt;
+                        &lt;topic&gt;/set_period&lt;/topic&gt;
+                        &lt;topic&gt;/enable_read&lt;/topic&gt;
+                        &lt;topic&gt;/play_buzzer&lt;/topic&gt;
+                        &lt;topic&gt;/log_level&lt;/topic&gt;
+                        &lt;topic&gt;/motors&lt;/topic&gt;
+                        &lt;topic&gt;/parameter_events&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;topics subscribe=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/read_buzzer&lt;/topic&gt;
+                        &lt;topic&gt;/read_line_sensors&lt;/topic&gt;
+                        &lt;topic&gt;/read_proximity_sensors&lt;/topic&gt;
+                        &lt;topic&gt;/zumo_sensor_settings&lt;/topic&gt;
+                        &lt;topic&gt;/read_ups_charging&lt;/topic&gt;
+                        &lt;topic&gt;/ups_sensor_settings&lt;/topic&gt;
+                        &lt;topic&gt;/keep_alive&lt;/topic&gt;
+                        &lt;topic&gt;/wifi_stats&lt;/topic&gt;
+                        &lt;topic&gt;/camera_frame&lt;/topic&gt;
+                        &lt;topic&gt;/camera_sensor_settings&lt;/topic&gt;
+                        &lt;topic&gt;/read_encoders&lt;/topic&gt;
+                        &lt;topic&gt;/read_imu&lt;/topic&gt;
+                        &lt;topic&gt;/read_ups_battery&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;services reply=&quot;ALLOW&quot;&gt;
+                        &lt;service&gt;/gui/get_type_description&lt;/service&gt;
+                        &lt;service&gt;/gui/get_parameters&lt;/service&gt;
+                        &lt;service&gt;/gui/set_parameters&lt;/service&gt;
+                        &lt;service&gt;/gui/describe_parameters&lt;/service&gt;
+                        &lt;service&gt;/gui/get_parameter_types&lt;/service&gt;
+                        &lt;service&gt;/gui/set_parameters_atomically&lt;/service&gt;
+                        &lt;service&gt;/gui/list_parameters&lt;/service&gt;
+                    &lt;/services&gt;
+                &lt;/profile&gt;
+            &lt;/profiles&gt;
+        &lt;/enclave&gt;
+    &lt;/enclaves&gt;
+&lt;/policy&gt;
+</code></pre>
+                    </div>
+                </div>
+            
+                <div class="ml-4 mr-4">
+                    <a id="Node-ups_reading"></a>
+                    <div><h3>/ups_reading</h3></div>
+                    <div  class="ml-4 mr-4"><h4>Publishers:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Message Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>rt/ups_sensor_settings</td>
+                                            <td>telemetry_interfaces.msg.UPSSettings</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/ups_reading.py&#39;:60:95</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/read_ups_battery</td>
+                                            <td>telemetry_interfaces.msg.Battery</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/ups_reading.py&#39;:59:96</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/read_ups_charging</td>
+                                            <td>telemetry_interfaces.msg.Bool</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/ups_reading.py&#39;:58:95</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/rosout</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/parameter_events</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Subscriptions:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Message Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Callback Function</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>rt/log_level</td>
+                                            <td>telemetry_interfaces.msg.Int</td>
+                                            <td></td>
+                                            <td>self::callback_set_log_level</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/ups_reading.py&#39;:78:111</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/set_period</td>
+                                            <td>telemetry_interfaces.msg.SamplingRate</td>
+                                            <td></td>
+                                            <td>self::callback_set_ups_period</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/ups_reading.py&#39;:63:123</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td></td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/enable_read</td>
+                                            <td>telemetry_interfaces.msg.EnableRead</td>
+                                            <td></td>
+                                            <td>self::callback_enable_ups_read</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/ups_reading.py&#39;:66:123</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/telemetry_data_log_enable</td>
+                                            <td>telemetry_interfaces.msg.Bool</td>
+                                            <td></td>
+                                            <td>self::callback_telemetry_data_log_enable</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/ups_reading.py&#39;:81:155</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Service Servers:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Service Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>/ups_reading/get_parameters</td>
+                                            <td>rcl_interfaces/srv/GetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/ups_reading/list_parameters</td>
+                                            <td>rcl_interfaces/srv/ListParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/ups_reading/set_parameters_atomically</td>
+                                            <td>rcl_interfaces/srv/SetParametersAtomically</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/ups_reading/set_parameters</td>
+                                            <td>rcl_interfaces/srv/SetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/ups_reading/describe_parameters</td>
+                                            <td>rcl_interfaces/srv/DescribeParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/ups_reading/get_parameter_types</td>
+                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/ups_reading/get_type_description</td>
+                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Service Clients:</h4>
+                        
+                            
+                                <p>No Service Clients on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Action Clients:</h4>
+                        
+                            
+                                <p>No Action Clients on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Action Servers:</h4>
+                        
+                            
+                                <p>No Action Servers on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div  class="ml-4 mr-4">
+                        <h4>Generated policy.xml</h4> <a href="policies/ups_reading/policy.xml" download>Download</a>
+                        <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;policy version=&quot;0.2.0&quot;&gt;
+    &lt;enclaves&gt;
+        &lt;enclave path=&quot;/ups_reading&quot;&gt;
+            &lt;profiles&gt;
+                &lt;profile ns=&quot;/&quot; node=&quot;ups_reading&quot;&gt;
+                    &lt;topics publish=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/ups_sensor_settings&lt;/topic&gt;
+                        &lt;topic&gt;/read_ups_battery&lt;/topic&gt;
+                        &lt;topic&gt;/read_ups_charging&lt;/topic&gt;
+                        &lt;topic&gt;/rosout&lt;/topic&gt;
+                        &lt;topic&gt;/parameter_events&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;topics subscribe=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/log_level&lt;/topic&gt;
+                        &lt;topic&gt;/set_period&lt;/topic&gt;
+                        &lt;topic&gt;/enable_read&lt;/topic&gt;
+                        &lt;topic&gt;/telemetry_data_log_enable&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;services reply=&quot;ALLOW&quot;&gt;
+                        &lt;service&gt;/ups_reading/get_parameters&lt;/service&gt;
+                        &lt;service&gt;/ups_reading/list_parameters&lt;/service&gt;
+                        &lt;service&gt;/ups_reading/set_parameters_atomically&lt;/service&gt;
+                        &lt;service&gt;/ups_reading/set_parameters&lt;/service&gt;
+                        &lt;service&gt;/ups_reading/describe_parameters&lt;/service&gt;
+                        &lt;service&gt;/ups_reading/get_parameter_types&lt;/service&gt;
+                        &lt;service&gt;/ups_reading/get_type_description&lt;/service&gt;
+                    &lt;/services&gt;
+                &lt;/profile&gt;
+            &lt;/profiles&gt;
+        &lt;/enclave&gt;
+    &lt;/enclaves&gt;
+&lt;/policy&gt;
+</code></pre>
+                    </div>
+                </div>
+            
+                <div class="ml-4 mr-4">
+                    <a id="Node-serial_interface"></a>
+                    <div><h3>/serial_interface</h3></div>
+                    <div  class="ml-4 mr-4"><h4>Publishers:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Message Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>rt/parameter_events</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/read_encoders</td>
+                                            <td>telemetry_interfaces.msg.Encoders</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/serial_interface.py&#39;:37:91</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/read_line_sensors</td>
+                                            <td>telemetry_interfaces.msg.LineSensors</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/serial_interface.py&#39;:38:102</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/rosout</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/read_imu</td>
+                                            <td>telemetry_interfaces.msg.Imu</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/serial_interface.py&#39;:36:76</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/keep_alive</td>
+                                            <td>telemetry_interfaces.msg.String</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/serial_interface.py&#39;:41:83</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/read_proximity_sensors</td>
+                                            <td>telemetry_interfaces.msg.ProximitySensors</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/serial_interface.py&#39;:39:117</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/read_buzzer</td>
+                                            <td>telemetry_interfaces.msg.Buzzer</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/serial_interface.py&#39;:35:85</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/zumo_sensor_settings</td>
+                                            <td>telemetry_interfaces.msg.Zumo</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/serial_interface.py&#39;:40:90</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Subscriptions:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Message Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Callback Function</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>rt/motors</td>
+                                            <td>telemetry_interfaces.msg.Motors</td>
+                                            <td></td>
+                                            <td>self::callback_motors</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/serial_interface.py&#39;:45:101</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/log_level</td>
+                                            <td>telemetry_interfaces.msg.Int</td>
+                                            <td></td>
+                                            <td>self::callback_set_log_level</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/serial_interface.py&#39;:67:111</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td></td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/telemetry_data_log_enable</td>
+                                            <td>telemetry_interfaces.msg.Bool</td>
+                                            <td></td>
+                                            <td>self::callback_telemetry_data_log_enable</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/serial_interface.py&#39;:70:155</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/play_buzzer</td>
+                                            <td>telemetry_interfaces.msg.PlayBuzzer</td>
+                                            <td></td>
+                                            <td>self::callback_play_buzzer</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/serial_interface.py&#39;:44:120</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/set_period</td>
+                                            <td>telemetry_interfaces.msg.SamplingRate</td>
+                                            <td></td>
+                                            <td>self::callback_set_serial_period</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/serial_interface.py&#39;:48:129</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/enable_read</td>
+                                            <td>telemetry_interfaces.msg.EnableRead</td>
+                                            <td></td>
+                                            <td>self::callback_enable_serial_read</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/serial_interface.py&#39;:51:129</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Service Servers:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Service Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>/serial_interface/get_type_description</td>
+                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/serial_interface/describe_parameters</td>
+                                            <td>rcl_interfaces/srv/DescribeParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/serial_interface/get_parameter_types</td>
+                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/serial_interface/get_parameters</td>
+                                            <td>rcl_interfaces/srv/GetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/serial_interface/list_parameters</td>
+                                            <td>rcl_interfaces/srv/ListParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/serial_interface/set_parameters_atomically</td>
+                                            <td>rcl_interfaces/srv/SetParametersAtomically</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/serial_interface/set_parameters</td>
+                                            <td>rcl_interfaces/srv/SetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Service Clients:</h4>
+                        
+                            
+                                <p>No Service Clients on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Action Clients:</h4>
+                        
+                            
+                                <p>No Action Clients on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Action Servers:</h4>
+                        
+                            
+                                <p>No Action Servers on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div  class="ml-4 mr-4">
+                        <h4>Generated policy.xml</h4> <a href="policies/serial_interface/policy.xml" download>Download</a>
+                        <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;policy version=&quot;0.2.0&quot;&gt;
+    &lt;enclaves&gt;
+        &lt;enclave path=&quot;/serial_interface&quot;&gt;
+            &lt;profiles&gt;
+                &lt;profile ns=&quot;/&quot; node=&quot;serial_interface&quot;&gt;
+                    &lt;topics publish=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/parameter_events&lt;/topic&gt;
+                        &lt;topic&gt;/read_encoders&lt;/topic&gt;
+                        &lt;topic&gt;/read_line_sensors&lt;/topic&gt;
+                        &lt;topic&gt;/rosout&lt;/topic&gt;
+                        &lt;topic&gt;/read_imu&lt;/topic&gt;
+                        &lt;topic&gt;/keep_alive&lt;/topic&gt;
+                        &lt;topic&gt;/read_proximity_sensors&lt;/topic&gt;
+                        &lt;topic&gt;/read_buzzer&lt;/topic&gt;
+                        &lt;topic&gt;/zumo_sensor_settings&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;topics subscribe=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/motors&lt;/topic&gt;
+                        &lt;topic&gt;/log_level&lt;/topic&gt;
+                        &lt;topic&gt;/telemetry_data_log_enable&lt;/topic&gt;
+                        &lt;topic&gt;/play_buzzer&lt;/topic&gt;
+                        &lt;topic&gt;/set_period&lt;/topic&gt;
+                        &lt;topic&gt;/enable_read&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;services reply=&quot;ALLOW&quot;&gt;
+                        &lt;service&gt;/serial_interface/get_type_description&lt;/service&gt;
+                        &lt;service&gt;/serial_interface/describe_parameters&lt;/service&gt;
+                        &lt;service&gt;/serial_interface/get_parameter_types&lt;/service&gt;
+                        &lt;service&gt;/serial_interface/get_parameters&lt;/service&gt;
+                        &lt;service&gt;/serial_interface/list_parameters&lt;/service&gt;
+                        &lt;service&gt;/serial_interface/set_parameters_atomically&lt;/service&gt;
+                        &lt;service&gt;/serial_interface/set_parameters&lt;/service&gt;
+                    &lt;/services&gt;
+                &lt;/profile&gt;
+            &lt;/profiles&gt;
+        &lt;/enclave&gt;
+    &lt;/enclaves&gt;
+&lt;/policy&gt;
+</code></pre>
+                    </div>
+                </div>
+            
+                <div class="ml-4 mr-4">
+                    <a id="Node-wifi_stats"></a>
+                    <div><h3>/wifi_stats</h3></div>
+                    <div  class="ml-4 mr-4"><h4>Publishers:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Message Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>rt/wifi_stats</td>
+                                            <td>telemetry_interfaces.msg.WifiStats</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1708936186/wifi_stats.py&#39;:30:86</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/rosout</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/parameter_events</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Subscriptions:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Message Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Callback Function</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>rt/log_level</td>
+                                            <td>telemetry_interfaces.msg.Int</td>
+                                            <td></td>
+                                            <td>self::callback_set_log_level</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/wifi_stats.py&#39;:42:111</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td></td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>rt/telemetry_data_log_enable</td>
+                                            <td>telemetry_interfaces.msg.Bool</td>
+                                            <td></td>
+                                            <td>self::callback_telemetry_data_log_enable</td>
+                                            <td>&#39;analysis/ros-sources/1708936186/wifi_stats.py&#39;:45:155</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Service Servers:</h4>
+                        
+                            
+                            
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Topic Name</th>
+                                        <th scope="col">Service Type</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Location</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                        <tr>
+                                            <td>/wifi_stats/get_parameter_types</td>
+                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/wifi_stats/get_parameters</td>
+                                            <td>rcl_interfaces/srv/GetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/wifi_stats/describe_parameters</td>
+                                            <td>rcl_interfaces/srv/DescribeParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/wifi_stats/get_type_description</td>
+                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/wifi_stats/set_parameters_atomically</td>
+                                            <td>rcl_interfaces/srv/SetParametersAtomically</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/wifi_stats/set_parameters</td>
+                                            <td>rcl_interfaces/srv/SetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>/wifi_stats/list_parameters</td>
+                                            <td>rcl_interfaces/srv/ListParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+                                    
+                                </table>
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Service Clients:</h4>
+                        
+                            
+                                <p>No Service Clients on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Action Clients:</h4>
+                        
+                            
+                                <p>No Action Clients on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div class="ml-4 mr-4"><h4>Action Servers:</h4>
+                        
+                            
+                                <p>No Action Servers on this Node</p>
+                            
+                            
+                        
+                    </div>
+                    <div  class="ml-4 mr-4">
+                        <h4>Generated policy.xml</h4> <a href="policies/wifi_stats/policy.xml" download>Download</a>
+                        <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;policy version=&quot;0.2.0&quot;&gt;
+    &lt;enclaves&gt;
+        &lt;enclave path=&quot;/wifi_stats&quot;&gt;
+            &lt;profiles&gt;
+                &lt;profile ns=&quot;/&quot; node=&quot;wifi_stats&quot;&gt;
+                    &lt;topics publish=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/wifi_stats&lt;/topic&gt;
+                        &lt;topic&gt;/rosout&lt;/topic&gt;
+                        &lt;topic&gt;/parameter_events&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;topics subscribe=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/log_level&lt;/topic&gt;
+                        &lt;topic&gt;/telemetry_data_log_enable&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;services reply=&quot;ALLOW&quot;&gt;
+                        &lt;service&gt;/wifi_stats/get_parameter_types&lt;/service&gt;
+                        &lt;service&gt;/wifi_stats/get_parameters&lt;/service&gt;
+                        &lt;service&gt;/wifi_stats/describe_parameters&lt;/service&gt;
+                        &lt;service&gt;/wifi_stats/get_type_description&lt;/service&gt;
+                        &lt;service&gt;/wifi_stats/set_parameters_atomically&lt;/service&gt;
+                        &lt;service&gt;/wifi_stats/set_parameters&lt;/service&gt;
+                        &lt;service&gt;/wifi_stats/list_parameters&lt;/service&gt;
+                    &lt;/services&gt;
+                &lt;/profile&gt;
+            &lt;/profiles&gt;
+        &lt;/enclave&gt;
+    &lt;/enclaves&gt;
+&lt;/policy&gt;
+</code></pre>
+                    </div>
+                </div>
+            
+        </div>
+        
+            </div>
+        </div>
+        </div>
+    </div>
+  <div class="tab-pane" id="pills-lisaanalysis" role="tabpanel" aria-labelledby="pills-lisaanalysis-tab">
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_CameraNode.__init__(CameraNode__self)_-52701127.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_CameraNode.init_log(CameraNode__self)_-52706583.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708936186_camera.$main().html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708936186_camera.main(untyped_args)_-52712814.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.__init__(GUINode__self,_untyped_ui)_1594638295.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.init_battery(GUINode__self)_1594610674.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.init_buzzer(GUINode__self)_1594609496.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.init_camera(GUINode__self)_1594609744.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.init_charging(GUINode__self)_1594611604.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.init_encoders(GUINode__self)_1594611480.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.init_imu(GUINode__self)_1594606644.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.init_line_sensors(GUINode__self)_1594615355.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.init_log(GUINode__self)_1594606551.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.init_log_level(GUINode__self)_1594613557.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.init_motors(GUINode__self)_1594609651.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.init_proximity_sensors(GUINode__self)_1594620191.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.init_wifi_stats(GUINode__self)_1594613309.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.init_zumo_image(GUINode__self)_1594613247.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.set_log_level(GUINode__self)_1594613247.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_GUINode.update_save_telemetry_data(GUINode__self)_1594625957.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708936186_gui.$main().html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708936186_gui.main(untyped_args)_1594626949.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_SerialInterfaceNode.__init__(SerialInterfaceNode__self)_-1178847057.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_SerialInterfaceNode.init_log(SerialInterfaceNode__self)_-1178862960.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708936186_serial_interface.$main().html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708936186_serial_interface.main(untyped_args)_-1178867672.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_UpsReadingNode.__init__(UpsReadingNode__self)_1046204309.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_UpsReadingNode.init_log(UpsReadingNode__self)_1046196869.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708936186_ups_reading.$main().html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708936186_ups_reading.main(untyped_args)_1046188530.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_WifiStatsNode.__init__(WifiStatsNode__self)_-1378017019.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_WifiStatsNode.get_device_name(WifiStatsNode__self)_-1377997272.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_WifiStatsNode.init_log(WifiStatsNode__self)_-1378022320.html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708936186_wifi_stats.$main().html"></iframe>
+            </div>
+        
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708936186_wifi_stats.main(untyped_args)_-1378031930.html"></iframe>
+            </div>
+        
+</div>
+
+</div>
+</div>
+</body>
+<script>
+  var tabs = ["#pills-rosanalysis", "#pills-lisaanalysis"];
+  var triggerTabList = [].slice.call(document.querySelectorAll('#pills-tab button'))
+  console.log(triggerTabList);
+  triggerTabList.forEach(function (triggerEl) {
+    console.log(triggerEl);
+    var tabTrigger = new bootstrap.Tab(triggerEl);
+
+    triggerEl.addEventListener('click', function (event) {
+      console.log(this);
+      event.preventDefault();
+      var targetId = this.dataset["bsTarget"];
+      tabs.forEach(function (tabId) {
+        if (tabId === targetId) {
+          $(tabId).addClass("active");
+        } else {
+          $(tabId).removeClass("active");
+        }
+      });
+
+      tabTrigger.show();
+    })
+  })
+</script>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/mechaship_navigation2_node">
+            <profiles>
+                <profile ns="/" node="mechaship_navigation2_node">
+                    <topics publish="ALLOW">
+                        <topic>/rosout</topic>
+                        <topic>/parameter_events</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/scan</topic>
+                        <topic>/DetectionArray</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/mechaship_navigation2_node/describe_parameters</service>
+                        <service>/mechaship_navigation2_node/list_parameters</service>
+                        <service>/mechaship_navigation2_node/get_type_description</service>
+                        <service>/mechaship_navigation2_node/set_parameters</service>
+                        <service>/mechaship_navigation2_node/get_parameters</service>
+                        <service>/mechaship_navigation2_node/get_parameter_types</service>
+                        <service>/mechaship_navigation2_node/set_parameters_atomically</service>
+                    </services>
+                    <services request="ALLOW">
+                        <service>/actuators/throttle/set_percentage</service>
+                        <service>/set_color</service>
+                        <service>/actuators/key/set</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

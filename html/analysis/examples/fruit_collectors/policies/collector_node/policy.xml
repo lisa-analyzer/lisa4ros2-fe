@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/collector_node">
+            <profiles>
+                <profile ns="/" node="collector_node">
+                    <topics publish="ALLOW">
+                        <topic>/rosout</topic>
+                        <topic>/finish</topic>
+                        <topic>/parameter_events</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/move</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/collector_node/list_parameters</service>
+                        <service>/collector_node/get_parameters</service>
+                        <service>/collector_node/get_type_description</service>
+                        <service>/collector_node/set_parameters</service>
+                        <service>/collector_node/set_parameters_atomically</service>
+                        <service>/collector_node/describe_parameters</service>
+                        <service>/collector_node/get_parameter_types</service>
+                    </services>
+                    <services request="ALLOW">
+                        <service>/registration</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

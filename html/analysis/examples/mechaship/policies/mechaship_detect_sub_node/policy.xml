@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/mechaship_detect_sub_node">
+            <profiles>
+                <profile ns="/" node="mechaship_detect_sub_node">
+                    <topics publish="ALLOW">
+                        <topic>/parameter_events</topic>
+                        <topic>/rosout</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/Image</topic>
+                        <topic>/DetectionArray</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/mechaship_detect_sub_node/get_parameter_types</service>
+                        <service>/mechaship_detect_sub_node/list_parameters</service>
+                        <service>/mechaship_detect_sub_node/get_parameters</service>
+                        <service>/mechaship_detect_sub_node/describe_parameters</service>
+                        <service>/mechaship_detect_sub_node/get_type_description</service>
+                        <service>/mechaship_detect_sub_node/set_parameters</service>
+                        <service>/mechaship_detect_sub_node/set_parameters_atomically</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

@@ -1,0 +1,1 @@
+digraph rosgraph {graph [pad="1", nodesep="2", rankdir="BT", ranksep="2"];"/minimal_subscriber"[style=filled,fillcolor="limegreen"];"/minimal_publisher"[style=filled,fillcolor="limegreen"];"rt/topic"[shape=box,style=filled,fillcolor="gold"];"rt/topic"[shape=box,style=filled,fillcolor="gold"];"rt/topic" -> "/minimal_subscriber""/minimal_publisher" -> "rt/topic"}

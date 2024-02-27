@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/mechaship_classify_node">
+            <profiles>
+                <profile ns="/" node="mechaship_classify_node">
+                    <topics publish="ALLOW">
+                        <topic>/Buoy</topic>
+                        <topic>/rosout</topic>
+                        <topic>/parameter_events</topic>
+                        <topic>/Wall</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/scan</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/mechaship_classify_node/set_parameters_atomically</service>
+                        <service>/mechaship_classify_node/get_type_description</service>
+                        <service>/mechaship_classify_node/get_parameter_types</service>
+                        <service>/mechaship_classify_node/list_parameters</service>
+                        <service>/mechaship_classify_node/describe_parameters</service>
+                        <service>/mechaship_classify_node/get_parameters</service>
+                        <service>/mechaship_classify_node/set_parameters</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

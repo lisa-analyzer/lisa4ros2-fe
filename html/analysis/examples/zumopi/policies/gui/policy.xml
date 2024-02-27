@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/gui">
+            <profiles>
+                <profile ns="/" node="gui">
+                    <topics publish="ALLOW">
+                        <topic>/telemetry_data_log_enable</topic>
+                        <topic>/rosout</topic>
+                        <topic>/set_period</topic>
+                        <topic>/enable_read</topic>
+                        <topic>/play_buzzer</topic>
+                        <topic>/log_level</topic>
+                        <topic>/motors</topic>
+                        <topic>/parameter_events</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/read_buzzer</topic>
+                        <topic>/read_line_sensors</topic>
+                        <topic>/read_proximity_sensors</topic>
+                        <topic>/zumo_sensor_settings</topic>
+                        <topic>/read_ups_charging</topic>
+                        <topic>/ups_sensor_settings</topic>
+                        <topic>/keep_alive</topic>
+                        <topic>/wifi_stats</topic>
+                        <topic>/camera_frame</topic>
+                        <topic>/camera_sensor_settings</topic>
+                        <topic>/read_encoders</topic>
+                        <topic>/read_imu</topic>
+                        <topic>/read_ups_battery</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/gui/get_type_description</service>
+                        <service>/gui/get_parameters</service>
+                        <service>/gui/set_parameters</service>
+                        <service>/gui/describe_parameters</service>
+                        <service>/gui/get_parameter_types</service>
+                        <service>/gui/set_parameters_atomically</service>
+                        <service>/gui/list_parameters</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

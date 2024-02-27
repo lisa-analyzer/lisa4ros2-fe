@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/ups_reading">
+            <profiles>
+                <profile ns="/" node="ups_reading">
+                    <topics publish="ALLOW">
+                        <topic>/ups_sensor_settings</topic>
+                        <topic>/read_ups_battery</topic>
+                        <topic>/read_ups_charging</topic>
+                        <topic>/rosout</topic>
+                        <topic>/parameter_events</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/log_level</topic>
+                        <topic>/set_period</topic>
+                        <topic>/enable_read</topic>
+                        <topic>/telemetry_data_log_enable</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/ups_reading/get_parameters</service>
+                        <service>/ups_reading/list_parameters</service>
+                        <service>/ups_reading/set_parameters_atomically</service>
+                        <service>/ups_reading/set_parameters</service>
+                        <service>/ups_reading/describe_parameters</service>
+                        <service>/ups_reading/get_parameter_types</service>
+                        <service>/ups_reading/get_type_description</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/perception_buoy_lidar">
+            <profiles>
+                <profile ns="/" node="perception_buoy_lidar">
+                    <topics publish="ALLOW">
+                        <topic>/parameter_events</topic>
+                        <topic>/buoys/bounding_boxes</topic>
+                        <topic>/rosout</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/perception/lidar/bounding_boxes</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/perception_buoy_lidar/list_parameters</service>
+                        <service>/perception_buoy_lidar/get_parameter_types</service>
+                        <service>/perception_buoy_lidar/describe_parameters</service>
+                        <service>/perception_buoy_lidar/get_type_description</service>
+                        <service>/perception_buoy_lidar/get_parameters</service>
+                        <service>/perception_buoy_lidar/set_parameters</service>
+                        <service>/perception_buoy_lidar/set_parameters_atomically</service>
+                        <service>/perception/lidar_buoy</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

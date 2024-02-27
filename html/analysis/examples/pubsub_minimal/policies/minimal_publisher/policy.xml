@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/minimal_publisher">
+            <profiles>
+                <profile ns="/" node="minimal_publisher">
+                    <topics publish="ALLOW">
+                        <topic>/rosout</topic>
+                        <topic>/parameter_events</topic>
+                        <topic>/topic</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/minimal_publisher/get_type_description</service>
+                        <service>/minimal_publisher/set_parameters</service>
+                        <service>/minimal_publisher/set_parameters_atomically</service>
+                        <service>/minimal_publisher/describe_parameters</service>
+                        <service>/minimal_publisher/list_parameters</service>
+                        <service>/minimal_publisher/get_parameters</service>
+                        <service>/minimal_publisher/get_parameter_types</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>
