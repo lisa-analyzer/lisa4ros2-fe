@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/carrot_creator">
+            <profiles>
+                <profile ns="/" node="carrot_creator">
+                    <topics publish="ALLOW">
+                        <topic>/parameter_events</topic>
+                        <topic>/rosout</topic>
+                        <topic>/current_goal_pose</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/vehicle_pose</topic>
+                        <topic>/look_ahead_specs</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/carrot_creator/describe_parameters</service>
+                        <service>/carrot_creator/list_parameters</service>
+                        <service>/carrot_creator/set_parameters</service>
+                        <service>/carrot_creator/set_parameters_atomically</service>
+                        <service>/carrot_creator/get_parameters</service>
+                        <service>/carrot_creator/get_type_description</service>
+                        <service>/carrot_creator/get_parameter_types</service>
+                    </services>
+                    <services request="ALLOW">
+                        <service>/get_route_poses</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

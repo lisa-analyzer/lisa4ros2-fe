@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/joy_subscriber">
+            <profiles>
+                <profile ns="/" node="joy_subscriber">
+                    <topics publish="ALLOW">
+                        <topic>/rosout</topic>
+                        <topic>/joy_data</topic>
+                        <topic>/parameter_events</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/joy</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/joy_subscriber/get_parameter_types</service>
+                        <service>/joy_subscriber/set_parameters_atomically</service>
+                        <service>/joy_subscriber/get_type_description</service>
+                        <service>/joy_subscriber/describe_parameters</service>
+                        <service>/joy_subscriber/list_parameters</service>
+                        <service>/joy_subscriber/get_parameters</service>
+                        <service>/joy_subscriber/set_parameters</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

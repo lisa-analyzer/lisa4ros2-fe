@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.omg.org/spec/DDS-SECURITY/20170901/omg_shared_ca_permissions.xsd">
+    <permissions>
+        <grant name="/motor">
+            <subject_name>CN=/motor</subject_name>
+            <validity>
+                <not_before>2024-03-13T17:32:24.371+01:00</not_before>
+                <not_after>2034-03-13T17:32:24.371+01:00</not_after>
+            </validity>
+            <allow_rule>
+                <domains>
+                    <id>0</id>
+                </domains>
+                <publish>
+                    <topics>
+                        <topic>rr/motor/list_parametersReply</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rr/motor/get_parameter_typesReply</topic>
+                        <topic>rr/motor/set_parametersReply</topic>
+                        <topic>rt/parameter_events</topic>
+                        <topic>rr/motor/set_parameters_atomicallyReply</topic>
+                        <topic>rt/rosout</topic>
+                        <topic>rr/motor/describe_parametersReply</topic>
+                        <topic>rr/motor/get_type_descriptionReply</topic>
+                        <topic>rr/motor/get_parametersReply</topic>
+                    </topics>
+                </publish>
+                <subscribe>
+                    <topics>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rq/motor/get_parameter_typesRequest</topic>
+                        <topic>rq/motor/get_parametersRequest</topic>
+                        <topic>rq/motor/set_parametersRequest</topic>
+                        <topic>rq/motor/describe_parametersRequest</topic>
+                        <topic>rt/motorSpeed</topic>
+                        <topic>rq/motor/list_parametersRequest</topic>
+                        <topic>rq/motor/set_parameters_atomicallyRequest</topic>
+                        <topic>rq/motor/get_type_descriptionRequest</topic>
+                    </topics>
+                </subscribe>
+            </allow_rule>
+            <default>DENY</default>
+        </grant>
+    </permissions>
+</dds>

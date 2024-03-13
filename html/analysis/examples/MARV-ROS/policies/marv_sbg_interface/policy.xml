@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/marv_sbg_interface">
+            <profiles>
+                <profile ns="/" node="marv_sbg_interface">
+                    <topics publish="ALLOW">
+                        <topic>/marv/nav/sbg_pose</topic>
+                        <topic>/marv/nav/sbg_gps_pos_reliable_state</topic>
+                        <topic>/marv/nav/sbg_current_pos</topic>
+                        <topic>/marv/nav/sbg_angular_velocity</topic>
+                        <topic>/marv/nav/sbg_velocity_magnitude</topic>
+                        <topic>/rosout</topic>
+                        <topic>/marv/nav/sys_time</topic>
+                        <topic>/parameter_events</topic>
+                        <topic>/marv/nav/sbg_acceleration</topic>
+                        <topic>/marv/nav/sbg_ins_status</topic>
+                        <topic>/marv/nav/sbg_ref_pos_state</topic>
+                        <topic>/marv/nav/sbg_ekf_status</topic>
+                        <topic>/marv/nav/sbg_velocity</topic>
+                        <topic>/marv/nav/sbg_time_synced_state</topic>
+                        <topic>/marv/nav/sbg_time</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/sbg/ekf_nav</topic>
+                        <topic>/sbg/ekf_quat</topic>
+                        <topic>/marv/nav/sbg_ref_pos</topic>
+                        <topic>/sbg/utc_time</topic>
+                        <topic>/sbg/imu_data</topic>
+                        <topic>/sbg/ekf_euler</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/marv_sbg_interface/set_parameters</service>
+                        <service>/marv_sbg_interface/get_parameters</service>
+                        <service>/marv_sbg_interface/describe_parameters</service>
+                        <service>/marv_sbg_interface/set_parameters_atomically</service>
+                        <service>/marv_sbg_interface/list_parameters</service>
+                        <service>/marv_sbg_interface/get_type_description</service>
+                        <service>/marv_sbg_interface/get_parameter_types</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

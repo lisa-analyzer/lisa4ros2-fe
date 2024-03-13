@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/perception_dock_stereo">
+            <profiles>
+                <profile ns="/" node="perception_dock_stereo">
+                    <topics publish="ALLOW">
+                        <topic>/perception/dock_stereo/left_cam_left</topic>
+                        <topic>/perception/stereo/debug/points</topic>
+                        <topic>/perception/dock_stereo/left_cam_right</topic>
+                        <topic>/rosout</topic>
+                        <topic>/parameter_events</topic>
+                        <topic>/perception/dock_stereo/right_cam_right</topic>
+                        <topic>/perception/dock_stereo/right_cam_left</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/perception/dock_stereo</service>
+                        <service>/perception_dock_stereo/set_parameters</service>
+                        <service>/perception_dock_stereo/get_parameters</service>
+                        <service>/perception_dock_stereo/get_type_description</service>
+                        <service>/perception_dock_stereo/list_parameters</service>
+                        <service>/perception_dock_stereo/describe_parameters</service>
+                        <service>/perception_dock_stereo/set_parameters_atomically</service>
+                        <service>/perception_dock_stereo/get_parameter_types</service>
+                    </services>
+                    <services request="ALLOW">
+                        <service>/f'{cams[1]}/find_dock_posts'</service>
+                        <service>/f'{cams[0]}/find_dock_posts'</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

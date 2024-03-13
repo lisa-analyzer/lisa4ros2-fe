@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.omg.org/spec/DDS-SECURITY/20170901/omg_shared_ca_permissions.xsd">
+    <permissions>
+        <grant name="/joy_subscriber">
+            <subject_name>CN=/joy_subscriber</subject_name>
+            <validity>
+                <not_before>2024-03-13T11:17:12.448+01:00</not_before>
+                <not_after>2034-03-13T11:17:12.448+01:00</not_after>
+            </validity>
+            <allow_rule>
+                <domains>
+                    <id>0</id>
+                </domains>
+                <publish>
+                    <topics>
+                        <topic>rr/joy_subscriber/list_parametersReply</topic>
+                        <topic>rr/joy_subscriber/get_parameter_typesReply</topic>
+                        <topic>rr/joy_subscriber/get_type_descriptionReply</topic>
+                        <topic>rt/rosout</topic>
+                        <topic>rt/joy_data</topic>
+                        <topic>rr/joy_subscriber/describe_parametersReply</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rr/joy_subscriber/set_parameters_atomicallyReply</topic>
+                        <topic>rt/parameter_events</topic>
+                        <topic>rr/joy_subscriber/get_parametersReply</topic>
+                        <topic>rr/joy_subscriber/set_parametersReply</topic>
+                    </topics>
+                </publish>
+                <subscribe>
+                    <topics>
+                        <topic>rq/joy_subscriber/get_type_descriptionRequest</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rt/joy</topic>
+                        <topic>rq/joy_subscriber/set_parameters_atomicallyRequest</topic>
+                        <topic>rq/joy_subscriber/list_parametersRequest</topic>
+                        <topic>rq/joy_subscriber/describe_parametersRequest</topic>
+                        <topic>rq/joy_subscriber/set_parametersRequest</topic>
+                        <topic>rq/joy_subscriber/get_parameter_typesRequest</topic>
+                        <topic>rq/joy_subscriber/get_parametersRequest</topic>
+                    </topics>
+                </subscribe>
+            </allow_rule>
+            <default>DENY</default>
+        </grant>
+    </permissions>
+</dds>

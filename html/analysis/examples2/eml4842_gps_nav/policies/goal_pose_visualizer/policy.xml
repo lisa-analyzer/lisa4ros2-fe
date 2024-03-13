@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/goal_pose_visualizer">
+            <profiles>
+                <profile ns="/" node="goal_pose_visualizer">
+                    <topics publish="ALLOW">
+                        <topic>/look_ahead_pose</topic>
+                        <topic>/rosout</topic>
+                        <topic>/parameter_events</topic>
+                        <topic>/closest_point</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/current_goal_pose</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/goal_pose_visualizer/set_parameters</service>
+                        <service>/goal_pose_visualizer/describe_parameters</service>
+                        <service>/goal_pose_visualizer/get_type_description</service>
+                        <service>/goal_pose_visualizer/list_parameters</service>
+                        <service>/goal_pose_visualizer/get_parameters</service>
+                        <service>/goal_pose_visualizer/set_parameters_atomically</service>
+                        <service>/goal_pose_visualizer/get_parameter_types</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/TestSetupGaitSelectionNode">
+            <profiles>
+                <profile ns="/" node="TestSetupGaitSelectionNode">
+                    <topics publish="ALLOW">
+                        <topic>/joint_trajectory_controller/joint_trajectory</topic>
+                        <topic>/parameter_events</topic>
+                        <topic>/rosout</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/TestSetupGaitSelectionNode/get_parameters</service>
+                        <service>/TestSetupGaitSelectionNode/set_parameters</service>
+                        <service>/gait_selection</service>
+                        <service>/TestSetupGaitSelectionNode/list_parameters</service>
+                        <service>/TestSetupGaitSelectionNode/get_type_description</service>
+                        <service>/footstep_generator</service>
+                        <service>/TestSetupGaitSelectionNode/describe_parameters</service>
+                        <service>/TestSetupGaitSelectionNode/set_parameters_atomically</service>
+                        <service>/TestSetupGaitSelectionNode/get_parameter_types</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

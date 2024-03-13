@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/joy_operation">
+            <profiles>
+                <profile ns="/" node="joy_operation">
+                    <topics publish="ALLOW">
+                        <topic>/pos_data</topic>
+                        <topic>/rosout</topic>
+                        <topic>/parameter_events</topic>
+                        <topic>/degpos_data</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/joy_data</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/joy_operation/get_type_description</service>
+                        <service>/joy_operation/set_parameters</service>
+                        <service>/joy_operation/get_parameters</service>
+                        <service>/joy_operation/get_parameter_types</service>
+                        <service>/joy_operation/set_parameters_atomically</service>
+                        <service>/joy_operation/describe_parameters</service>
+                        <service>/joy_operation/list_parameters</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

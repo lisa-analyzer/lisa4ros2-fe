@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/autonomy_wildlife_encounter">
+            <profiles>
+                <profile ns="/" node="autonomy_wildlife_encounter">
+                    <topics publish="ALLOW">
+                        <topic>/navigation/translate</topic>
+                        <topic>/rosout</topic>
+                        <topic>/parameter_events</topic>
+                        <topic>/navigation/set_waypoints</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/buoys/bounding_boxes</topic>
+                        <topic>/navigation/success</topic>
+                        <topic>/localization/odometry</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/autonomy_wildlife_encounter/get_type_description</service>
+                        <service>/autonomy_wildlife_encounter/set_parameters</service>
+                        <service>/autonomy_wildlife_encounter/set_parameters_atomically</service>
+                        <service>/autonomy_wildlife_encounter/get_parameter_types</service>
+                        <service>/autonomy_wildlife_encounter/list_parameters</service>
+                        <service>/autonomy_wildlife_encounter/describe_parameters</service>
+                        <service>/autonomy_wildlife_encounter/get_parameters</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

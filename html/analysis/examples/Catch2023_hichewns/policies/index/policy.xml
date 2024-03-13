@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/index">
+            <profiles>
+                <profile ns="/" node="index">
+                    <topics publish="ALLOW">
+                        <topic>/parameter_events</topic>
+                        <topic>/rosout</topic>
+                        <topic>/index</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/index/describe_parameters</service>
+                        <service>/index/get_type_description</service>
+                        <service>/index/get_parameter_types</service>
+                        <service>/index/list_parameters</service>
+                        <service>/index/get_parameters</service>
+                        <service>/index/set_parameters</service>
+                        <service>/index/set_parameters_atomically</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

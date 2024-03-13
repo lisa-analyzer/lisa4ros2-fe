@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/station_keeping">
+            <profiles>
+                <profile ns="/" node="station_keeping">
+                    <topics publish="ALLOW">
+                        <topic>/navigation/set_waypoints</topic>
+                        <topic>/parameter_events</topic>
+                        <topic>/rosout</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/vrx/stationkeeping/goal</topic>
+                        <topic>/vrx/task/info</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/station_keeping/get_parameter_types</service>
+                        <service>/station_keeping/set_parameters</service>
+                        <service>/station_keeping/describe_parameters</service>
+                        <service>/station_keeping/get_type_description</service>
+                        <service>/station_keeping/get_parameters</service>
+                        <service>/station_keeping/set_parameters_atomically</service>
+                        <service>/station_keeping/list_parameters</service>
+                    </services>
+                    <services request="ALLOW">
+                        <service>/fromLL</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

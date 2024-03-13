@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.omg.org/spec/DDS-SECURITY/20170901/omg_shared_ca_permissions.xsd">
+    <permissions>
+        <grant name="/failsafe">
+            <subject_name>CN=/failsafe</subject_name>
+            <validity>
+                <not_before>2024-03-13T16:53:15.286+01:00</not_before>
+                <not_after>2034-03-13T16:53:15.286+01:00</not_after>
+            </validity>
+            <allow_rule>
+                <domains>
+                    <id>0</id>
+                </domains>
+                <publish>
+                    <topics>
+                        <topic>rt/drone/failsafe</topic>
+                        <topic>rt/parameter_events</topic>
+                        <topic>rr/failsafe/get_type_descriptionReply</topic>
+                        <topic>rr/drone/enable_failsafeReply</topic>
+                        <topic>rr/failsafe/describe_parametersReply</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rr/failsafe/get_parametersReply</topic>
+                        <topic>rt/rosout</topic>
+                        <topic>rr/failsafe/list_parametersReply</topic>
+                        <topic>rr/failsafe/set_parameters_atomicallyReply</topic>
+                        <topic>rr/failsafe/set_parametersReply</topic>
+                        <topic>rr/failsafe/get_parameter_typesReply</topic>
+                    </topics>
+                </publish>
+                <subscribe>
+                    <topics>
+                        <topic>rq/failsafe/get_parametersRequest</topic>
+                        <topic>rq/failsafe/list_parametersRequest</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rq/failsafe/get_parameter_typesRequest</topic>
+                        <topic>rq/drone/enable_failsafeRequest</topic>
+                        <topic>rq/failsafe/describe_parametersRequest</topic>
+                        <topic>rq/failsafe/set_parameters_atomicallyRequest</topic>
+                        <topic>rq/failsafe/get_type_descriptionRequest</topic>
+                        <topic>rq/failsafe/set_parametersRequest</topic>
+                    </topics>
+                </subscribe>
+            </allow_rule>
+            <default>DENY</default>
+        </grant>
+    </permissions>
+</dds>

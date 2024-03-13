@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/communication_node">
+            <profiles>
+                <profile ns="/" node="communication_node">
+                    <topics publish="ALLOW">
+                        <topic>/IsRaceOn</topic>
+                        <topic>/rosout</topic>
+                        <topic>/IsConnected</topic>
+                        <topic>/parameter_events</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/IsClientConnected</topic>
+                        <topic>/IsClientRaceOn</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/communication_node/get_parameters</service>
+                        <service>/communication_node/set_parameters</service>
+                        <service>/communication_node/get_parameter_types</service>
+                        <service>/communication_node/describe_parameters</service>
+                        <service>/communication_node/get_type_description</service>
+                        <service>/communication_node/set_parameters_atomically</service>
+                        <service>/communication_node/list_parameters</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

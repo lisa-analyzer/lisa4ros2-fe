@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/api_listener">
+            <profiles>
+                <profile ns="/" node="api_listener">
+                    <topics publish="ALLOW">
+                        <topic>/parameter_events</topic>
+                        <topic>/rosout</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/drone/status</topic>
+                        <topic>/drone/failsafe</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/api_listener/list_parameters</service>
+                        <service>/api_listener/set_parameters_atomically</service>
+                        <service>/api_listener/get_type_description</service>
+                        <service>/api_listener/set_parameters</service>
+                        <service>/api_listener/get_parameter_types</service>
+                        <service>/api_listener/describe_parameters</service>
+                        <service>/api_listener/get_parameters</service>
+                    </services>
+                    <services request="ALLOW">
+                        <service>/drone/arm</service>
+                        <service>/drone/enable_failsafe</service>
+                        <service>/drone/ready</service>
+                        <service>/drone/move_position</service>
+                        <service>/drone/disarm</service>
+                        <service>/drone/picture</service>
+                        <service>/drone/land</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

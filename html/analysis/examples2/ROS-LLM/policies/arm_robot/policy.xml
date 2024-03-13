@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/arm_robot">
+            <profiles>
+                <profile ns="/" node="arm_robot">
+                    <topics publish="ALLOW">
+                        <topic>/rosout</topic>
+                        <topic>/parameter_events</topic>
+                        <topic>/target_pose</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/ChatGPT_function_call_service</service>
+                        <service>/arm_robot/get_parameter_types</service>
+                        <service>/arm_robot/list_parameters</service>
+                        <service>/arm_robot/describe_parameters</service>
+                        <service>/arm_robot/get_parameters</service>
+                        <service>/arm_robot/get_type_description</service>
+                        <service>/arm_robot/set_parameters</service>
+                        <service>/arm_robot/set_parameters_atomically</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

@@ -1,0 +1,786 @@
+<html>
+	<head>
+		<title>untyped analysis/ros-sources/1710347629/marv_driver_marv_can_bridge::$main()</title>
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1" />
+		
+		<script src="js/cytoscape-3.21.1.min.js"></script>
+		<script src="js/layout-base.js"></script>
+		<script src="js/cose-base.js"></script>
+		<script src="js/cytoscape-fcose.js"></script>
+		<script src="js/jquery-3.0.0.min.js"></script>
+		<script src="js/cytoscape-graphml-1.0.6-hier.js"></script>
+		<script src="js/cytoscape-expand-collapse.js"></script>
+		
+		<style>
+		body {
+			font-family: helvetica neue, helvetica, liberation sans, arial,
+				sans-serif;
+			font-size: 14px;
+			background-color: white;
+		}
+		
+		html, body, #full {
+			height: 100%;
+		}
+		
+		#full {
+			display: flex;
+			flex-direction: row;
+		}
+		
+		#cy {
+			flex-grow: 0.5;
+			z-index: 10;
+			max-width: 70%;
+		}
+		
+		#header {
+			position: fixed;
+			z-index: 11;
+			overflow-x: hidden;
+		}
+		
+		#header div {
+			background-color: #e2e2e2;
+			padding: 20px 15px;
+			margin-bottom: 10px;
+		}
+		
+		#header div b {
+			padding: 6px 0;
+			color: #333333;
+			display: block;
+			cursor: pointer;
+		}
+		
+		#header div span {
+			padding: 6px 0;
+			display: block;
+		}
+		
+		#header div span label b {
+			padding: 0;
+			display: inline;
+		}
+		
+		#header div span input {
+			margin: 0;
+		}
+		#descriptions {
+			flex-grow: 0.5;
+			z-index: 11;
+			overflow: auto;
+			font-size: 18px;
+			border-left: 2px solid #e2e2e2;
+    		padding-left: 20px;
+		}
+		.description-header {
+    		font-weight: bold;
+		}
+		#descriptions ul {
+		    padding-left: inherit;
+		    margin: 5px 0;
+		}
+		.description-nest {
+			padding-left: 15px;
+		}
+		.header-hidden {
+			display: none;
+		}
+		.description-title-wrapper {
+    		margin-top: 0.83em;
+    		margin-bottom: 0.83em;
+		}
+		.description-title {
+		    font-size: 1.5em;
+		    font-weight: bold;
+		}
+		.description-title-text {
+		    font-size: 1.5em;
+		    font-family: monospace;
+		}
+		#header-none {
+    		margin-top: 0.83em;
+    		margin-bottom: 0.83em;
+		}
+		.no-results {
+   			border: solid 2px #FF0000;  
+   			background-color: #FF000040;
+		}
+		</style>
+	</head>
+
+	<body>
+		<h1>untyped analysis/ros-sources/1710347629/marv_driver_marv_can_bridge::$main()</h1>
+		<h3></h3>
+		<hr />
+		<div id="full">
+			<div id="header">
+				<div>
+					<b>Node border: <font color="darkgray">gray</font>, single</b> 
+					<b>Entrypoint border: black, single</b> 
+					<b>Exitpoint border: black, double</b> 
+					<b>Sequential edge: black, solid</b> 
+					<b>False edge: <font color="red">red</font>, solid</b> 
+					<b>True edge: <font color="blue">blue</font>, solid</b>
+				</div>
+				<div>
+					<input id="search" type="text" placeholder="Search node.."/>
+					<input id="next" type="button" value="Next" disabled/>
+					<input id="prev" type="button" value="Previous" disabled/>
+					<b id="relayout">Run layout</b> 
+					<b id="fit">Fit to viewport</b>
+					<hr/>
+					<b id="collapseAll">Collapse all</b> 
+					<b id="expandAll">Expand all</b> 
+				</div>
+			</div>
+			<div id="cy"></div>
+			<div id="descriptions">
+				<div id="header-none">
+				No node selected. Select a node to show its results.
+				</div>
+				<div id="header-node0" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">''' 
+# ------------------------------------- #
+# MARV CAN Bridge node            #
+# By Viktor Lindstrom and               #
+# Noel Danielsson, Spring 2021          #
+# Chalmers University of Technology     #
+# ------------------------------------- #
+# The MARV CAN Bridge acts as a bridge between the low level system (can messages) and high level system (ros messages).
+# It uses the marv.dbc file to encode and decode the messages in order to get the right format and arbitration id.
+# Each message/topic that should be bridged needs to be specified in this node. 
+# Messages from ROS to CAN are ROS Subscriptions that calls callbacks, encodes and sends the CAN message. See INCOMMING ROS MESSAGES -> OUTGOING CAN MESSAGES
+# Messages from CAN to ROS are decoded and then passed through "incomming_CAN_message_callback" to a ROS Publish. See INCOMMING CAN MESSAGES -> OUTGOING ROS MESSAGES
+'''</span></div>
+					<span class="description-header">expressions: </span>[" 
+# ------------------------------------- #
+# MARV CAN Bridge node            #
+# By Viktor Lindstrom and               #
+# Noel Danielsson, Spring 2021          #
+# Chalmers University of Technology     #
+# ------------------------------------- #
+# The MARV CAN Bridge acts as a bridge between the low level system (can messages) and high level system (ros messages).
+# It uses the marv.dbc file to encode and decode the messages in order to get the right format and arbitration id.
+# Each message/topic that should be bridged needs to be specified in this node. 
+# Messages from ROS to CAN are ROS Subscriptions that calls callbacks, encodes and sends the CAN message. See INCOMMING ROS MESSAGES -> OUTGOING CAN MESSAGES
+# Messages from CAN to ROS are decoded and then passed through "incomming_CAN_message_callback" to a ROS Publish. See INCOMMING CAN MESSAGES -> OUTGOING ROS MESSAGES
+"]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node1" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">import os</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node2" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">import time</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node3" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">import can</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node4" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">import cantools</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node5" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">import rclpy</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node6" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from rclpy.node import Node</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node7" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from rclpy.executors import MultiThreadedExecutor</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node8" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from std_msgs.msg import Int8</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node9" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from std_msgs.msg import Bool</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node10" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from std_msgs.msg import UInt64</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node11" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from std_msgs.msg import UInt8</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node12" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from marv_msgs.msg import CmdSteering</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node13" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from marv_msgs.msg import ScenarioConfig</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node14" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from marv_msgs.msg import Notification</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node15" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from marv_msgs.msg import Status</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node16" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from marv_msgs.msg import Log1NCU</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node17" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from marv_msgs.msg import Log1PDU</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node18" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from marv_msgs.msg import Log1TCU</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node19" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">from marv_msgs.msg import Log2TCU</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node20" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">==(__name__, '__main__')</span></div>
+					<span class="description-header">expressions: </span>[__name__ == "__main__"]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node21" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">__name__</span></div>
+					<span class="description-header">expressions: </span>[__name__]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node22" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">'__main__'</span></div>
+					<span class="description-header">expressions: </span>["__main__"]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+				<div id="header-node23" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">main()</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span><br/>
+					<div class="description-nest">
+						<span class="description-header">heap: </span><br/>
+						<div class="description-nest">
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':126:43[&pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38]: </span>[heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[a_listener]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':126:43]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_ctrl_acu_power_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':77:108]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_ctrl_log_data_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':79:106]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_log_1NCU_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':101:103]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_log_1PDU_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':103:103]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_log_1TCU_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':105:103]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_log_2TCU_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':107:103]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_radar_enable_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':109:109]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_reset_scenario_handler_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':87:129]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_12V_Auto_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':83:116]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_ncu_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':95:122]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_ocu_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':99:122]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_pdu_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':89:122]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_rcu_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':91:122]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_tcu_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':93:122]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_ucu_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':97:122]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_scenario_configuration_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':81:135]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_start_scenario_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':85:123]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[subscription]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':73:119]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[a_listener]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':126:43]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_ctrl_acu_power_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':77:108]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_ctrl_log_data_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':79:106]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_log_1NCU_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':101:103]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_log_1PDU_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':103:103]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_log_1TCU_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':105:103]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_log_2TCU_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':107:103]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_radar_enable_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':109:109]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_reset_scenario_handler_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':87:129]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_12V_Auto_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':83:116]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_ncu_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':95:122]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_ocu_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':99:122]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_pdu_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':89:122]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_rcu_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':91:122]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_tcu_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':93:122]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_ucu_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':97:122]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_scenario_configuration_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':81:135]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_start_scenario_publisher_]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':85:123]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[subscription]: </span>[heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':73:119]<br/>
+						</div>
+						<span class="description-header">type: </span><br/>
+						<div class="description-nest">
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':101:103: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':101:103[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':101:103[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':101:103[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':103:103: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':103:103[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':103:103[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':103:103[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':105:103: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':105:103[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':105:103[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':105:103[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':107:103: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':107:103[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':107:103[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':107:103[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':109:109: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':109:109[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':109:109[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':109:109[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':126:43: </span>[CAN_Listener]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':126:43[&pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38]: </span>[MARV_CAN_Bridge*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[a_listener]: </span>[CAN_Listener*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[bus]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[db]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[enable_rosout]: </span>[bool]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[frame_id_list]: </span>[List]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[ignore_list]: </span>[List]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_ctrl_acu_power_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_ctrl_log_data_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_log_1NCU_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_log_1PDU_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_log_1TCU_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_log_2TCU_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_radar_enable_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_reset_scenario_handler_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_12V_Auto_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_ncu_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_ocu_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_pdu_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_rcu_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_tcu_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_heartbeat_ucu_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_scenario_configuration_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[marv_sys_status_start_scenario_publisher_]: </span>[rclpy.publisher.Publisher*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[namespace]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[node_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[start_parameter_services]: </span>[bool]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[subscription]: </span>[rclpy.subscription.Subscription*]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':62:123: </span>[rclpy.subscription.Subscription]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':62:123[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':62:123[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':62:123[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':62:123[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':63:122: </span>[rclpy.subscription.Subscription]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':63:122[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':63:122[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':63:122[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':63:122[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':64:129: </span>[rclpy.subscription.Subscription]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':64:129[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':64:129[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':64:129[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':64:129[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':65:123: </span>[rclpy.subscription.Subscription]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':65:123[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':65:123[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':65:123[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':65:123[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':66:125: </span>[rclpy.subscription.Subscription]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':66:125[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':66:125[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':66:125[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':66:125[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':67:136: </span>[rclpy.subscription.Subscription]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':67:136[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':67:136[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':67:136[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':67:136[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':68:129: </span>[rclpy.subscription.Subscription]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':68:129[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':68:129[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':68:129[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':68:129[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':69:154: </span>[rclpy.subscription.Subscription]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':69:154[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':69:154[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':69:154[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':69:154[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':70:125: </span>[rclpy.subscription.Subscription]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':70:125[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':70:125[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':70:125[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':70:125[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':71:119: </span>[rclpy.subscription.Subscription]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':71:119[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':71:119[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':71:119[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':71:119[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':72:119: </span>[rclpy.subscription.Subscription]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':72:119[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':72:119[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':72:119[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':72:119[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':73:119: </span>[rclpy.subscription.Subscription]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':73:119[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':73:119[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':73:119[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':73:119[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':77:108: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':77:108[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':77:108[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':77:108[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':79:106: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':79:106[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':79:106[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':79:106[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':81:135: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':81:135[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':81:135[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':81:135[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':83:116: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':83:116[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':83:116[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':83:116[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':85:123: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':85:123[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':85:123[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':85:123[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':87:129: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':87:129[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':87:129[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':87:129[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':89:122: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':89:122[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':89:122[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':89:122[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':91:122: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':91:122[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':91:122[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':91:122[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':93:122: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':93:122[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':93:122[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':93:122[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':95:122: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':95:122[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':95:122[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':95:122[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':97:122: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':97:122[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':97:122[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':97:122[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':99:122: </span>[rclpy.publisher.Publisher]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':99:122[msg_type]: </span>[string]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':99:122[qos_profile]: </span>[int32]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':99:122[topic_name]: </span>[string]<br/>
+							<span class="description-header">heap[w]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38: </span>[MARV_CAN_Bridge]<br/>
+						</div>
+						<span class="description-header">value: </span><br/>
+						<div class="description-nest">
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':101:103[msg_type]: </span>"Log1NCU"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':101:103[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':101:103[topic_name]: </span>"/marv/sys/log/log1_ncu"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':103:103[msg_type]: </span>"Log1PDU"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':103:103[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':103:103[topic_name]: </span>"/marv/sys/log/log1_pdu"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':105:103[msg_type]: </span>"Log1TCU"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':105:103[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':105:103[topic_name]: </span>"/marv/sys/log/log1_tcu"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':107:103[msg_type]: </span>"Log2TCU"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':107:103[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':107:103[topic_name]: </span>"/marv/sys/log/log2_tcu"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':109:109[msg_type]: </span>"Bool"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':109:109[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':109:109[topic_name]: </span>"/marv/sys/ctrl/radar_enable"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[bus]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[db]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[enable_rosout]: </span>true<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[frame_id_list]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[ignore_list]: </span>[-1]<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[namespace]: </span>""<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[node_name]: </span>"marv_can_bridge"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':409:38[start_parameter_services]: </span>true<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':62:123[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':62:123[msg_type]: </span>"Int8"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':62:123[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':62:123[topic_name]: </span>"/marv/sys/ctrl/scenario_state"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':63:122[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':63:122[msg_type]: </span>"Int8"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':63:122[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':63:122[topic_name]: </span>"/marv/sys/ctrl/sound_buzzer"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':64:129[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':64:129[msg_type]: </span>"CmdSteering"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':64:129[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':64:129[topic_name]: </span>"/marv/sys/ctrl/cmd_steering"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':65:123[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':65:123[msg_type]: </span>"Bool"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':65:123[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':65:123[topic_name]: </span>"/marv/sys/status/logging_state"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':66:125[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':66:125[msg_type]: </span>"Int8"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':66:125[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':66:125[topic_name]: </span>"/marv/sys/status/logging_marker"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':67:136[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':67:136[msg_type]: </span>"ScenarioConfig"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':67:136[qos_profile]: </span>100<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':67:136[topic_name]: </span>"/marv/sys/ctrl/scenario_config"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':68:129[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':68:129[msg_type]: </span>"UInt64"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':68:129[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':68:129[topic_name]: </span>"/marv/sys/ctrl/scenario_sys_time"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':69:154[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':69:154[msg_type]: </span>"Notification"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':69:154[qos_profile]: </span>20<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':69:154[topic_name]: </span>"/marv/sys/ctrl/formatted_notification_message"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':70:125[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':70:125[msg_type]: </span>"Status"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':70:125[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':70:125[topic_name]: </span>"/marv/sys/status/heartbeat_acu"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':71:119[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':71:119[msg_type]: </span>"Int8"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':71:119[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':71:119[topic_name]: </span>"/marv/nav/sbg_ekf_status"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':72:119[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':72:119[msg_type]: </span>"Int8"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':72:119[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':72:119[topic_name]: </span>"/marv/nav/sbg_ins_status"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':73:119[callback]: </span>#TOP#<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':73:119[msg_type]: </span>"Int8"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':73:119[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':73:119[topic_name]: </span>"/marv/sys/status/radar_state"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':77:108[msg_type]: </span>"Int8"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':77:108[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':77:108[topic_name]: </span>"/marv/sys/ctrl/acu_power"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':79:106[msg_type]: </span>"Bool"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':79:106[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':79:106[topic_name]: </span>"/marv/sys/ctrl/log_data"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':81:135[msg_type]: </span>"Bool"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':81:135[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':81:135[topic_name]: </span>"/marv/sys/ctrl/scenario_config_state"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':83:116[msg_type]: </span>"Bool"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':83:116[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':83:116[topic_name]: </span>"/marv/sys/status/state_12V_auto"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':85:123[msg_type]: </span>"UInt8"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':85:123[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':85:123[topic_name]: </span>"/marv/sys/status/start_scenario"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':87:129[msg_type]: </span>"Bool"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':87:129[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':87:129[topic_name]: </span>"/marv/sys/ctrl/reset_scenario_handler"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':89:122[msg_type]: </span>"Status"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':89:122[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':89:122[topic_name]: </span>"/marv/sys/status/heartbeat_pdu"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':91:122[msg_type]: </span>"Status"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':91:122[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':91:122[topic_name]: </span>"/marv/sys/status/heartbeat_rcu"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':93:122[msg_type]: </span>"Status"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':93:122[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':93:122[topic_name]: </span>"/marv/sys/status/heartbeat_tcu"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':95:122[msg_type]: </span>"Status"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':95:122[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':95:122[topic_name]: </span>"/marv/sys/status/heartbeat_ncu"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':97:122[msg_type]: </span>"Status"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':97:122[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':97:122[topic_name]: </span>"/marv/sys/status/heartbeat_ucu"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':99:122[msg_type]: </span>"Status"<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':99:122[qos_profile]: </span>10<br/>
+							<span class="description-header">heap[s]:pp@'analysis/ros-sources/1710347629/marv_driver_marv_can_bridge.py':99:122[topic_name]: </span>"/marv/sys/status/heartbeat_ocu"<br/>
+						</div>
+					</div>
+				</div>
+				<div id="header-node24" class="header-hidden">
+					<div class="description-title-wrapper"><span class="description-title">Results for </span><span class="description-title-text">ret</span></div>
+					<span class="description-header">expressions: </span>[skip]<br/>
+					<span class="description-header">state: </span>#TOP#<br/>
+				</div>
+			</div>
+		</div>
+		<script>			
+			var api;
+			var layoutOptions;
+			var cy = window.cy = cytoscape({
+				container: $('#cy'),
+				maxZoom: 100,
+				zoomingEnabled: true,
+				userZoomingEnabled: true,
+				style: [
+					{
+						selector: 'node',
+						css: {
+							'background-color': 'white',
+							'color': 'black',
+							'shape': 'rectangle',
+							'border-width': '1px',
+							'border-style': 'solid',
+							'border-color': 'darkgray',
+							'content': 'data(NODE_TEXT)',
+							'font-family': 'monospace',
+							'font-size': '18px',
+							'font-weight': 'bold',
+							'text-wrap': 'wrap',
+						}
+					},
+					{
+						selector: 'node[NODE_IS_ENTRY = "yes"]',
+						css: {
+							'border-width': '3px',
+							'border-style': 'solid',
+							'border-color': 'black',
+						}
+					},	
+					{
+						selector: 'node[NODE_IS_EXIT = "yes"]',
+						css: {
+							'border-width': '5px',
+							'border-style': 'double',
+							'border-color': 'black',
+						}
+					},
+				    {
+					    selector: 'node:selected',
+					    css: {
+							'border-color': 'orange',
+							'border-width': '2px',
+					    }
+					},
+					{
+						selector: 'edge',
+						css: {
+							'curve-style': 'bezier',
+							'width': 4,
+							'line-color': 'black',
+							'target-arrow-shape': 'triangle',
+							'target-arrow-color': 'black',
+							'arrow-scale': '2'
+						}
+					},
+					{
+						selector: 'edge[EDGE_KIND = "TrueEdge"]',
+						css: {
+							'line-color': 'blue',
+							'target-arrow-color': 'blue',
+						}
+					},
+					{
+						selector: 'edge[EDGE_KIND = "FalseEdge"]',
+						css: {
+							'line-color': 'red',
+							'target-arrow-color': 'red',
+						}
+					},			
+				],
+				
+				ready: function () {
+					var data = '<?xml version="1.0" encoding="UTF-8"?><graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns   http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="NODE_IS_ENTRY" for="node" attr.name="NODE_IS_ENTRY" attr.type="string"/><key id="NODE_IS_EXIT" for="node" attr.name="NODE_IS_EXIT" attr.type="string"/><key id="NODE_KIND" for="node" attr.name="NODE_KIND" attr.type="string"/><key id="NODE_TEXT" for="node" attr.name="NODE_TEXT" attr.type="string"/><key id="EDGE_KIND" for="edge" attr.name="EDGE_KIND" attr.type="string"/><graph id="graph" edgedefault="directed"><node id="node0"><data key="NODE_IS_ENTRY">yes</data><data key="NODE_TEXT">\'\'\' \n# ------------------------------------- #\n# MARV CAN Bridge node            #\n# By Viktor Lindstrom and               #\n# Noel Danielsson, Spring 2021          #\n# Chalmers University of Technology     #\n# ------------------------------------- #\n# The MARV CAN Bridge acts as a bridge between the low level system (can messages) and high level system (ros messages).\n# It uses the marv.dbc file to encode and decode the messages in order to get the right format and arbitration id.\n# Each message/topic that should be bridged needs to be specified in this node. \n# Messages from ROS to CAN are ROS Subscriptions that calls callbacks, encodes and sends the CAN message. See INCOMMING ROS MESSAGES -&gt; OUTGOING CAN MESSAGES\n# Messages from CAN to ROS are decoded and then passed through &quot;incomming_CAN_message_callback&quot; to a ROS Publish. See INCOMMING CAN MESSAGES -&gt; OUTGOING ROS MESSAGES\n\'\'\'</data><data key="NODE_IS_EXIT">no</data></node><node id="node1"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">import os</data><data key="NODE_IS_EXIT">no</data></node><node id="node2"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">import time</data><data key="NODE_IS_EXIT">no</data></node><node id="node3"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">import can</data><data key="NODE_IS_EXIT">no</data></node><node id="node4"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">import cantools</data><data key="NODE_IS_EXIT">no</data></node><node id="node5"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">import rclpy</data><data key="NODE_IS_EXIT">no</data></node><node id="node6"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from rclpy.node import Node</data><data key="NODE_IS_EXIT">no</data></node><node id="node7"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from rclpy.executors import MultiThreadedExecutor</data><data key="NODE_IS_EXIT">no</data></node><node id="node8"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from std_msgs.msg import Int8</data><data key="NODE_IS_EXIT">no</data></node><node id="node9"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from std_msgs.msg import Bool</data><data key="NODE_IS_EXIT">no</data></node><node id="node10"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from std_msgs.msg import UInt64</data><data key="NODE_IS_EXIT">no</data></node><node id="node11"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from std_msgs.msg import UInt8</data><data key="NODE_IS_EXIT">no</data></node><node id="node12"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from marv_msgs.msg import CmdSteering</data><data key="NODE_IS_EXIT">no</data></node><node id="node13"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from marv_msgs.msg import ScenarioConfig</data><data key="NODE_IS_EXIT">no</data></node><node id="node14"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from marv_msgs.msg import Notification</data><data key="NODE_IS_EXIT">no</data></node><node id="node15"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from marv_msgs.msg import Status</data><data key="NODE_IS_EXIT">no</data></node><node id="node16"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from marv_msgs.msg import Log1NCU</data><data key="NODE_IS_EXIT">no</data></node><node id="node17"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from marv_msgs.msg import Log1PDU</data><data key="NODE_IS_EXIT">no</data></node><node id="node18"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from marv_msgs.msg import Log1TCU</data><data key="NODE_IS_EXIT">no</data></node><node id="node19"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">from marv_msgs.msg import Log2TCU</data><data key="NODE_IS_EXIT">no</data></node><node id="node20"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">==(__name__, \'__main__\')</data><data key="NODE_IS_EXIT">no</data><graph id="20::21" edgedefault="directed"><node id="node21"><data key="NODE_KIND">SUBNODE</data><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">__name__</data><data key="NODE_IS_EXIT">no</data></node></graph><graph id="20::22" edgedefault="directed"><node id="node22"><data key="NODE_KIND">SUBNODE</data><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">\'__main__\'</data><data key="NODE_IS_EXIT">no</data></node></graph></node><node id="node23"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">main()</data><data key="NODE_IS_EXIT">no</data></node><node id="node24"><data key="NODE_IS_ENTRY">no</data><data key="NODE_TEXT">ret</data><data key="NODE_IS_EXIT">yes</data></node><edge id="edge-0-1" source="node0" target="node1" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-1-2" source="node1" target="node2" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-2-3" source="node2" target="node3" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-3-4" source="node3" target="node4" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-4-5" source="node4" target="node5" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-5-6" source="node5" target="node6" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-6-7" source="node6" target="node7" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-7-8" source="node7" target="node8" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-8-9" source="node8" target="node9" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-9-10" source="node9" target="node10" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-10-11" source="node10" target="node11" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-11-12" source="node11" target="node12" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-12-13" source="node12" target="node13" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-13-14" source="node13" target="node14" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-14-15" source="node14" target="node15" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-15-16" source="node15" target="node16" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-16-17" source="node16" target="node17" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-17-18" source="node17" target="node18" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-18-19" source="node18" target="node19" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-19-20" source="node19" target="node20" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge><edge id="edge-20-23" source="node20" target="node23" directed="true"><data key="EDGE_KIND">TrueEdge</data></edge><edge id="edge-20-24" source="node20" target="node24" directed="true"><data key="EDGE_KIND">FalseEdge</data></edge><edge id="edge-23-24" source="node23" target="node24" directed="true"><data key="EDGE_KIND">SequentialEdge</data></edge></graph></graphml>'
+					this.graphml({layoutBy: null});
+					this.graphml(data);
+					
+					var expandCollapseOptions = {
+						fisheye: false,
+						animate: false,
+						undoable: false,
+						expandCollapseCuePosition: 'bottom-left',
+						expandCollapseCueSize: 20,
+					};
+					
+					layoutOptions = {
+							name: 'fcose',
+							quality: "proof",
+							randomize: false, 
+							animate: false,  
+							fit: false, 
+							nodeDimensionsIncludeLabels: true,
+							packComponents: false,
+					};
+					
+					api = this.expandCollapse(expandCollapseOptions);
+					api.setOption("layoutBy", layoutOptions);
+					api.collapseAll();
+					this.fit();
+				}
+			});
+			
+			function relayout() {
+				var layout = cy.layout(layoutOptions);
+				if (layout && layout.run) {
+					layout.run();
+				}
+			}
+			$('#relayout').on('click', function () {
+				relayout();
+			});
+			$('#collapseAll').on('click', function () {
+				api.collapseAll();
+			});
+			$('#expandAll').on('click', function () {
+				api.expandAll();
+			});
+			$('#fit').on('click', function () {
+				cy.fit(cy.nodes(), 50);
+			});
+			
+			var lastsearchresult = [];
+			var lastshownelement = -1;
+			function centerToSearch() {
+				var target = lastsearchresult[lastshownelement];
+				cy.$('node:selected').unselect();
+				target.select();
+				cy.animate({ center: { eles: target } }, { duration: 0 });
+			}
+
+			$('#search').on('input', function (e) {
+				var query = e.target.value;
+				lastsearchresult = cy.nodes('[NODE_TEXT @*= "' + query + '"]');
+				var hasresults = lastsearchresult.size() != 0;
+				if (hasresults) {
+					lastshownelement = 0;
+					centerToSearch();
+					e.target.classList.remove('no-results');
+				} else {
+					lastshownelement = -1;
+					cy.$('node:selected').unselect();
+					e.target.classList.add('no-results');  
+				}
+				
+				if (query === "" || !hasresults) {
+					$('#next').prop('disabled', true);
+					$('#prev').prop('disabled', true);
+				} else {
+					$('#next').prop('disabled', false);
+					$('#prev').prop('disabled', false);
+				}
+			});
+			$('#next').on('click', function (e) {
+				if (lastshownelement != -1) {
+					lastshownelement = (lastshownelement + 1) % lastsearchresult.size();
+					centerToSearch();
+				}
+			});
+			$('#prev').on('click', function (e) {
+				if (lastshownelement != -1) {
+					lastshownelement = ((lastshownelement - 1) + lastsearchresult.size()) % lastsearchresult.size();
+					centerToSearch();
+				}
+			});
+			
+			cy.on('select', 'node', function(event) {
+		    	var id = event.target.id();
+				$('[id^=header-]').addClass('header-hidden');
+				$('#header-' + id).removeClass('header-hidden');
+			});
+			</script>
+	</body>
+</html>
