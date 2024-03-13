@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.omg.org/spec/DDS-SECURITY/20170901/omg_shared_ca_permissions.xsd">
+    <permissions>
+        <grant name="/perception">
+            <subject_name>CN=/perception</subject_name>
+            <validity>
+                <not_before>2024-03-13T09:38:54.468+01:00</not_before>
+                <not_after>2034-03-13T09:38:54.468+01:00</not_after>
+            </validity>
+            <allow_rule>
+                <domains>
+                    <id>0</id>
+                </domains>
+                <publish>
+                    <topics>
+                        <topic>rr/perception/get_type_descriptionReply</topic>
+                        <topic>rr/perception/get_parameter_typesReply</topic>
+                        <topic>rt/rosout</topic>
+                        <topic>rt/parameter_events</topic>
+                        <topic>rr/perception/set_parameters_atomicallyReply</topic>
+                        <topic>rr/perception/set_parametersReply</topic>
+                        <topic>rr/perception/get_parametersReply</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rr/perception/list_parametersReply</topic>
+                        <topic>rt/vrx/perception/landmark</topic>
+                        <topic>rr/perception/describe_parametersReply</topic>
+                        <topic>rq/toLLRequest</topic>
+                    </topics>
+                </publish>
+                <subscribe>
+                    <topics>
+                        <topic>rq/perception/get_type_descriptionRequest</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rq/perception/list_parametersRequest</topic>
+                        <topic>rq/perception/describe_parametersRequest</topic>
+                        <topic>rq/perception/get_parameter_typesRequest</topic>
+                        <topic>rt/buoys/classified</topic>
+                        <topic>rq/perception/set_parametersRequest</topic>
+                        <topic>rq/perception/set_parameters_atomicallyRequest</topic>
+                        <topic>rt/gps/filtered</topic>
+                        <topic>rr/toLLReply</topic>
+                        <topic>rq/perception/get_parametersRequest</topic>
+                        <topic>rt/vrx/task/info</topic>
+                    </topics>
+                </subscribe>
+            </allow_rule>
+            <default>DENY</default>
+        </grant>
+    </permissions>
+</dds>

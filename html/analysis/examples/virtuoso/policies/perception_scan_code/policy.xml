@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/perception_scan_code">
+            <profiles>
+                <profile ns="/" node="perception_scan_code">
+                    <topics publish="ALLOW">
+                        <topic>/perception/debug/find_code_coord</topic>
+                        <topic>/perception/code</topic>
+                        <topic>/perception/debug/code_green_filter</topic>
+                        <topic>/parameter_events</topic>
+                        <topic>/perception/scan_code/ready</topic>
+                        <topic>/rosout</topic>
+                        <topic>/perception/debug/code_blue_filter</topic>
+                        <topic>/perception/debug/code_red_filter</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/processing/image/downscaled</topic>
+                        <topic>/perception/get_code</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/perception_scan_code/set_parameters</service>
+                        <service>/perception_scan_code/describe_parameters</service>
+                        <service>/perception_scan_code/set_parameters_atomically</service>
+                        <service>/perception_scan_code/list_parameters</service>
+                        <service>/perception_scan_code/get_parameters</service>
+                        <service>/perception_scan_code/get_type_description</service>
+                        <service>/perception_scan_code/get_parameter_types</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

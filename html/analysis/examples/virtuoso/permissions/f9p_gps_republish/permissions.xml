@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.omg.org/spec/DDS-SECURITY/20170901/omg_shared_ca_permissions.xsd">
+    <permissions>
+        <grant name="/f9p_gps_republish">
+            <subject_name>CN=/f9p_gps_republish</subject_name>
+            <validity>
+                <not_before>2024-03-13T09:38:54.502+01:00</not_before>
+                <not_after>2034-03-13T09:38:54.502+01:00</not_after>
+            </validity>
+            <allow_rule>
+                <domains>
+                    <id>0</id>
+                </domains>
+                <publish>
+                    <topics>
+                        <topic>rr/f9p_gps_republish/get_type_descriptionReply</topic>
+                        <topic>rr/f9p_gps_republish/get_parametersReply</topic>
+                        <topic>rt/rosout</topic>
+                        <topic>rt/parameter_events</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rr/f9p_gps_republish/describe_parametersReply</topic>
+                        <topic>rr/f9p_gps_republish/set_parameters_atomicallyReply</topic>
+                        <topic>rr/f9p_gps_republish/set_parametersReply</topic>
+                        <topic>rt/wamv/sensors/gps/gps/fix</topic>
+                        <topic>rt/wamv/sensors/gps/gps/vel</topic>
+                        <topic>rr/f9p_gps_republish/get_parameter_typesReply</topic>
+                        <topic>rr/f9p_gps_republish/list_parametersReply</topic>
+                    </topics>
+                </publish>
+                <subscribe>
+                    <topics>
+                        <topic>rq/f9p_gps_republish/set_parametersRequest</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rt/ubx_nav_hp_pos_llh</topic>
+                        <topic>rq/f9p_gps_republish/describe_parametersRequest</topic>
+                        <topic>rt/ubx_nav_cov</topic>
+                        <topic>rq/f9p_gps_republish/list_parametersRequest</topic>
+                        <topic>rq/f9p_gps_republish/get_parameter_typesRequest</topic>
+                        <topic>rq/f9p_gps_republish/get_type_descriptionRequest</topic>
+                        <topic>rq/f9p_gps_republish/set_parameters_atomicallyRequest</topic>
+                        <topic>rt/ubx_nav_vel_ned</topic>
+                        <topic>rq/f9p_gps_republish/get_parametersRequest</topic>
+                    </topics>
+                </subscribe>
+            </allow_rule>
+            <default>DENY</default>
+        </grant>
+    </permissions>
+</dds>

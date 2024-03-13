@@ -9,13 +9,13 @@
                         <topic>/parameter_events</topic>
                     </topics>
                     <services reply="ALLOW">
-                        <service>/minimal_client/get_parameter_types</service>
-                        <service>/minimal_client/get_type_description</service>
-                        <service>/minimal_client/get_parameters</service>
                         <service>/minimal_client/describe_parameters</service>
-                        <service>/minimal_client/set_parameters</service>
-                        <service>/minimal_client/list_parameters</service>
+                        <service>/minimal_client/get_parameter_types</service>
                         <service>/minimal_client/set_parameters_atomically</service>
+                        <service>/minimal_client/list_parameters</service>
+                        <service>/minimal_client/get_type_description</service>
+                        <service>/minimal_client/set_parameters</service>
+                        <service>/minimal_client/get_parameters</service>
                     </services>
                     <services request="ALLOW">
                         <service>/add_two_ints</service>

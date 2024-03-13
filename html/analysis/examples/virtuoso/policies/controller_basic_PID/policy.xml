@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/controller_basic_PID">
+            <profiles>
+                <profile ns="/" node="controller_basic_PID">
+                    <topics publish="ALLOW">
+                        <topic>/parameter_events</topic>
+                        <topic>/controller/basic_pid/targetForceY</topic>
+                        <topic>/controller/basic_pid/targetTorque</topic>
+                        <topic>/rosout</topic>
+                        <topic>/controller/basic_pid/targetForceX</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/controller/navigateToPoint</topic>
+                        <topic>/controller/waypoint</topic>
+                        <topic>/localization/odometry</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/controller_basic_PID/set_parameters_atomically</service>
+                        <service>/controller_basic_PID/get_parameter_types</service>
+                        <service>/controller_basic_PID/set_parameters</service>
+                        <service>/controller_basic_PID/get_type_description</service>
+                        <service>/controller_basic_PID/list_parameters</service>
+                        <service>/controller_basic_PID/get_parameters</service>
+                        <service>/controller_basic_PID/describe_parameters</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

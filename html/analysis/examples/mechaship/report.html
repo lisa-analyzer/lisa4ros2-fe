@@ -1,644 +1,218 @@
 <html>
 
 <head>
-  <title>LiSA | ROS Application Report</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script src="https://dagrejs.github.io/project/dagre/latest/dagre.min.js"></script>
-  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js"></script>
-  <link rel="icon" href="../../logo.png">
-  <script>hljs.highlightAll();</script>
-  <style>
-    .bg-lisa {
-      background-color: #d9ede0;
-    }
-    body {
-      padding-top: 70px;
-    }
-    .sub-menu {
-      background-color: #d9ede0;
-    }
-    .nav-pills .nav-link-lisa.active {
-      background-color: #199a59;
-    }
-    .nav-link-lisa {
-      border-width: 0;
-      background-color: transparent;
-    }
-    .navbar {
-      height: 70px;
-    }
+    <title>LiSA | ROS Application Report</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://dagrejs.github.io/project/dagre/latest/dagre.min.js"></script>
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js"></script>
+    <link rel="icon" href="../../logo.png">
+    <script>hljs.highlightAll();</script>
+    <style>
+        .bg-lisa {
+            background-color: #d9ede0;
+        }
 
-    .dot-graph {
-      max-width: 100%;
-    }
+        body {
+            padding-top: 70px;
+        }
 
-    .h-scroll {
-      height: 100%; /* %-height of the viewport */
-      position: fixed;
-      overflow-y: scroll;
-    }
-    .logo {
-      max-width: 60px;
-    }
-    #cy {
-      width: 100%;
-      height: 600px;
-    }
-    .warnings {
-      background-color: lightyellow;
-    }
+        .sub-menu {
+            background-color: #d9ede0;
+        }
 
-.table td, .table th {
-    border-left: 1px solid#dee2e6;
-}
+        .nav-pills .nav-link-lisa.active {
+            background-color: #199a59;
+        }
 
-  </style>
+        .nav-link-lisa {
+            border-width: 0;
+            background-color: transparent;
+        }
+
+        .navbar {
+            height: 70px;
+        }
+
+        .dot-graph {
+            max-width: 100%;
+        }
+
+        .h-scroll {
+            height: 100%;
+            /* %-height of the viewport */
+            position: fixed;
+            overflow-y: scroll;
+        }
+
+        .logo {
+            max-width: 60px;
+        }
+
+        #cy {
+            width: 100%;
+            height: 600px;
+        }
+
+        .warnings {
+            background-color: lightyellow;
+        }
+
+        #header {
+            display: none;
+        }
+
+        .table td,
+        .table th {
+            border-left: 1px solid#dee2e6;
+        }
+    </style>
 </head>
+
 <body style="font-family: 'Raleway', sans-serif;">
-<nav class="navbar bg-lisa fixed-top">
-  <div class="container-fluid justify-content-start">
-      <img src="https://raw.githubusercontent.com/lisa-analyzer/lisa/master/logo.png" alt="" class="d-inline-block align-text-top mr-4 logo" />
-    <div class="ml-4 mr-4"><h4><a href="/">Home</a></h4></div>
-    <ul class="nav nav-pills ml-4" id="pills-tab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link nav-link-lisa active" id="pills-rosanalysis-tab" data-bs-toggle="pill" data-target="pills-rosanalysis" data-bs-target="#pills-rosanalysis" type="button" role="tab" aria-controls="pills-rosanalysis" aria-selected="true">ROS2 Report</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link nav-link-lisa" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-lisaanalysis" type="button" role="tab" aria-controls="pills-lisaanalysis" aria-selected="false">LiSA Analysis</button>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane active" id="pills-rosanalysis" role="tabpanel" aria-labelledby="pills-rosanalysis-tab">
-    <div class="row">
-        
-
-        <div class="col-12">
-
-
-
-    <div class="pt-4 pl-4">
-        <div>
-            <div><h2>Computational Graph</h2></div>
-            <div class="d-flex justify-content-center">
-                <img class="dot-graph" src="graph/graph.svg" />
+    <nav class="navbar bg-lisa fixed-top">
+        <div class="container-fluid justify-content-start">
+            <img src="https://raw.githubusercontent.com/lisa-analyzer/lisa/master/logo.png" alt=""
+                class="d-inline-block align-text-top mr-4 logo" />
+            <div class="ml-4 mr-4">
+                <h4><a href="/">Home</a></h4>
             </div>
-           <!-- <pre class="mermaid ros-graph" style="{width: 100%;}">
----
-config:
-    useMaxWidth: true
----
-                graph TD
-/mechaship_detect_node:::wide
-style /mechaship_detect_node fill:limegreen,stroke:#333,stroke-width:2px
-/mechaship_classify_sub_node:::wide
-style /mechaship_classify_sub_node fill:limegreen,stroke:#333,stroke-width:2px
-/mechaship_navigation2_node:::wide
-style /mechaship_navigation2_node fill:limegreen,stroke:#333,stroke-width:2px
-/mechaship_classify_node:::wide
-style /mechaship_classify_node fill:limegreen,stroke:#333,stroke-width:2px
-/mechaship_detect_sub_node:::wide
-style /mechaship_detect_sub_node fill:limegreen,stroke:#333,stroke-width:2px
-/Buoy[//Buoy/]:::wide
-style /Buoy fill:gold,stroke:#333,stroke-width:2px
-/DetectionArray[//DetectionArray/]:::wide
-style /DetectionArray fill:gold,stroke:#333,stroke-width:2px
-/Image[//Image/]:::wide
-style /Image fill:gold,stroke:#333,stroke-width:2px
-/DetectionArray[//DetectionArray/]:::wide
-style /DetectionArray fill:gold,stroke:#333,stroke-width:2px
-/scan[//scan/]:::wide
-style /scan fill:gold,stroke:#333,stroke-width:2px
-/Wall[//Wall/]:::wide
-style /Wall fill:gold,stroke:#333,stroke-width:2px
-/scan[//scan/]:::wide
-style /scan fill:gold,stroke:#333,stroke-width:2px
-/Buoy[//Buoy/]:::wide
-style /Buoy fill:gold,stroke:#333,stroke-width:2px
-/DetectionArray[//DetectionArray/]:::wide
-style /DetectionArray fill:gold,stroke:#333,stroke-width:2px
-/Wall[//Wall/]:::wide
-style /Wall fill:gold,stroke:#333,stroke-width:2px
-/Image[//Image/]:::wide
-style /Image fill:gold,stroke:#333,stroke-width:2px
-/actuators/throttle/set_percentage[//actuators/throttle/set_percentage/]:::wide
-style /actuators/throttle/set_percentage fill:lightskyblue,stroke:#333,stroke-width:2px
-/set_color[//set_color/]:::wide
-style /set_color fill:lightskyblue,stroke:#333,stroke-width:2px
-/actuators/key/set[//actuators/key/set/]:::wide
-style /actuators/key/set fill:lightskyblue,stroke:#333,stroke-width:2px
-/mechaship_detect_node --&gt; /DetectionArray
-/Image --&gt; /mechaship_detect_node
-/Wall --&gt; /mechaship_classify_sub_node
-/Buoy --&gt; /mechaship_classify_sub_node
-/scan --&gt; /mechaship_navigation2_node
-/DetectionArray --&gt; /mechaship_navigation2_node
-/mechaship_navigation2_node --&gt; /actuators/throttle/set_percentage
-/mechaship_navigation2_node --&gt; /set_color
-/mechaship_navigation2_node --&gt; /actuators/key/set
-/mechaship_classify_node --&gt; /Buoy
-/mechaship_classify_node --&gt; /Wall
-/scan --&gt; /mechaship_classify_node
-/Image --&gt; /mechaship_detect_sub_node
-/DetectionArray --&gt; /mechaship_detect_sub_node
-classDef wide padding:50px
-
-            </pre>-->
+            <ul class="nav nav-pills ml-4" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link nav-link-lisa active" id="pills-rosanalysis-tab" data-bs-toggle="pill"
+                        data-target="pills-rosanalysis" data-bs-target="#pills-rosanalysis" type="button" role="tab"
+                        aria-controls="pills-rosanalysis" aria-selected="true">ROS2 Report</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link nav-link-lisa" id="pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-lisaanalysis" type="button" role="tab" aria-controls="pills-lisaanalysis"
+                        aria-selected="false">LiSA Analysis</button>
+                </li>
+            </ul>
         </div>
-        
-            
-            
-            
-        
-        <a id="Nodes"></a>
-        <h2>Nodes</h2>
-        <div class="mt-2 ml-4 mr-4">
-            
-                <div class="ml-4 mr-4">
-                    <a id="Node-mechaship_detect_node"></a>
-                    <div><h3>/mechaship_detect_node</h3></div>
-                    <div  class="ml-4 mr-4"><h4>Publishers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
-                                        <tr>
-                                            <td>rt/DetectionArray</td>
-                                            <td>mechaship_interfaces.msg.DetectionArray</td>
-                                            <td></td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_detect_node.py&#39;:125:8</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>ros_discovery_info</td>
-                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>rt/rosout</td>
-                                            <td>rcl_interfaces/msg/ParameterEvent</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>rt/parameter_events</td>
-                                            <td>rcl_interfaces/msg/ParameterEvent</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Subscriptions:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Callback Function</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
-                                        <tr>
-                                            <td>ros_discovery_info</td>
-                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
-                                            <td>YES</td>
-                                            <td></td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>rt/Image</td>
-                                            <td>sensor_msgs.msg.Image</td>
-                                            <td></td>
-                                            <td>self::listener_callback</td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_detect_node.py&#39;:119:8</td>
-                                        </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Servers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Service Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
-                                        <tr>
-                                            <td>/mechaship_detect_node/set_parameters</td>
-                                            <td>rcl_interfaces/srv/SetParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_detect_node/set_parameters_atomically</td>
-                                            <td>rcl_interfaces/srv/SetParametersAtomically</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_detect_node/describe_parameters</td>
-                                            <td>rcl_interfaces/srv/DescribeParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_detect_node/get_parameter_types</td>
-                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_detect_node/get_parameters</td>
-                                            <td>rcl_interfaces/srv/GetParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_detect_node/get_type_description</td>
-                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_detect_node/list_parameters</td>
-                                            <td>rcl_interfaces/srv/ListParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Clients:</h4>
-                        
-                            
-                                <p>No Service Clients on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Clients:</h4>
-                        
-                            
-                                <p>No Action Clients on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Servers:</h4>
-                        
-                            
-                                <p>No Action Servers on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div  class="ml-4 mr-4">
-                        <h4>Generated policy.xml</h4> <a href="policies/mechaship_detect_node/policy.xml" download>Download</a>
-                        <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-&lt;policy version=&quot;0.2.0&quot;&gt;
-    &lt;enclaves&gt;
-        &lt;enclave path=&quot;/mechaship_detect_node&quot;&gt;
-            &lt;profiles&gt;
-                &lt;profile ns=&quot;/&quot; node=&quot;mechaship_detect_node&quot;&gt;
-                    &lt;topics publish=&quot;ALLOW&quot;&gt;
-                        &lt;topic&gt;/DetectionArray&lt;/topic&gt;
-                        &lt;topic&gt;/rosout&lt;/topic&gt;
-                        &lt;topic&gt;/parameter_events&lt;/topic&gt;
-                    &lt;/topics&gt;
-                    &lt;topics subscribe=&quot;ALLOW&quot;&gt;
-                        &lt;topic&gt;/Image&lt;/topic&gt;
-                    &lt;/topics&gt;
-                    &lt;services reply=&quot;ALLOW&quot;&gt;
-                        &lt;service&gt;/mechaship_detect_node/set_parameters&lt;/service&gt;
-                        &lt;service&gt;/mechaship_detect_node/set_parameters_atomically&lt;/service&gt;
-                        &lt;service&gt;/mechaship_detect_node/describe_parameters&lt;/service&gt;
-                        &lt;service&gt;/mechaship_detect_node/get_parameter_types&lt;/service&gt;
-                        &lt;service&gt;/mechaship_detect_node/get_parameters&lt;/service&gt;
-                        &lt;service&gt;/mechaship_detect_node/get_type_description&lt;/service&gt;
-                        &lt;service&gt;/mechaship_detect_node/list_parameters&lt;/service&gt;
-                    &lt;/services&gt;
-                &lt;/profile&gt;
-            &lt;/profiles&gt;
-        &lt;/enclave&gt;
-    &lt;/enclaves&gt;
-&lt;/policy&gt;
-</code></pre>
-                    </div>
-                </div>
-            
-                <div class="ml-4 mr-4">
-                    <a id="Node-mechaship_classify_sub_node"></a>
-                    <div><h3>/mechaship_classify_sub_node</h3></div>
-                    <div  class="ml-4 mr-4"><h4>Publishers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
-                                        <tr>
-                                            <td>ros_discovery_info</td>
-                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>rt/parameter_events</td>
-                                            <td>rcl_interfaces/msg/ParameterEvent</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
+    </nav>
+
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane active" id="pills-rosanalysis" role="tabpanel" aria-labelledby="pills-rosanalysis-tab">
+            <div class="row">
+                <div class="col-12">
+                    <div class="pt-4 pl-4  pl-4">
+                        <div>
+                            <div>
+                                <h2>Computational Graph</h2>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <img class="dot-graph" src="graph/graph.svg" />
+                            </div>
+                        </div>
+                        <div>
+                            <h2>Analysis Results</h2>
+                            <ul>
+                                <li>Lines of code: 849</li>
+                                <li>Nodes: 5</li>
+                                <li>Topics: 8, 3 of which are systems</li>
+                                <li>Services: 38, 35 of which are systems</li>
+                                <li>Actions: 0</li>
+                                <li>Publishers: 18, 15 of which are systems</li>
+                                <li>Subscriptions: 13, 5 of which are systems</li>
+                                <li>Service Servers: 35, 35 of which are systems</li>
+                                <li>Service Clients: 3</li>
+                                <li>Action Servers: 0</li>
+                                <li>Action Clients: 0</li>
+                            </ul>
+                        </div>
+
+
+
+
+
+                        <a id="Nodes"></a>
+                        <h2>Nodes</h2>
+                        <div class="mt-2 ml-4  mr-4">
+
+                            <div class="ml-4  mr-4">
+                                <a id="Node-mechaship_classify_node"></a>
+                                <div>
+                                    <h3>/mechaship_classify_node</h3>
+                                </div>
+                                <div class="ml-4">
+                                    <h4>Publishers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
                                         <tr>
                                             <td>rt/rosout</td>
                                             <td>rcl_interfaces/msg/ParameterEvent</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Subscriptions:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Callback Function</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
+
+                                        <tr>
+                                            <td>rt/parameter_events</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
                                         <tr>
                                             <td>rt/Wall</td>
                                             <td>mechaship_interfaces.msg.ClassificationArray</td>
                                             <td></td>
-                                            <td>self::wall_listener_callback</td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_classify_sub_node.py&#39;:51:8</td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_classify_node.py&#39;:86:8
+                                            </td>
                                         </tr>
-                                    
-                                        <tr>
-                                            <td>ros_discovery_info</td>
-                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
-                                            <td>YES</td>
-                                            <td></td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
+
                                         <tr>
                                             <td>rt/Buoy</td>
                                             <td>mechaship_interfaces.msg.ClassificationArray</td>
                                             <td></td>
-                                            <td>self::buoy_listener_callback</td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_classify_sub_node.py&#39;:45:8</td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_classify_node.py&#39;:83:8
+                                            </td>
                                         </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Servers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Service Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
-                                        <tr>
-                                            <td>/mechaship_classify_sub_node/get_type_description</td>
-                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_classify_sub_node/set_parameters</td>
-                                            <td>rcl_interfaces/srv/SetParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_classify_sub_node/set_parameters_atomically</td>
-                                            <td>rcl_interfaces/srv/SetParametersAtomically</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_classify_sub_node/get_parameter_types</td>
-                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_classify_sub_node/list_parameters</td>
-                                            <td>rcl_interfaces/srv/ListParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_classify_sub_node/describe_parameters</td>
-                                            <td>rcl_interfaces/srv/DescribeParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_classify_sub_node/get_parameters</td>
-                                            <td>rcl_interfaces/srv/GetParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Clients:</h4>
-                        
-                            
-                                <p>No Service Clients on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Clients:</h4>
-                        
-                            
-                                <p>No Action Clients on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Servers:</h4>
-                        
-                            
-                                <p>No Action Servers on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div  class="ml-4 mr-4">
-                        <h4>Generated policy.xml</h4> <a href="policies/mechaship_classify_sub_node/policy.xml" download>Download</a>
-                        <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-&lt;policy version=&quot;0.2.0&quot;&gt;
-    &lt;enclaves&gt;
-        &lt;enclave path=&quot;/mechaship_classify_sub_node&quot;&gt;
-            &lt;profiles&gt;
-                &lt;profile ns=&quot;/&quot; node=&quot;mechaship_classify_sub_node&quot;&gt;
-                    &lt;topics publish=&quot;ALLOW&quot;&gt;
-                        &lt;topic&gt;/parameter_events&lt;/topic&gt;
-                        &lt;topic&gt;/rosout&lt;/topic&gt;
-                    &lt;/topics&gt;
-                    &lt;topics subscribe=&quot;ALLOW&quot;&gt;
-                        &lt;topic&gt;/Wall&lt;/topic&gt;
-                        &lt;topic&gt;/Buoy&lt;/topic&gt;
-                    &lt;/topics&gt;
-                    &lt;services reply=&quot;ALLOW&quot;&gt;
-                        &lt;service&gt;/mechaship_classify_sub_node/get_type_description&lt;/service&gt;
-                        &lt;service&gt;/mechaship_classify_sub_node/set_parameters&lt;/service&gt;
-                        &lt;service&gt;/mechaship_classify_sub_node/set_parameters_atomically&lt;/service&gt;
-                        &lt;service&gt;/mechaship_classify_sub_node/get_parameter_types&lt;/service&gt;
-                        &lt;service&gt;/mechaship_classify_sub_node/list_parameters&lt;/service&gt;
-                        &lt;service&gt;/mechaship_classify_sub_node/describe_parameters&lt;/service&gt;
-                        &lt;service&gt;/mechaship_classify_sub_node/get_parameters&lt;/service&gt;
-                    &lt;/services&gt;
-                &lt;/profile&gt;
-            &lt;/profiles&gt;
-        &lt;/enclave&gt;
-    &lt;/enclaves&gt;
-&lt;/policy&gt;
-</code></pre>
-                    </div>
-                </div>
-            
-                <div class="ml-4 mr-4">
-                    <a id="Node-mechaship_navigation2_node"></a>
-                    <div><h3>/mechaship_navigation2_node</h3></div>
-                    <div  class="ml-4 mr-4"><h4>Publishers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
-                                        <tr>
-                                            <td>rt/rosout</td>
-                                            <td>rcl_interfaces/msg/ParameterEvent</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>rt/parameter_events</td>
-                                            <td>rcl_interfaces/msg/ParameterEvent</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>ros_discovery_info</td>
-                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Subscriptions:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Callback Function</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Subscriptions:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Callback Function</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
                                         <tr>
                                             <td>ros_discovery_info</td>
                                             <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
@@ -646,395 +220,141 @@ classDef wide padding:50px
                                             <td></td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                        <tr>
-                                            <td>rt/scan</td>
-                                            <td>sensor_msgs.msg.LaserScan</td>
-                                            <td></td>
-                                            <td>self::scan_listener_callback</td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_navigation2_node.py&#39;:100:8</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>rt/DetectionArray</td>
-                                            <td>mechaship_interfaces.msg.DetectionArray</td>
-                                            <td></td>
-                                            <td>self::detection_listener_callback</td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_navigation2_node.py&#39;:104:8</td>
-                                        </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Servers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Service Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
-                                        <tr>
-                                            <td>/mechaship_navigation2_node/describe_parameters</td>
-                                            <td>rcl_interfaces/srv/DescribeParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_navigation2_node/list_parameters</td>
-                                            <td>rcl_interfaces/srv/ListParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_navigation2_node/get_type_description</td>
-                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_navigation2_node/set_parameters</td>
-                                            <td>rcl_interfaces/srv/SetParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_navigation2_node/get_parameters</td>
-                                            <td>rcl_interfaces/srv/GetParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_navigation2_node/get_parameter_types</td>
-                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_navigation2_node/set_parameters_atomically</td>
-                                            <td>rcl_interfaces/srv/SetParametersAtomically</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Clients:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Service Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
-                                        <tr>
-                                            <td>/actuators/throttle/set_percentage</td>
-                                            <td>mechaship_interfaces.srv.ThrottlePercentage</td>
-                                            <td></td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_navigation2_node.py&#39;:117:8</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/set_color</td>
-                                            <td>mechaship_interfaces.srv.RGBColor</td>
-                                            <td></td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_navigation2_node.py&#39;:120:73</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/actuators/key/set</td>
-                                            <td>mechaship_interfaces.srv.Key</td>
-                                            <td></td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_navigation2_node.py&#39;:116:75</td>
-                                        </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Clients:</h4>
-                        
-                            
-                                <p>No Action Clients on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Servers:</h4>
-                        
-                            
-                                <p>No Action Servers on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div  class="ml-4 mr-4">
-                        <h4>Generated policy.xml</h4> <a href="policies/mechaship_navigation2_node/policy.xml" download>Download</a>
-                        <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-&lt;policy version=&quot;0.2.0&quot;&gt;
-    &lt;enclaves&gt;
-        &lt;enclave path=&quot;/mechaship_navigation2_node&quot;&gt;
-            &lt;profiles&gt;
-                &lt;profile ns=&quot;/&quot; node=&quot;mechaship_navigation2_node&quot;&gt;
-                    &lt;topics publish=&quot;ALLOW&quot;&gt;
-                        &lt;topic&gt;/rosout&lt;/topic&gt;
-                        &lt;topic&gt;/parameter_events&lt;/topic&gt;
-                    &lt;/topics&gt;
-                    &lt;topics subscribe=&quot;ALLOW&quot;&gt;
-                        &lt;topic&gt;/scan&lt;/topic&gt;
-                        &lt;topic&gt;/DetectionArray&lt;/topic&gt;
-                    &lt;/topics&gt;
-                    &lt;services reply=&quot;ALLOW&quot;&gt;
-                        &lt;service&gt;/mechaship_navigation2_node/describe_parameters&lt;/service&gt;
-                        &lt;service&gt;/mechaship_navigation2_node/list_parameters&lt;/service&gt;
-                        &lt;service&gt;/mechaship_navigation2_node/get_type_description&lt;/service&gt;
-                        &lt;service&gt;/mechaship_navigation2_node/set_parameters&lt;/service&gt;
-                        &lt;service&gt;/mechaship_navigation2_node/get_parameters&lt;/service&gt;
-                        &lt;service&gt;/mechaship_navigation2_node/get_parameter_types&lt;/service&gt;
-                        &lt;service&gt;/mechaship_navigation2_node/set_parameters_atomically&lt;/service&gt;
-                    &lt;/services&gt;
-                    &lt;services request=&quot;ALLOW&quot;&gt;
-                        &lt;service&gt;/actuators/throttle/set_percentage&lt;/service&gt;
-                        &lt;service&gt;/set_color&lt;/service&gt;
-                        &lt;service&gt;/actuators/key/set&lt;/service&gt;
-                    &lt;/services&gt;
-                &lt;/profile&gt;
-            &lt;/profiles&gt;
-        &lt;/enclave&gt;
-    &lt;/enclaves&gt;
-&lt;/policy&gt;
-</code></pre>
-                    </div>
-                </div>
-            
-                <div class="ml-4 mr-4">
-                    <a id="Node-mechaship_classify_node"></a>
-                    <div><h3>/mechaship_classify_node</h3></div>
-                    <div  class="ml-4 mr-4"><h4>Publishers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
-                                        <tr>
-                                            <td>rt/Buoy</td>
-                                            <td>mechaship_interfaces.msg.ClassificationArray</td>
-                                            <td></td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_classify_node.py&#39;:83:8</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>rt/rosout</td>
-                                            <td>rcl_interfaces/msg/ParameterEvent</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>rt/parameter_events</td>
-                                            <td>rcl_interfaces/msg/ParameterEvent</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>ros_discovery_info</td>
-                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>rt/Wall</td>
-                                            <td>mechaship_interfaces.msg.ClassificationArray</td>
-                                            <td></td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_classify_node.py&#39;:86:8</td>
-                                        </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Subscriptions:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Callback Function</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
+
                                         <tr>
                                             <td>rt/scan</td>
                                             <td>sensor_msgs.msg.LaserScan</td>
                                             <td></td>
                                             <td>self::listener_callback</td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_classify_node.py&#39;:78:8</td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_classify_node.py&#39;:78:8
+                                            </td>
                                         </tr>
-                                    
-                                        <tr>
-                                            <td>ros_discovery_info</td>
-                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
-                                            <td>YES</td>
-                                            <td></td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Servers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Service Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
-                                        <tr>
-                                            <td>/mechaship_classify_node/set_parameters_atomically</td>
-                                            <td>rcl_interfaces/srv/SetParametersAtomically</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_classify_node/get_type_description</td>
-                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/mechaship_classify_node/get_parameter_types</td>
-                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4 mr-4">
+                                    <h4>Service Servers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Service Name</th>
+                                                <th scope="col">Service Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
                                         <tr>
                                             <td>/mechaship_classify_node/list_parameters</td>
                                             <td>rcl_interfaces/srv/ListParameters</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
                                         <tr>
-                                            <td>/mechaship_classify_node/describe_parameters</td>
-                                            <td>rcl_interfaces/srv/DescribeParameters</td>
+                                            <td>/mechaship_classify_node/get_parameter_types</td>
+                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
                                         <tr>
-                                            <td>/mechaship_classify_node/get_parameters</td>
-                                            <td>rcl_interfaces/srv/GetParameters</td>
+                                            <td>/mechaship_classify_node/set_parameters_atomically</td>
+                                            <td>rcl_interfaces/srv/SetParametersAtomically</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
+                                        <tr>
+                                            <td>/mechaship_classify_node/get_type_description</td>
+                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
                                         <tr>
                                             <td>/mechaship_classify_node/set_parameters</td>
                                             <td>rcl_interfaces/srv/SetParameters</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Clients:</h4>
-                        
-                            
-                                <p>No Service Clients on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Clients:</h4>
-                        
-                            
-                                <p>No Action Clients on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Servers:</h4>
-                        
-                            
-                                <p>No Action Servers on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div  class="ml-4 mr-4">
-                        <h4>Generated policy.xml</h4> <a href="policies/mechaship_classify_node/policy.xml" download>Download</a>
-                        <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+
+                                        <tr>
+                                            <td>/mechaship_classify_node/describe_parameters</td>
+                                            <td>rcl_interfaces/srv/DescribeParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_classify_node/get_parameters</td>
+                                            <td>rcl_interfaces/srv/GetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Service Clients:</h4>
+
+
+                                    <p>No Service Clients on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Clients:</h4>
+
+
+                                    <p>No Action Clients on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Servers:</h4>
+
+
+                                    <p>No Action Servers on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Generated policy.xml</h4> <a href="policies/mechaship_classify_node/policy.xml"
+                                        download>Download</a>
+                                    <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
 &lt;policy version=&quot;0.2.0&quot;&gt;
     &lt;enclaves&gt;
         &lt;enclave path=&quot;/mechaship_classify_node&quot;&gt;
             &lt;profiles&gt;
                 &lt;profile ns=&quot;/&quot; node=&quot;mechaship_classify_node&quot;&gt;
                     &lt;topics publish=&quot;ALLOW&quot;&gt;
-                        &lt;topic&gt;/Buoy&lt;/topic&gt;
                         &lt;topic&gt;/rosout&lt;/topic&gt;
                         &lt;topic&gt;/parameter_events&lt;/topic&gt;
                         &lt;topic&gt;/Wall&lt;/topic&gt;
+                        &lt;topic&gt;/Buoy&lt;/topic&gt;
                     &lt;/topics&gt;
                     &lt;topics subscribe=&quot;ALLOW&quot;&gt;
                         &lt;topic&gt;/scan&lt;/topic&gt;
                     &lt;/topics&gt;
                     &lt;services reply=&quot;ALLOW&quot;&gt;
+                        &lt;service&gt;/mechaship_classify_node/list_parameters&lt;/service&gt;
+                        &lt;service&gt;/mechaship_classify_node/get_parameter_types&lt;/service&gt;
                         &lt;service&gt;/mechaship_classify_node/set_parameters_atomically&lt;/service&gt;
                         &lt;service&gt;/mechaship_classify_node/get_type_description&lt;/service&gt;
-                        &lt;service&gt;/mechaship_classify_node/get_parameter_types&lt;/service&gt;
-                        &lt;service&gt;/mechaship_classify_node/list_parameters&lt;/service&gt;
+                        &lt;service&gt;/mechaship_classify_node/set_parameters&lt;/service&gt;
                         &lt;service&gt;/mechaship_classify_node/describe_parameters&lt;/service&gt;
                         &lt;service&gt;/mechaship_classify_node/get_parameters&lt;/service&gt;
-                        &lt;service&gt;/mechaship_classify_node/set_parameters&lt;/service&gt;
                     &lt;/services&gt;
                 &lt;/profile&gt;
             &lt;/profiles&gt;
@@ -1042,74 +362,88 @@ classDef wide padding:50px
     &lt;/enclaves&gt;
 &lt;/policy&gt;
 </code></pre>
-                    </div>
-                </div>
-            
-                <div class="ml-4 mr-4">
-                    <a id="Node-mechaship_detect_sub_node"></a>
-                    <div><h3>/mechaship_detect_sub_node</h3></div>
-                    <div  class="ml-4 mr-4"><h4>Publishers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
+                                </div>
+                            </div>
+
+                            <div class="ml-4  mr-4">
+                                <a id="Node-mechaship_detect_sub_node"></a>
+                                <div>
+                                    <h3>/mechaship_detect_sub_node</h3>
+                                </div>
+                                <div class="ml-4">
+                                    <h4>Publishers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
                                         <tr>
                                             <td>rt/parameter_events</td>
                                             <td>rcl_interfaces/msg/ParameterEvent</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                        <tr>
-                                            <td>ros_discovery_info</td>
-                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
+
                                         <tr>
                                             <td>rt/rosout</td>
                                             <td>rcl_interfaces/msg/ParameterEvent</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Subscriptions:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Callback Function</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
+
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Subscriptions:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Callback Function</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tr>
+                                            <td>rt/DetectionArray</td>
+                                            <td>mechaship_interfaces.msg.DetectionArray</td>
+                                            <td></td>
+                                            <td>self::detection_listener_callback</td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_detect_sub_node.py&#39;:17:8
+                                            </td>
+                                        </tr>
+
                                         <tr>
                                             <td>rt/Image</td>
                                             <td>sensor_msgs.msg.Image</td>
                                             <td></td>
                                             <td>self::image_listener_callback</td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_detect_sub_node.py&#39;:14:8</td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_detect_sub_node.py&#39;:14:8
+                                            </td>
                                         </tr>
-                                    
+
                                         <tr>
                                             <td>ros_discovery_info</td>
                                             <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
@@ -1117,113 +451,110 @@ classDef wide padding:50px
                                             <td></td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                        <tr>
-                                            <td>rt/DetectionArray</td>
-                                            <td>mechaship_interfaces.msg.DetectionArray</td>
-                                            <td></td>
-                                            <td>self::detection_listener_callback</td>
-                                            <td>&#39;analysis/ros-sources/1708616651/mechaship_detect_sub_node.py&#39;:17:8</td>
-                                        </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Servers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Service Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4 mr-4">
+                                    <h4>Service Servers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Service Name</th>
+                                                <th scope="col">Service Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
                                         <tr>
                                             <td>/mechaship_detect_sub_node/get_parameter_types</td>
                                             <td>rcl_interfaces/srv/GetParameterTypes</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
                                         <tr>
                                             <td>/mechaship_detect_sub_node/list_parameters</td>
                                             <td>rcl_interfaces/srv/ListParameters</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
                                         <tr>
                                             <td>/mechaship_detect_sub_node/get_parameters</td>
                                             <td>rcl_interfaces/srv/GetParameters</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
                                         <tr>
                                             <td>/mechaship_detect_sub_node/describe_parameters</td>
                                             <td>rcl_interfaces/srv/DescribeParameters</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
                                         <tr>
                                             <td>/mechaship_detect_sub_node/get_type_description</td>
                                             <td>type_description_interfaces/srv/GetTypeDescription</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
                                         <tr>
                                             <td>/mechaship_detect_sub_node/set_parameters</td>
                                             <td>rcl_interfaces/srv/SetParameters</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
                                         <tr>
                                             <td>/mechaship_detect_sub_node/set_parameters_atomically</td>
                                             <td>rcl_interfaces/srv/SetParametersAtomically</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Clients:</h4>
-                        
-                            
-                                <p>No Service Clients on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Clients:</h4>
-                        
-                            
-                                <p>No Action Clients on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Servers:</h4>
-                        
-                            
-                                <p>No Action Servers on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div  class="ml-4 mr-4">
-                        <h4>Generated policy.xml</h4> <a href="policies/mechaship_detect_sub_node/policy.xml" download>Download</a>
-                        <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Service Clients:</h4>
+
+
+                                    <p>No Service Clients on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Clients:</h4>
+
+
+                                    <p>No Action Clients on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Servers:</h4>
+
+
+                                    <p>No Action Servers on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Generated policy.xml</h4> <a
+                                        href="policies/mechaship_detect_sub_node/policy.xml" download>Download</a>
+                                    <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
 &lt;policy version=&quot;0.2.0&quot;&gt;
     &lt;enclaves&gt;
         &lt;enclave path=&quot;/mechaship_detect_sub_node&quot;&gt;
@@ -1234,8 +565,8 @@ classDef wide padding:50px
                         &lt;topic&gt;/rosout&lt;/topic&gt;
                     &lt;/topics&gt;
                     &lt;topics subscribe=&quot;ALLOW&quot;&gt;
-                        &lt;topic&gt;/Image&lt;/topic&gt;
                         &lt;topic&gt;/DetectionArray&lt;/topic&gt;
+                        &lt;topic&gt;/Image&lt;/topic&gt;
                     &lt;/topics&gt;
                     &lt;services reply=&quot;ALLOW&quot;&gt;
                         &lt;service&gt;/mechaship_detect_sub_node/get_parameter_types&lt;/service&gt;
@@ -1252,128 +583,942 @@ classDef wide padding:50px
     &lt;/enclaves&gt;
 &lt;/policy&gt;
 </code></pre>
+                                </div>
+                            </div>
+
+                            <div class="ml-4  mr-4">
+                                <a id="Node-mechaship_navigation2_node"></a>
+                                <div>
+                                    <h3>/mechaship_navigation2_node</h3>
+                                </div>
+                                <div class="ml-4">
+                                    <h4>Publishers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>rt/rosout</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>rt/parameter_events</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Subscriptions:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Callback Function</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tr>
+                                            <td>rt/DetectionArray</td>
+                                            <td>mechaship_interfaces.msg.DetectionArray</td>
+                                            <td></td>
+                                            <td>self::detection_listener_callback</td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_navigation2_node.py&#39;:104:8
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td></td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>rt/scan</td>
+                                            <td>sensor_msgs.msg.LaserScan</td>
+                                            <td></td>
+                                            <td>self::scan_listener_callback</td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_navigation2_node.py&#39;:100:8
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4 mr-4">
+                                    <h4>Service Servers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Service Name</th>
+                                                <th scope="col">Service Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tr>
+                                            <td>/mechaship_navigation2_node/describe_parameters</td>
+                                            <td>rcl_interfaces/srv/DescribeParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_navigation2_node/get_parameters</td>
+                                            <td>rcl_interfaces/srv/GetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_navigation2_node/set_parameters</td>
+                                            <td>rcl_interfaces/srv/SetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_navigation2_node/get_type_description</td>
+                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_navigation2_node/set_parameters_atomically</td>
+                                            <td>rcl_interfaces/srv/SetParametersAtomically</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_navigation2_node/list_parameters</td>
+                                            <td>rcl_interfaces/srv/ListParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_navigation2_node/get_parameter_types</td>
+                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Service Clients:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Service Name</th>
+                                                <th scope="col">Service Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tr>
+                                            <td>/actuators/key/set</td>
+                                            <td>mechaship_interfaces.srv.Key</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_navigation2_node.py&#39;:116:75
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/actuators/throttle/set_percentage</td>
+                                            <td>mechaship_interfaces.srv.ThrottlePercentage</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_navigation2_node.py&#39;:117:8
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/set_color</td>
+                                            <td>mechaship_interfaces.srv.RGBColor</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_navigation2_node.py&#39;:120:73
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Clients:</h4>
+
+
+                                    <p>No Action Clients on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Servers:</h4>
+
+
+                                    <p>No Action Servers on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Generated policy.xml</h4> <a
+                                        href="policies/mechaship_navigation2_node/policy.xml" download>Download</a>
+                                    <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;policy version=&quot;0.2.0&quot;&gt;
+    &lt;enclaves&gt;
+        &lt;enclave path=&quot;/mechaship_navigation2_node&quot;&gt;
+            &lt;profiles&gt;
+                &lt;profile ns=&quot;/&quot; node=&quot;mechaship_navigation2_node&quot;&gt;
+                    &lt;topics publish=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/rosout&lt;/topic&gt;
+                        &lt;topic&gt;/parameter_events&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;topics subscribe=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/DetectionArray&lt;/topic&gt;
+                        &lt;topic&gt;/scan&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;services reply=&quot;ALLOW&quot;&gt;
+                        &lt;service&gt;/mechaship_navigation2_node/describe_parameters&lt;/service&gt;
+                        &lt;service&gt;/mechaship_navigation2_node/get_parameters&lt;/service&gt;
+                        &lt;service&gt;/mechaship_navigation2_node/set_parameters&lt;/service&gt;
+                        &lt;service&gt;/mechaship_navigation2_node/get_type_description&lt;/service&gt;
+                        &lt;service&gt;/mechaship_navigation2_node/set_parameters_atomically&lt;/service&gt;
+                        &lt;service&gt;/mechaship_navigation2_node/list_parameters&lt;/service&gt;
+                        &lt;service&gt;/mechaship_navigation2_node/get_parameter_types&lt;/service&gt;
+                    &lt;/services&gt;
+                    &lt;services request=&quot;ALLOW&quot;&gt;
+                        &lt;service&gt;/actuators/key/set&lt;/service&gt;
+                        &lt;service&gt;/actuators/throttle/set_percentage&lt;/service&gt;
+                        &lt;service&gt;/set_color&lt;/service&gt;
+                    &lt;/services&gt;
+                &lt;/profile&gt;
+            &lt;/profiles&gt;
+        &lt;/enclave&gt;
+    &lt;/enclaves&gt;
+&lt;/policy&gt;
+</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="ml-4  mr-4">
+                                <a id="Node-mechaship_classify_sub_node"></a>
+                                <div>
+                                    <h3>/mechaship_classify_sub_node</h3>
+                                </div>
+                                <div class="ml-4">
+                                    <h4>Publishers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tr>
+                                            <td>rt/parameter_events</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>rt/rosout</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Subscriptions:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Callback Function</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tr>
+                                            <td>rt/Wall</td>
+                                            <td>mechaship_interfaces.msg.ClassificationArray</td>
+                                            <td></td>
+                                            <td>self::wall_listener_callback</td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_classify_sub_node.py&#39;:51:8
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td></td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>rt/Buoy</td>
+                                            <td>mechaship_interfaces.msg.ClassificationArray</td>
+                                            <td></td>
+                                            <td>self::buoy_listener_callback</td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_classify_sub_node.py&#39;:45:8
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4 mr-4">
+                                    <h4>Service Servers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Service Name</th>
+                                                <th scope="col">Service Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tr>
+                                            <td>/mechaship_classify_sub_node/get_parameter_types</td>
+                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_classify_sub_node/set_parameters</td>
+                                            <td>rcl_interfaces/srv/SetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_classify_sub_node/describe_parameters</td>
+                                            <td>rcl_interfaces/srv/DescribeParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_classify_sub_node/list_parameters</td>
+                                            <td>rcl_interfaces/srv/ListParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_classify_sub_node/set_parameters_atomically</td>
+                                            <td>rcl_interfaces/srv/SetParametersAtomically</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_classify_sub_node/get_type_description</td>
+                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_classify_sub_node/get_parameters</td>
+                                            <td>rcl_interfaces/srv/GetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Service Clients:</h4>
+
+
+                                    <p>No Service Clients on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Clients:</h4>
+
+
+                                    <p>No Action Clients on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Servers:</h4>
+
+
+                                    <p>No Action Servers on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Generated policy.xml</h4> <a
+                                        href="policies/mechaship_classify_sub_node/policy.xml" download>Download</a>
+                                    <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;policy version=&quot;0.2.0&quot;&gt;
+    &lt;enclaves&gt;
+        &lt;enclave path=&quot;/mechaship_classify_sub_node&quot;&gt;
+            &lt;profiles&gt;
+                &lt;profile ns=&quot;/&quot; node=&quot;mechaship_classify_sub_node&quot;&gt;
+                    &lt;topics publish=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/parameter_events&lt;/topic&gt;
+                        &lt;topic&gt;/rosout&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;topics subscribe=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/Wall&lt;/topic&gt;
+                        &lt;topic&gt;/Buoy&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;services reply=&quot;ALLOW&quot;&gt;
+                        &lt;service&gt;/mechaship_classify_sub_node/get_parameter_types&lt;/service&gt;
+                        &lt;service&gt;/mechaship_classify_sub_node/set_parameters&lt;/service&gt;
+                        &lt;service&gt;/mechaship_classify_sub_node/describe_parameters&lt;/service&gt;
+                        &lt;service&gt;/mechaship_classify_sub_node/list_parameters&lt;/service&gt;
+                        &lt;service&gt;/mechaship_classify_sub_node/set_parameters_atomically&lt;/service&gt;
+                        &lt;service&gt;/mechaship_classify_sub_node/get_type_description&lt;/service&gt;
+                        &lt;service&gt;/mechaship_classify_sub_node/get_parameters&lt;/service&gt;
+                    &lt;/services&gt;
+                &lt;/profile&gt;
+            &lt;/profiles&gt;
+        &lt;/enclave&gt;
+    &lt;/enclaves&gt;
+&lt;/policy&gt;
+</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="ml-4  mr-4">
+                                <a id="Node-mechaship_detect_node"></a>
+                                <div>
+                                    <h3>/mechaship_detect_node</h3>
+                                </div>
+                                <div class="ml-4">
+                                    <h4>Publishers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tr>
+                                            <td>rt/parameter_events</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>rt/rosout</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>rt/DetectionArray</td>
+                                            <td>mechaship_interfaces.msg.DetectionArray</td>
+                                            <td></td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_detect_node.py&#39;:125:8
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Subscriptions:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Callback Function</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tr>
+                                            <td>rt/Image</td>
+                                            <td>sensor_msgs.msg.Image</td>
+                                            <td></td>
+                                            <td>self::listener_callback</td>
+                                            <td>&#39;analysis/ros-sources/1710322416/mechaship_detect_node.py&#39;:119:8
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>ros_discovery_info</td>
+                                            <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
+                                            <td>YES</td>
+                                            <td></td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4 mr-4">
+                                    <h4>Service Servers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Service Name</th>
+                                                <th scope="col">Service Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tr>
+                                            <td>/mechaship_detect_node/get_type_description</td>
+                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_detect_node/get_parameter_types</td>
+                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_detect_node/get_parameters</td>
+                                            <td>rcl_interfaces/srv/GetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_detect_node/set_parameters_atomically</td>
+                                            <td>rcl_interfaces/srv/SetParametersAtomically</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_detect_node/describe_parameters</td>
+                                            <td>rcl_interfaces/srv/DescribeParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_detect_node/list_parameters</td>
+                                            <td>rcl_interfaces/srv/ListParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/mechaship_detect_node/set_parameters</td>
+                                            <td>rcl_interfaces/srv/SetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Service Clients:</h4>
+
+
+                                    <p>No Service Clients on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Clients:</h4>
+
+
+                                    <p>No Action Clients on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Servers:</h4>
+
+
+                                    <p>No Action Servers on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Generated policy.xml</h4> <a href="policies/mechaship_detect_node/policy.xml"
+                                        download>Download</a>
+                                    <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;policy version=&quot;0.2.0&quot;&gt;
+    &lt;enclaves&gt;
+        &lt;enclave path=&quot;/mechaship_detect_node&quot;&gt;
+            &lt;profiles&gt;
+                &lt;profile ns=&quot;/&quot; node=&quot;mechaship_detect_node&quot;&gt;
+                    &lt;topics publish=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/parameter_events&lt;/topic&gt;
+                        &lt;topic&gt;/rosout&lt;/topic&gt;
+                        &lt;topic&gt;/DetectionArray&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;topics subscribe=&quot;ALLOW&quot;&gt;
+                        &lt;topic&gt;/Image&lt;/topic&gt;
+                    &lt;/topics&gt;
+                    &lt;services reply=&quot;ALLOW&quot;&gt;
+                        &lt;service&gt;/mechaship_detect_node/get_type_description&lt;/service&gt;
+                        &lt;service&gt;/mechaship_detect_node/get_parameter_types&lt;/service&gt;
+                        &lt;service&gt;/mechaship_detect_node/get_parameters&lt;/service&gt;
+                        &lt;service&gt;/mechaship_detect_node/set_parameters_atomically&lt;/service&gt;
+                        &lt;service&gt;/mechaship_detect_node/describe_parameters&lt;/service&gt;
+                        &lt;service&gt;/mechaship_detect_node/list_parameters&lt;/service&gt;
+                        &lt;service&gt;/mechaship_detect_node/set_parameters&lt;/service&gt;
+                    &lt;/services&gt;
+                &lt;/profile&gt;
+            &lt;/profiles&gt;
+        &lt;/enclave&gt;
+    &lt;/enclaves&gt;
+&lt;/policy&gt;
+</code></pre>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
-            
-        </div>
-        
             </div>
         </div>
-        </div>
-    </div>
-  <div class="tab-pane" id="pills-lisaanalysis" role="tabpanel" aria-labelledby="pills-lisaanalysis-tab">
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MechashipClassify.__init__(MechashipClassify__self)_241680453.html"></iframe>
+        <div class="tab-pane" id="pills-lisaanalysis" role="tabpanel" aria-labelledby="pills-lisaanalysis-tab">
+            <div id="">
+                <h2>Legend:</h2>
+                <div>
+                    <b>Node border: <font color="darkgray">gray</font>, single</b></br>
+                    <b>Entrypoint border: black, single</b></br>
+                    <b>Exitpoint border: black, double</b></br>
+                    <b>Sequential edge: black, solid</b></br>
+                    <b>False edge: <font color="red">red</font>, solid</b></br>
+                    <b>True edge: <font color="blue">blue</font>, solid</b></br>
+                </div>
             </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708616651_mechaship_classify_node.$main().html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708616651_mechaship_classify_node.main(untyped_args)_241661636.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MechashipClassifySub.__init__(MechashipClassifySub__self)_-578601458.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708616651_mechaship_classify_sub_node.$main().html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708616651_mechaship_classify_sub_node.main(untyped_args)_-578623158.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MechashipDetect.__init__(MechashipDetect__self)_337108408.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708616651_mechaship_detect_node.$main().html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708616651_mechaship_detect_node.main(untyped_args)_337091513.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MechashipDetectSub.__init__(MechashipDetectSub__self)_-1812677912.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708616651_mechaship_detect_sub_node.$main().html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708616651_mechaship_detect_sub_node.main(untyped_args)_-1812697690.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MechashipNavigation2.__init__(MechashipNavigation2__self)_-1643223752.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MechashipNavigation2.constrain(MechashipNavigation2__self,_untyped_input_vel,_untyped_low_bound,_untyped_high_bound)_-1643190148.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MechashipNavigation2.constrain(MechashipNavigation2__self,_untyped_input_vel,_untyped_low_bound,_untyped_high_bound)_-1643190334.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MechashipNavigation2.constrain(MechashipNavigation2__self,_untyped_input_vel,_untyped_low_bound,_untyped_high_bound)_-1643194767.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MechashipNavigation2.constrain(MechashipNavigation2__self,_untyped_input_vel,_untyped_low_bound,_untyped_high_bound)_-1643198270.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MechashipNavigation2.constrain(MechashipNavigation2__self,_untyped_input_vel,_untyped_low_bound,_untyped_high_bound)_-1643199479.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MechashipNavigation2.navigate(MechashipNavigation2__self)_-1643217180.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708616651_mechaship_navigation2_node.$main().html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708616651_mechaship_navigation2_node.main(untyped_args)_-1643245452.html"></iframe>
-            </div>
-        
-</div>
 
-</div>
-</div>
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipClassify.__init__(MechashipClassify__self)_1422165375.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipClassify.classify_with_LSM(MechashipClassify__self,_untyped_polar_coordinates_group,_untyped_min_length,_untyped_max_length)_1422143334.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipClassify.classify_with_rho(MechashipClassify__self,_untyped_polar_coordinates_group,_untyped_min_length,_untyped_index_range)_1422143117.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipClassify.grouping_with_differential(MechashipClassify__self,_untyped_rhos,_untyped_thetas,_untyped_threshold)_1422138994.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipClassify.listener_callback(MechashipClassify__self,_untyped_data)_1422137940.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipClassify.regrouping_with_max_rho(MechashipClassify__self,_untyped_polar_coordinates_group,_untyped_index_range)_1422143024.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322416_mechaship_classify_node.$main().html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322416_mechaship_classify_node.main(untyped_args)_1422146558.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipClassifySub.__init__(MechashipClassifySub__self)_1898370632.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipClassifySub.show_classification_array(MechashipClassifySub__self,_untyped_classification_array,_untyped_title,_untyped_scale,_untyped_iscolor)_1898408669.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipClassifySub.wall_listener_callback(MechashipClassifySub__self,_untyped_data)_1898344592.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322416_mechaship_classify_sub_node.$main().html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322416_mechaship_classify_sub_node.main(untyped_args)_1898348932.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipDetect.__init__(MechashipDetect__self)_-1351046798.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipDetect.listener_callback(MechashipDetect__self,_untyped_data)_-1351066390.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322416_mechaship_detect_node.$main().html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322416_mechaship_detect_node.main(untyped_args)_-1351063693.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipDetectSub.__init__(MechashipDetectSub__self)_-1238034014.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipDetectSub.detection_listener_callback(MechashipDetectSub__self,_untyped_data)_-1238056303.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipDetectSub.image_listener_callback(MechashipDetectSub__self,_untyped_data)_-1238056396.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322416_mechaship_detect_sub_node.$main().html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322416_mechaship_detect_sub_node.main(untyped_args)_-1238053792.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipNavigation2.__init__(MechashipNavigation2__self)_-1009132098.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipNavigation2.constrain(MechashipNavigation2__self,_untyped_input_vel,_untyped_low_bound,_untyped_high_bound)_-1009098494.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipNavigation2.constrain(MechashipNavigation2__self,_untyped_input_vel,_untyped_low_bound,_untyped_high_bound)_-1009098680.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipNavigation2.constrain(MechashipNavigation2__self,_untyped_input_vel,_untyped_low_bound,_untyped_high_bound)_-1009103113.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipNavigation2.constrain(MechashipNavigation2__self,_untyped_input_vel,_untyped_low_bound,_untyped_high_bound)_-1009106616.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipNavigation2.constrain(MechashipNavigation2__self,_untyped_input_vel,_untyped_low_bound,_untyped_high_bound)_-1009107825.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipNavigation2.detection_listener_callback(MechashipNavigation2__self,_untyped_data)_-1009160432.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipNavigation2.navigate(MechashipNavigation2__self)_-1009125526.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MechashipNavigation2.scan_listener_callback(MechashipNavigation2__self,_untyped_data)_-1009160556.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322416_mechaship_navigation2_node.$main().html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322416_mechaship_navigation2_node.main(untyped_args)_-1009153798.html"></iframe>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
 </body>
 <script>
-  var tabs = ["#pills-rosanalysis", "#pills-lisaanalysis"];
-  var triggerTabList = [].slice.call(document.querySelectorAll('#pills-tab button'))
-  console.log(triggerTabList);
-  triggerTabList.forEach(function (triggerEl) {
-    console.log(triggerEl);
-    var tabTrigger = new bootstrap.Tab(triggerEl);
+    var tabs = ["#pills-rosanalysis", "#pills-lisaanalysis"];
+    var triggerTabList = [].slice.call(document.querySelectorAll('#pills-tab button'))
+    console.log(triggerTabList);
+    triggerTabList.forEach(function (triggerEl) {
+        console.log(triggerEl);
+        var tabTrigger = new bootstrap.Tab(triggerEl);
 
-    triggerEl.addEventListener('click', function (event) {
-      console.log(this);
-      event.preventDefault();
-      var targetId = this.dataset["bsTarget"];
-      tabs.forEach(function (tabId) {
-        if (tabId === targetId) {
-          $(tabId).addClass("active");
-        } else {
-          $(tabId).removeClass("active");
-        }
-      });
+        triggerEl.addEventListener('click', function (event) {
+            console.log(this);
+            event.preventDefault();
+            var targetId = this.dataset["bsTarget"];
+            tabs.forEach(function (tabId) {
+                if (tabId === targetId) {
+                    $(tabId).addClass("active");
+                } else {
+                    $(tabId).removeClass("active");
+                }
+            });
+            if (targetId == "#pills-lisaanalysis") {
+                var frames = document.getElementsByTagName('iframe');
+                var iframes = Array.prototype.slice.call(frames);
 
-      tabTrigger.show();
+                iframes.forEach(function (iframe) {
+                    iframe.addEventListener("load", function () {
+                        var fit = iframe.contentWindow.document.getElementById("fit");
+                        fit.click();
+                        var relayout = iframe.contentWindow.document.getElementById("relayout");
+                        relayout.click();
+                        relayout.click();
+                        relayout.click();
+                        relayout.click();
+                        var header = iframe.contentWindow.document.getElementById("header");
+                        header.style.display = "none";
+                    });
+                });
+            }
+            tabTrigger.show();
+        })
     })
-  })
 </script>
+<script>
+
+</script>
+
 </html>

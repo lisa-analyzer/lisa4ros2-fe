@@ -9,13 +9,13 @@
                         <topic>/rosout</topic>
                     </topics>
                     <services reply="ALLOW">
-                        <service>/minimal_service/describe_parameters</service>
                         <service>/minimal_service/set_parameters_atomically</service>
-                        <service>/minimal_service/list_parameters</service>
-                        <service>/add_two_ints</service>
-                        <service>/minimal_service/get_parameters</service>
-                        <service>/minimal_service/get_parameter_types</service>
                         <service>/minimal_service/set_parameters</service>
+                        <service>/add_two_ints</service>
+                        <service>/minimal_service/describe_parameters</service>
+                        <service>/minimal_service/get_parameters</service>
+                        <service>/minimal_service/list_parameters</service>
+                        <service>/minimal_service/get_parameter_types</service>
                         <service>/minimal_service/get_type_description</service>
                     </services>
                 </profile>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/sensors_camera_info">
+            <profiles>
+                <profile ns="/" node="sensors_camera_info">
+                    <topics publish="ALLOW">
+                        <topic>/f'{self.get_parameter("base_topic").value}/camera_info'</topic>
+                        <topic>/rosout</topic>
+                        <topic>/parameter_events</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/f'{self.get_parameter("base_topic").value}/empty_camera_info'</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/sensors_camera_info/set_parameters_atomically</service>
+                        <service>/sensors_camera_info/set_parameters</service>
+                        <service>/sensors_camera_info/describe_parameters</service>
+                        <service>/sensors_camera_info/get_type_description</service>
+                        <service>/sensors_camera_info/get_parameters</service>
+                        <service>/sensors_camera_info/list_parameters</service>
+                        <service>/sensors_camera_info/get_parameter_types</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

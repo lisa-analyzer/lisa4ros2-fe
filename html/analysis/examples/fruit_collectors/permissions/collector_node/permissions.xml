@@ -4,8 +4,8 @@
         <grant name="/collector_node">
             <subject_name>CN=/collector_node</subject_name>
             <validity>
-                <not_before>2024-02-22T16:53:08.995+01:00</not_before>
-                <not_after>2034-02-22T16:53:08.995+01:00</not_after>
+                <not_before>2024-03-13T10:37:39.987+01:00</not_before>
+                <not_after>2034-03-13T10:37:39.987+01:00</not_after>
             </validity>
             <allow_rule>
                 <domains>
@@ -13,32 +13,32 @@
                 </domains>
                 <publish>
                     <topics>
-                        <topic>rr/collector_node/get_parameter_typesReply</topic>
-                        <topic>rt/rosout</topic>
-                        <topic>rr/collector_node/get_type_descriptionReply</topic>
                         <topic>rr/collector_node/list_parametersReply</topic>
+                        <topic>rr/collector_node/get_parameter_typesReply</topic>
                         <topic>ros_discovery_info</topic>
-                        <topic>rr/collector_node/set_parameters_atomicallyReply</topic>
-                        <topic>rt/finish</topic>
-                        <topic>rr/collector_node/get_parametersReply</topic>
-                        <topic>rt/parameter_events</topic>
-                        <topic>rr/collector_node/set_parametersReply</topic>
                         <topic>rq/registrationRequest</topic>
+                        <topic>rt/parameter_events</topic>
+                        <topic>rr/collector_node/get_type_descriptionReply</topic>
+                        <topic>rr/collector_node/set_parameters_atomicallyReply</topic>
+                        <topic>rr/collector_node/get_parametersReply</topic>
+                        <topic>rt/rosout</topic>
                         <topic>rr/collector_node/describe_parametersReply</topic>
+                        <topic>rt/finish</topic>
+                        <topic>rr/collector_node/set_parametersReply</topic>
                     </topics>
                 </publish>
                 <subscribe>
                     <topics>
-                        <topic>ros_discovery_info</topic>
-                        <topic>rq/collector_node/set_parametersRequest</topic>
+                        <topic>rt/move</topic>
                         <topic>rq/collector_node/describe_parametersRequest</topic>
+                        <topic>rq/collector_node/get_parametersRequest</topic>
+                        <topic>rq/collector_node/get_type_descriptionRequest</topic>
                         <topic>rq/collector_node/set_parameters_atomicallyRequest</topic>
                         <topic>rq/collector_node/list_parametersRequest</topic>
-                        <topic>rq/collector_node/get_parametersRequest</topic>
-                        <topic>rt/move</topic>
-                        <topic>rq/collector_node/get_type_descriptionRequest</topic>
-                        <topic>rq/collector_node/get_parameter_typesRequest</topic>
+                        <topic>rq/collector_node/set_parametersRequest</topic>
+                        <topic>ros_discovery_info</topic>
                         <topic>rr/registrationReply</topic>
+                        <topic>rq/collector_node/get_parameter_typesRequest</topic>
                     </topics>
                 </subscribe>
             </allow_rule>

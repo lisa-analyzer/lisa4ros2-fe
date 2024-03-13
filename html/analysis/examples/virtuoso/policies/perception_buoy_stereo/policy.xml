@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/perception_buoy_stereo">
+            <profiles>
+                <profile ns="/" node="perception_buoy_stereo">
+                    <topics publish="ALLOW">
+                        <topic>/rosout</topic>
+                        <topic>/perception/stereo/debug/left_cam/rectified_buoy1</topic>
+                        <topic>/perception/stereo/debug/right_cam/rectified_buoy1</topic>
+                        <topic>/perception/stereo/debug/right_cam/contoured_buoy1</topic>
+                        <topic>/perception/stereo/debug/left_cam/contoured_buoy1</topic>
+                        <topic>/perception/stereo/debug/points</topic>
+                        <topic>/parameter_events</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/f'{base_topics[0]}/image_raw'</topic>
+                        <topic>/f'{base_topics[1]}/camera_info'</topic>
+                        <topic>/f'{base_topics[1]}/image_raw'</topic>
+                        <topic>/f'{base_topics[0]}/camera_info'</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/perception_buoy_stereo/list_parameters</service>
+                        <service>/perception_buoy_stereo/get_parameter_types</service>
+                        <service>/perception_buoy_stereo/set_parameters</service>
+                        <service>/perception_buoy_stereo/set_parameters_atomically</service>
+                        <service>/perception/image_buoy_stereo</service>
+                        <service>/perception_buoy_stereo/get_parameters</service>
+                        <service>/perception_buoy_stereo/describe_parameters</service>
+                        <service>/perception_buoy_stereo/get_type_description</service>
+                    </services>
+                    <services request="ALLOW">
+                        <service>/f'{cams[0]}/buoy_filter'</service>
+                        <service>/f'{cams[1]}/buoy_filter'</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>
