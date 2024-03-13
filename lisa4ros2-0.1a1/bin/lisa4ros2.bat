@@ -17,7 +17,7 @@
 @if "%DEBUG%"=="" @echo off
 @rem ##########################################################################
 @rem
-@rem  lisaros2 startup script for Windows
+@rem  lisa4ros2 startup script for Windows
 @rem
 @rem ##########################################################################
 
@@ -33,7 +33,7 @@ set APP_HOME=%DIRNAME%..
 @rem Resolve any "." and ".." in APP_HOME to make it shorter.
 for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
 
-@rem Add default JVM options here. You can also use JAVA_OPTS and LISAROS2_OPTS to pass JVM options to this script.
+@rem Add default JVM options here. You can also use JAVA_OPTS and LISA4ROS2_OPTS to pass JVM options to this script.
 set DEFAULT_JVM_OPTS=
 
 @rem Find java.exe
@@ -68,22 +68,22 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\lisaros2-0.1a1.jar;%APP_HOME%\lib\antlr4-4.8-1.jar;%APP_HOME%\lib\lisa-program-0.1b10-SNAPSHOT.jar;%APP_HOME%\lib\lisa-analyses-0.1b10-SNAPSHOT.jar;%APP_HOME%\lib\lisa-sdk-0.1b10-SNAPSHOT.jar;%APP_HOME%\lib\jdom2-2.0.5.jar;%APP_HOME%\lib\jaxb-impl-3.0.2.jar;%APP_HOME%\lib\thymeleaf-3.0.15.RELEASE.jar;%APP_HOME%\lib\gson-2.8.7.jar;%APP_HOME%\lib\antlr4-runtime-4.8-1.jar;%APP_HOME%\lib\ST4-4.3.jar;%APP_HOME%\lib\antlr-runtime-3.5.2.jar;%APP_HOME%\lib\org.abego.treelayout.core-1.0.3.jar;%APP_HOME%\lib\javax.json-1.0.4.jar;%APP_HOME%\lib\icu4j-61.1.jar;%APP_HOME%\lib\commons-io-2.8.0.jar;%APP_HOME%\lib\commons-text-1.10.0.jar;%APP_HOME%\lib\commons-lang3-3.12.0.jar;%APP_HOME%\lib\commons-collections4-4.4.jar;%APP_HOME%\lib\jackson-annotations-2.14.0.jar;%APP_HOME%\lib\jackson-core-2.14.0.jar;%APP_HOME%\lib\jackson-databind-2.14.0.jar;%APP_HOME%\lib\gs-core-2.0.jar;%APP_HOME%\lib\log4j-slf4j-impl-2.17.1.jar;%APP_HOME%\lib\log4j-core-2.17.1.jar;%APP_HOME%\lib\log4j-api-2.17.1.jar;%APP_HOME%\lib\reflections-0.9.12.jar;%APP_HOME%\lib\joda-time-2.10.14.jar;%APP_HOME%\lib\jaxb-core-3.0.2.jar;%APP_HOME%\lib\ognl-3.1.26.jar;%APP_HOME%\lib\attoparser-2.0.5.RELEASE.jar;%APP_HOME%\lib\unbescape-1.1.6.RELEASE.jar;%APP_HOME%\lib\slf4j-api-1.7.25.jar;%APP_HOME%\lib\pherd-1.0.jar;%APP_HOME%\lib\mbox2-1.0.jar;%APP_HOME%\lib\javassist-3.26.0-GA.jar;%APP_HOME%\lib\jakarta.xml.bind-api-3.0.1.jar;%APP_HOME%\lib\jakarta.activation-2.0.1.jar
+set CLASSPATH=%APP_HOME%\lib\lisa4ros2-0.1a1.jar;%APP_HOME%\lib\antlr4-4.8-1.jar;%APP_HOME%\lib\lisa-program-0.1b10-SNAPSHOT.jar;%APP_HOME%\lib\lisa-analyses-0.1b10-SNAPSHOT.jar;%APP_HOME%\lib\lisa-sdk-0.1b10-SNAPSHOT.jar;%APP_HOME%\lib\jdom2-2.0.5.jar;%APP_HOME%\lib\jaxb-impl-3.0.2.jar;%APP_HOME%\lib\thymeleaf-3.0.15.RELEASE.jar;%APP_HOME%\lib\gson-2.8.7.jar;%APP_HOME%\lib\antlr4-runtime-4.8-1.jar;%APP_HOME%\lib\ST4-4.3.jar;%APP_HOME%\lib\antlr-runtime-3.5.2.jar;%APP_HOME%\lib\org.abego.treelayout.core-1.0.3.jar;%APP_HOME%\lib\javax.json-1.0.4.jar;%APP_HOME%\lib\icu4j-61.1.jar;%APP_HOME%\lib\commons-io-2.8.0.jar;%APP_HOME%\lib\commons-text-1.10.0.jar;%APP_HOME%\lib\commons-lang3-3.12.0.jar;%APP_HOME%\lib\commons-collections4-4.4.jar;%APP_HOME%\lib\jackson-annotations-2.14.0.jar;%APP_HOME%\lib\jackson-core-2.14.0.jar;%APP_HOME%\lib\jackson-databind-2.14.0.jar;%APP_HOME%\lib\gs-core-2.0.jar;%APP_HOME%\lib\log4j-slf4j-impl-2.17.1.jar;%APP_HOME%\lib\log4j-core-2.17.1.jar;%APP_HOME%\lib\log4j-api-2.17.1.jar;%APP_HOME%\lib\reflections-0.9.12.jar;%APP_HOME%\lib\joda-time-2.10.14.jar;%APP_HOME%\lib\jaxb-core-3.0.2.jar;%APP_HOME%\lib\ognl-3.1.26.jar;%APP_HOME%\lib\attoparser-2.0.5.RELEASE.jar;%APP_HOME%\lib\unbescape-1.1.6.RELEASE.jar;%APP_HOME%\lib\slf4j-api-1.7.25.jar;%APP_HOME%\lib\pherd-1.0.jar;%APP_HOME%\lib\mbox2-1.0.jar;%APP_HOME%\lib\javassist-3.26.0-GA.jar;%APP_HOME%\lib\jakarta.xml.bind-api-3.0.1.jar;%APP_HOME%\lib\jakarta.activation-2.0.1.jar
 
 
-@rem Execute lisaros2
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %LISAROS2_OPTS%  -classpath "%CLASSPATH%" it.unive.lisaros2.Main %*
+@rem Execute lisa4ros2
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %LISA4ROS2_OPTS%  -classpath "%CLASSPATH%" it.unive.lisa4ros2.Main %*
 
 :end
 @rem End local scope for the variables with windows NT shell
 if %ERRORLEVEL% equ 0 goto mainEnd
 
 :fail
-rem Set variable LISAROS2_EXIT_CONSOLE if you need the _script_ return code instead of
+rem Set variable LISA4ROS2_EXIT_CONSOLE if you need the _script_ return code instead of
 rem the _cmd.exe /c_ return code!
 set EXIT_CODE=%ERRORLEVEL%
 if %EXIT_CODE% equ 0 set EXIT_CODE=1
-if not ""=="%LISAROS2_EXIT_CONSOLE%" exit %EXIT_CODE%
+if not ""=="%LISA4ROS2_EXIT_CONSOLE%" exit %EXIT_CODE%
 exit /b %EXIT_CODE%
 
 :mainEnd
