@@ -35,7 +35,7 @@ func main() {
 		files := form.File["files"]
 		fmt.Println(form)
 		//c.ShouldBind(&form)
-		s := []string{"lisaros2-0.1a1/bin/lisaros2"}
+		s := []string{"lisa4ros2-0.1a1/bin/lisa4ros2"}
 		for _, file := range files {
 			log.Println(file.Filename)
 			//Get raw file bytes - no reader method
