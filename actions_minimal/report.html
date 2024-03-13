@@ -1,181 +1,202 @@
 <html>
 
 <head>
-  <title>LiSA | ROS Application Report</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script src="https://dagrejs.github.io/project/dagre/latest/dagre.min.js"></script>
-  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js"></script>
-  <link rel="icon" href="../../logo.png">
-  <script>hljs.highlightAll();</script>
-  <style>
-    .bg-lisa {
-      background-color: #d9ede0;
-    }
-    body {
-      padding-top: 70px;
-    }
-    .sub-menu {
-      background-color: #d9ede0;
-    }
-    .nav-pills .nav-link-lisa.active {
-      background-color: #199a59;
-    }
-    .nav-link-lisa {
-      border-width: 0;
-      background-color: transparent;
-    }
-    .navbar {
-      height: 70px;
-    }
+    <title>LiSA | ROS Application Report</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://dagrejs.github.io/project/dagre/latest/dagre.min.js"></script>
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js"></script>
+    <link rel="icon" href="../../logo.png">
+    <script>hljs.highlightAll();</script>
+    <style>
+        .bg-lisa {
+            background-color: #d9ede0;
+        }
 
-    .dot-graph {
-      max-width: 100%;
-    }
+        body {
+            padding-top: 70px;
+        }
 
-    .h-scroll {
-      height: 100%; /* %-height of the viewport */
-      position: fixed;
-      overflow-y: scroll;
-    }
-    .logo {
-      max-width: 60px;
-    }
-    #cy {
-      width: 100%;
-      height: 600px;
-    }
-    .warnings {
-      background-color: lightyellow;
-    }
+        .sub-menu {
+            background-color: #d9ede0;
+        }
 
-.table td, .table th {
-    border-left: 1px solid#dee2e6;
-}
+        .nav-pills .nav-link-lisa.active {
+            background-color: #199a59;
+        }
 
-  </style>
+        .nav-link-lisa {
+            border-width: 0;
+            background-color: transparent;
+        }
+
+        .navbar {
+            height: 70px;
+        }
+
+        .dot-graph {
+            max-width: 100%;
+        }
+
+        .h-scroll {
+            height: 100%;
+            /* %-height of the viewport */
+            position: fixed;
+            overflow-y: scroll;
+        }
+
+        .logo {
+            max-width: 60px;
+        }
+
+        #cy {
+            width: 100%;
+            height: 600px;
+        }
+
+        .warnings {
+            background-color: lightyellow;
+        }
+
+        #header {
+            display: none;
+        }
+
+        .table td,
+        .table th {
+            border-left: 1px solid#dee2e6;
+        }
+    </style>
 </head>
+
 <body style="font-family: 'Raleway', sans-serif;">
-<nav class="navbar bg-lisa fixed-top">
-  <div class="container-fluid justify-content-start">
-      <img src="https://raw.githubusercontent.com/lisa-analyzer/lisa/master/logo.png" alt="" class="d-inline-block align-text-top mr-4 logo" />
-    <div class="ml-4 mr-4"><h4><a href="/">Home</a></h4></div>
-    <ul class="nav nav-pills ml-4" id="pills-tab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link nav-link-lisa active" id="pills-rosanalysis-tab" data-bs-toggle="pill" data-target="pills-rosanalysis" data-bs-target="#pills-rosanalysis" type="button" role="tab" aria-controls="pills-rosanalysis" aria-selected="true">ROS2 Report</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link nav-link-lisa" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-lisaanalysis" type="button" role="tab" aria-controls="pills-lisaanalysis" aria-selected="false">LiSA Analysis</button>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane active" id="pills-rosanalysis" role="tabpanel" aria-labelledby="pills-rosanalysis-tab">
-    <div class="row">
-        
-
-        <div class="col-12">
-
-
-
-    <div class="pt-4 pl-4">
-        <div>
-            <div><h2>Computational Graph</h2></div>
-            <div class="d-flex justify-content-center">
-                <img class="dot-graph" src="graph/graph.svg" />
+    <nav class="navbar bg-lisa fixed-top">
+        <div class="container-fluid justify-content-start">
+            <img src="https://raw.githubusercontent.com/lisa-analyzer/lisa/master/logo.png" alt=""
+                class="d-inline-block align-text-top mr-4 logo" />
+            <div class="ml-4 mr-4">
+                <h4><a href="/">Home</a></h4>
             </div>
-           <!-- <pre class="mermaid ros-graph" style="{width: 100%;}">
----
-config:
-    useMaxWidth: true
----
-                graph TD
-/minimal_action_client:::wide
-style /minimal_action_client fill:limegreen,stroke:#333,stroke-width:2px
-/minimal_action_server:::wide
-style /minimal_action_server fill:limegreen,stroke:#333,stroke-width:2px
-/fibonacci[//fibonacci/]:::wide
-style /fibonacci fill:orchid1,stroke:#333,stroke-width:2px
-/minimal_action_client --&gt; /fibonacci
-/fibonacci --&gt; /minimal_action_server
-classDef wide padding:50px
-
-            </pre>-->
+            <ul class="nav nav-pills ml-4" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link nav-link-lisa active" id="pills-rosanalysis-tab" data-bs-toggle="pill"
+                        data-target="pills-rosanalysis" data-bs-target="#pills-rosanalysis" type="button" role="tab"
+                        aria-controls="pills-rosanalysis" aria-selected="true">ROS2 Report</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link nav-link-lisa" id="pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-lisaanalysis" type="button" role="tab" aria-controls="pills-lisaanalysis"
+                        aria-selected="false">LiSA Analysis</button>
+                </li>
+            </ul>
         </div>
-        
-            
-            
-            
-        
-        <a id="Nodes"></a>
-        <h2>Nodes</h2>
-        <div class="mt-2 ml-4 mr-4">
-            
-                <div class="ml-4 mr-4">
-                    <a id="Node-minimal_action_client"></a>
-                    <div><h3>/minimal_action_client</h3></div>
-                    <div  class="ml-4 mr-4"><h4>Publishers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
+    </nav>
+
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane active" id="pills-rosanalysis" role="tabpanel" aria-labelledby="pills-rosanalysis-tab">
+            <div class="row">
+                <div class="col-12">
+                    <div class="pt-4 pl-4  pl-4">
+                        <div>
+                            <div>
+                                <h2>Computational Graph</h2>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <img class="dot-graph" src="graph/graph.svg" />
+                            </div>
+                        </div>
+                        <div>
+                            <h2>Analysis Results</h2>
+                            <ul>
+                                <li>Lines of code: 101</li>
+                                <li>Nodes: 2</li>
+                                <li>Topics: 3, 3 of which are systems</li>
+                                <li>Services: 14, 14 of which are systems</li>
+                                <li>Actions: 1</li>
+                                <li>Publishers: 6, 6 of which are systems</li>
+                                <li>Subscriptions: 2, 2 of which are systems</li>
+                                <li>Service Servers: 14, 14 of which are systems</li>
+                                <li>Service Clients: 0</li>
+                                <li>Action Servers: 1</li>
+                                <li>Action Clients: 1</li>
+                            </ul>
+                        </div>
+
+
+
+
+
+                        <a id="Nodes"></a>
+                        <h2>Nodes</h2>
+                        <div class="mt-2 ml-4  mr-4">
+
+                            <div class="ml-4  mr-4">
+                                <a id="Node-minimal_action_client"></a>
+                                <div>
+                                    <h3>/minimal_action_client</h3>
+                                </div>
+                                <div class="ml-4">
+                                    <h4>Publishers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
                                         <tr>
                                             <td>rt/rosout</td>
                                             <td>rcl_interfaces/msg/ParameterEvent</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
                                         <tr>
                                             <td>ros_discovery_info</td>
                                             <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
                                         <tr>
                                             <td>rt/parameter_events</td>
                                             <td>rcl_interfaces/msg/ParameterEvent</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Subscriptions:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Callback Function</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Subscriptions:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Callback Function</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
                                         <tr>
                                             <td>ros_discovery_info</td>
                                             <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
@@ -183,122 +204,127 @@ classDef wide padding:50px
                                             <td></td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Servers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Service Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
-                                        <tr>
-                                            <td>/minimal_action_client/get_parameters</td>
-                                            <td>rcl_interfaces/srv/GetParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/minimal_action_client/set_parameters</td>
-                                            <td>rcl_interfaces/srv/SetParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/minimal_action_client/get_parameter_types</td>
-                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/minimal_action_client/describe_parameters</td>
-                                            <td>rcl_interfaces/srv/DescribeParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4 mr-4">
+                                    <h4>Service Servers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Service Name</th>
+                                                <th scope="col">Service Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
                                         <tr>
                                             <td>/minimal_action_client/get_type_description</td>
                                             <td>type_description_interfaces/srv/GetTypeDescription</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
+                                        <tr>
+                                            <td>/minimal_action_client/get_parameters</td>
+                                            <td>rcl_interfaces/srv/GetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/minimal_action_client/get_parameter_types</td>
+                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/minimal_action_client/describe_parameters</td>
+                                            <td>rcl_interfaces/srv/DescribeParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
                                         <tr>
                                             <td>/minimal_action_client/list_parameters</td>
                                             <td>rcl_interfaces/srv/ListParameters</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
                                         <tr>
                                             <td>/minimal_action_client/set_parameters_atomically</td>
                                             <td>rcl_interfaces/srv/SetParametersAtomically</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Clients:</h4>
-                        
-                            
-                                <p>No Service Clients on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Clients:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Action Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
+
+                                        <tr>
+                                            <td>/minimal_action_client/set_parameters</td>
+                                            <td>rcl_interfaces/srv/SetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Service Clients:</h4>
+
+
+                                    <p>No Service Clients on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Clients:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Action Name</th>
+                                                <th scope="col">Action Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
                                         <tr>
                                             <td>/fibonacci</td>
                                             <td>example_interfaces.action.Fibonacci</td>
                                             <td></td>
-                                            <td>&#39;analysis/ros-sources/1708615386/client.py&#39;:27:71</td>
+                                            <td>&#39;analysis/ros-sources/1710322362/client.py&#39;:27:71</td>
                                         </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Servers:</h4>
-                        
-                            
-                                <p>No Action Servers on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div  class="ml-4 mr-4">
-                        <h4>Generated policy.xml</h4> <a href="policies/minimal_action_client/policy.xml" download>Download</a>
-                        <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Servers:</h4>
+
+
+                                    <p>No Action Servers on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Generated policy.xml</h4> <a href="policies/minimal_action_client/policy.xml"
+                                        download>Download</a>
+                                    <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
 &lt;policy version=&quot;0.2.0&quot;&gt;
     &lt;enclaves&gt;
         &lt;enclave path=&quot;/minimal_action_client&quot;&gt;
@@ -309,80 +335,87 @@ classDef wide padding:50px
                         &lt;topic&gt;/parameter_events&lt;/topic&gt;
                     &lt;/topics&gt;
                     &lt;services reply=&quot;ALLOW&quot;&gt;
+                        &lt;service&gt;/minimal_action_client/get_type_description&lt;/service&gt;
                         &lt;service&gt;/minimal_action_client/get_parameters&lt;/service&gt;
-                        &lt;service&gt;/minimal_action_client/set_parameters&lt;/service&gt;
                         &lt;service&gt;/minimal_action_client/get_parameter_types&lt;/service&gt;
                         &lt;service&gt;/minimal_action_client/describe_parameters&lt;/service&gt;
-                        &lt;service&gt;/minimal_action_client/get_type_description&lt;/service&gt;
                         &lt;service&gt;/minimal_action_client/list_parameters&lt;/service&gt;
                         &lt;service&gt;/minimal_action_client/set_parameters_atomically&lt;/service&gt;
+                        &lt;service&gt;/minimal_action_client/set_parameters&lt;/service&gt;
                     &lt;/services&gt;
+                    &lt;actions call=&quot;ALLOW&quot;&gt;
+                        &lt;action&gt;/fibonacci&lt;/action&gt;
+                    &lt;/actions&gt;
                 &lt;/profile&gt;
             &lt;/profiles&gt;
         &lt;/enclave&gt;
     &lt;/enclaves&gt;
 &lt;/policy&gt;
 </code></pre>
-                    </div>
-                </div>
-            
-                <div class="ml-4 mr-4">
-                    <a id="Node-minimal_action_server"></a>
-                    <div><h3>/minimal_action_server</h3></div>
-                    <div  class="ml-4 mr-4"><h4>Publishers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
-                                        <tr>
-                                            <td>rt/parameter_events</td>
-                                            <td>rcl_interfaces/msg/ParameterEvent</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
+                                </div>
+                            </div>
+
+                            <div class="ml-4  mr-4">
+                                <a id="Node-minimal_action_server"></a>
+                                <div>
+                                    <h3>/minimal_action_server</h3>
+                                </div>
+                                <div class="ml-4">
+                                    <h4>Publishers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
                                         <tr>
                                             <td>rt/rosout</td>
                                             <td>rcl_interfaces/msg/ParameterEvent</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
                                         <tr>
                                             <td>ros_discovery_info</td>
                                             <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Subscriptions:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Message Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Callback Function</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
+
+                                        <tr>
+                                            <td>rt/parameter_events</td>
+                                            <td>rcl_interfaces/msg/ParameterEvent</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Subscriptions:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Topic Name</th>
+                                                <th scope="col">Message Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Callback Function</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
                                         <tr>
                                             <td>ros_discovery_info</td>
                                             <td>rmw_dds_common/msg/ParticipantEntitiesInfo</td>
@@ -390,220 +423,264 @@ classDef wide padding:50px
                                             <td></td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Servers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Service Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4 mr-4">
+                                    <h4>Service Servers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Service Name</th>
+                                                <th scope="col">Service Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
                                         <tr>
                                             <td>/minimal_action_server/set_parameters_atomically</td>
                                             <td>rcl_interfaces/srv/SetParametersAtomically</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
+
                                         <tr>
                                             <td>/minimal_action_server/list_parameters</td>
                                             <td>rcl_interfaces/srv/ListParameters</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                        <tr>
-                                            <td>/minimal_action_server/describe_parameters</td>
-                                            <td>rcl_interfaces/srv/DescribeParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/minimal_action_server/get_parameter_types</td>
-                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/minimal_action_server/get_type_description</td>
-                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>/minimal_action_server/get_parameters</td>
-                                            <td>rcl_interfaces/srv/GetParameters</td>
-                                            <td>YES</td>
-                                            <td>INTERNAL</td>
-                                        </tr>
-                                    
+
                                         <tr>
                                             <td>/minimal_action_server/set_parameters</td>
                                             <td>rcl_interfaces/srv/SetParameters</td>
                                             <td>YES</td>
                                             <td>INTERNAL</td>
                                         </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Service Clients:</h4>
-                        
-                            
-                                <p>No Service Clients on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Clients:</h4>
-                        
-                            
-                                <p>No Action Clients on this Node</p>
-                            
-                            
-                        
-                    </div>
-                    <div class="ml-4 mr-4"><h4>Action Servers:</h4>
-                        
-                            
-                            
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Topic Name</th>
-                                        <th scope="col">Action Type</th>
-                                        <th scope="col">System</th>
-                                        <th scope="col">Location</th>
-                                    </tr>
-                                    </thead>
-                                    
+
+                                        <tr>
+                                            <td>/minimal_action_server/describe_parameters</td>
+                                            <td>rcl_interfaces/srv/DescribeParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/minimal_action_server/get_type_description</td>
+                                            <td>type_description_interfaces/srv/GetTypeDescription</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/minimal_action_server/get_parameter_types</td>
+                                            <td>rcl_interfaces/srv/GetParameterTypes</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>/minimal_action_server/get_parameters</td>
+                                            <td>rcl_interfaces/srv/GetParameters</td>
+                                            <td>YES</td>
+                                            <td>INTERNAL</td>
+                                        </tr>
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Service Clients:</h4>
+
+
+                                    <p>No Service Clients on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Clients:</h4>
+
+
+                                    <p>No Action Clients on this Node</p>
+
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Action Servers:</h4>
+
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Action Name</th>
+                                                <th scope="col">Action Type</th>
+                                                <th scope="col">System</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+
                                         <tr>
                                             <td>/fibonacci</td>
                                             <td>example_interfaces.action.Fibonacci</td>
                                             <td></td>
-                                            <td>&#39;analysis/ros-sources/1708615386/server.py&#39;:31:48</td>
+                                            <td>&#39;analysis/ros-sources/1710322362/server.py&#39;:31:48</td>
                                         </tr>
-                                    
-                                </table>
-                            
-                        
-                    </div>
-                    <div  class="ml-4 mr-4">
-                        <h4>Generated policy.xml</h4> <a href="policies/minimal_action_server/policy.xml" download>Download</a>
-                        <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+
+                                    </table>
+
+
+                                </div>
+                                <div class="ml-4  mr-4">
+                                    <h4>Generated policy.xml</h4> <a href="policies/minimal_action_server/policy.xml"
+                                        download>Download</a>
+                                    <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
 &lt;policy version=&quot;0.2.0&quot;&gt;
     &lt;enclaves&gt;
         &lt;enclave path=&quot;/minimal_action_server&quot;&gt;
             &lt;profiles&gt;
                 &lt;profile ns=&quot;/&quot; node=&quot;minimal_action_server&quot;&gt;
                     &lt;topics publish=&quot;ALLOW&quot;&gt;
-                        &lt;topic&gt;/parameter_events&lt;/topic&gt;
                         &lt;topic&gt;/rosout&lt;/topic&gt;
+                        &lt;topic&gt;/parameter_events&lt;/topic&gt;
                     &lt;/topics&gt;
                     &lt;services reply=&quot;ALLOW&quot;&gt;
                         &lt;service&gt;/minimal_action_server/set_parameters_atomically&lt;/service&gt;
                         &lt;service&gt;/minimal_action_server/list_parameters&lt;/service&gt;
-                        &lt;service&gt;/minimal_action_server/describe_parameters&lt;/service&gt;
-                        &lt;service&gt;/minimal_action_server/get_parameter_types&lt;/service&gt;
-                        &lt;service&gt;/minimal_action_server/get_type_description&lt;/service&gt;
-                        &lt;service&gt;/minimal_action_server/get_parameters&lt;/service&gt;
                         &lt;service&gt;/minimal_action_server/set_parameters&lt;/service&gt;
+                        &lt;service&gt;/minimal_action_server/describe_parameters&lt;/service&gt;
+                        &lt;service&gt;/minimal_action_server/get_type_description&lt;/service&gt;
+                        &lt;service&gt;/minimal_action_server/get_parameter_types&lt;/service&gt;
+                        &lt;service&gt;/minimal_action_server/get_parameters&lt;/service&gt;
                     &lt;/services&gt;
                     &lt;actions execute=&quot;ALLOW&quot;&gt;
                         &lt;action&gt;/fibonacci&lt;/action&gt;
                     &lt;/actions&gt;
-                    &lt;actions call=&quot;ALLOW&quot;/&gt;
                 &lt;/profile&gt;
             &lt;/profiles&gt;
         &lt;/enclave&gt;
     &lt;/enclaves&gt;
 &lt;/policy&gt;
 </code></pre>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
-            
-        </div>
-        
             </div>
         </div>
-        </div>
-    </div>
-  <div class="tab-pane" id="pills-lisaanalysis" role="tabpanel" aria-labelledby="pills-lisaanalysis-tab">
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MinimalActionClient.__init__(MinimalActionClient__self)_1115436000.html"></iframe>
+        <div class="tab-pane" id="pills-lisaanalysis" role="tabpanel" aria-labelledby="pills-lisaanalysis-tab">
+            <div id="">
+                <h2>Legend:</h2>
+                <div>
+                    <b>Node border: <font color="darkgray">gray</font>, single</b></br>
+                    <b>Entrypoint border: black, single</b></br>
+                    <b>Exitpoint border: black, double</b></br>
+                    <b>Sequential edge: black, solid</b></br>
+                    <b>False edge: <font color="red">red</font>, solid</b></br>
+                    <b>True edge: <font color="blue">blue</font>, solid</b></br>
+                </div>
             </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MinimalActionClient.send_goal(MinimalActionClient__self)_1115424530.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708615386_client.$main().html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708615386_client.main(untyped_args)_1115406457.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MinimalActionServer.__init__(MinimalActionServer__self)_-1472870886.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_MinimalActionServer.destroy(MinimalActionServer__self)_-1472884123.html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708615386_server.$main().html"></iframe>
-            </div>
-        
-            <div class="">Lisa Analysis
-                <iframe style="width: 100%; height: 100%" src="untyped_analysis_ros-sources_1708615386_server.main(untyped_args)_-1472907993.html"></iframe>
-            </div>
-        
-</div>
 
-</div>
-</div>
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MinimalActionClient.__init__(MinimalActionClient__self)_777356284.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MinimalActionClient.send_goal(MinimalActionClient__self)_777344814.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322362_client.$main().html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322362_client.main(untyped_args)_777326741.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MinimalActionServer.__init__(MinimalActionServer__self)_-1810950602.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_MinimalActionServer.destroy(MinimalActionServer__self)_-1810963839.html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322362_server.$main().html"></iframe>
+            </div>
+
+            <div class="">Lisa Analysis
+                <iframe style="width: 100%; height: 100%"
+                    src="untyped_analysis_ros-sources_1710322362_server.main(untyped_args)_-1810987709.html"></iframe>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
 </body>
 <script>
-  var tabs = ["#pills-rosanalysis", "#pills-lisaanalysis"];
-  var triggerTabList = [].slice.call(document.querySelectorAll('#pills-tab button'))
-  console.log(triggerTabList);
-  triggerTabList.forEach(function (triggerEl) {
-    console.log(triggerEl);
-    var tabTrigger = new bootstrap.Tab(triggerEl);
+    var tabs = ["#pills-rosanalysis", "#pills-lisaanalysis"];
+    var triggerTabList = [].slice.call(document.querySelectorAll('#pills-tab button'))
+    console.log(triggerTabList);
+    triggerTabList.forEach(function (triggerEl) {
+        console.log(triggerEl);
+        var tabTrigger = new bootstrap.Tab(triggerEl);
 
-    triggerEl.addEventListener('click', function (event) {
-      console.log(this);
-      event.preventDefault();
-      var targetId = this.dataset["bsTarget"];
-      tabs.forEach(function (tabId) {
-        if (tabId === targetId) {
-          $(tabId).addClass("active");
-        } else {
-          $(tabId).removeClass("active");
-        }
-      });
+        triggerEl.addEventListener('click', function (event) {
+            console.log(this);
+            event.preventDefault();
+            var targetId = this.dataset["bsTarget"];
+            tabs.forEach(function (tabId) {
+                if (tabId === targetId) {
+                    $(tabId).addClass("active");
+                } else {
+                    $(tabId).removeClass("active");
+                }
+            });
+            if (targetId == "#pills-lisaanalysis") {
+                var frames = document.getElementsByTagName('iframe');
+                var iframes = Array.prototype.slice.call(frames);
 
-      tabTrigger.show();
+                iframes.forEach(function (iframe) {
+                    iframe.addEventListener("load", function () {
+                        var fit = iframe.contentWindow.document.getElementById("fit");
+                        fit.click();
+                        var relayout = iframe.contentWindow.document.getElementById("relayout");
+                        relayout.click();
+                        relayout.click();
+                        relayout.click();
+                        relayout.click();
+                        var header = iframe.contentWindow.document.getElementById("header");
+                        header.style.display = "none";
+                    });
+                });
+            }
+            tabTrigger.show();
+        })
     })
-  })
 </script>
+<script>
+
+</script>
+
 </html>

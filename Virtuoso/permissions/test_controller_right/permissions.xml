@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.omg.org/spec/DDS-SECURITY/20170901/omg_shared_ca_permissions.xsd">
+    <permissions>
+        <grant name="/test_controller_right">
+            <subject_name>CN=/test_controller_right</subject_name>
+            <validity>
+                <not_before>2024-03-13T09:38:54.485+01:00</not_before>
+                <not_after>2034-03-13T09:38:54.485+01:00</not_after>
+            </validity>
+            <allow_rule>
+                <domains>
+                    <id>0</id>
+                </domains>
+                <publish>
+                    <topics>
+                        <topic>rr/test_controller_right/get_parameter_typesReply</topic>
+                        <topic>rr/test_controller_right/list_parametersReply</topic>
+                        <topic>rr/test_controller_right/describe_parametersReply</topic>
+                        <topic>rt/parameter_events</topic>
+                        <topic>rt/rosout</topic>
+                        <topic>rt/navigation/navigateToPoint</topic>
+                        <topic>rt/controller/velocity_pid/targetTorque</topic>
+                        <topic>rt/controller/velocity_pid/targetForceX</topic>
+                        <topic>rt/controller/basic_pid/targetForceY</topic>
+                        <topic>rr/test_controller_right/get_parametersReply</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rt/controller/velocity_pid/targetForceY</topic>
+                        <topic>rr/test_controller_right/get_type_descriptionReply</topic>
+                        <topic>rr/test_controller_right/set_parametersReply</topic>
+                        <topic>rt/controller/basic_pid/targetTorque</topic>
+                        <topic>rt/controller/basic_pid/targetForceX</topic>
+                        <topic>rr/test_controller_right/set_parameters_atomicallyReply</topic>
+                    </topics>
+                </publish>
+                <subscribe>
+                    <topics>
+                        <topic>rq/test_controller_right/get_type_descriptionRequest</topic>
+                        <topic>rq/test_controller_right/list_parametersRequest</topic>
+                        <topic>rq/test_controller_right/set_parametersRequest</topic>
+                        <topic>rq/test_controller_right/set_parameters_atomicallyRequest</topic>
+                        <topic>rq/test_controller_right/get_parameter_typesRequest</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rq/test_controller_right/get_parametersRequest</topic>
+                        <topic>rq/test_controller_right/describe_parametersRequest</topic>
+                    </topics>
+                </subscribe>
+            </allow_rule>
+            <default>DENY</default>
+        </grant>
+    </permissions>
+</dds>

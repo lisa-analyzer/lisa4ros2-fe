@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.omg.org/spec/DDS-SECURITY/20170901/omg_shared_ca_permissions.xsd">
+    <permissions>
+        <grant name="/autonomy_safety_check">
+            <subject_name>CN=/autonomy_safety_check</subject_name>
+            <validity>
+                <not_before>2024-03-13T09:38:54.497+01:00</not_before>
+                <not_after>2034-03-13T09:38:54.497+01:00</not_after>
+            </validity>
+            <allow_rule>
+                <domains>
+                    <id>0</id>
+                </domains>
+                <publish>
+                    <topics>
+                        <topic>rr/autonomy_safety_check/describe_parametersReply</topic>
+                        <topic>rr/autonomy_safety_check/set_parametersReply</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rt/navigation/station_keep</topic>
+                        <topic>rt/parameter_events</topic>
+                        <topic>rt/rosout</topic>
+                        <topic>rt/navigation/set_waypoints</topic>
+                        <topic>rr/autonomy_safety_check/get_parametersReply</topic>
+                        <topic>rr/autonomy_safety_check/list_parametersReply</topic>
+                        <topic>rr/autonomy_safety_check/get_type_descriptionReply</topic>
+                        <topic>rr/autonomy_safety_check/set_parameters_atomicallyReply</topic>
+                        <topic>rr/autonomy_safety_check/get_parameter_typesReply</topic>
+                    </topics>
+                </publish>
+                <subscribe>
+                    <topics>
+                        <topic>rq/autonomy_safety_check/list_parametersRequest</topic>
+                        <topic>rt/navigation/success</topic>
+                        <topic>rt/localization/odometry</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rq/autonomy_safety_check/set_parameters_atomicallyRequest</topic>
+                        <topic>rq/autonomy_safety_check/get_parametersRequest</topic>
+                        <topic>rq/autonomy_safety_check/describe_parametersRequest</topic>
+                        <topic>rq/autonomy_safety_check/set_parametersRequest</topic>
+                        <topic>rt/buoys/bounding_boxes</topic>
+                        <topic>rq/autonomy_safety_check/get_parameter_typesRequest</topic>
+                        <topic>rq/autonomy_safety_check/get_type_descriptionRequest</topic>
+                    </topics>
+                </subscribe>
+            </allow_rule>
+            <default>DENY</default>
+        </grant>
+    </permissions>
+</dds>

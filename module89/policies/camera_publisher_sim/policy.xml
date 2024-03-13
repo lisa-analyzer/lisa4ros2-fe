@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/camera_publisher_sim">
+            <profiles>
+                <profile ns="/" node="camera_publisher_sim">
+                    <topics publish="ALLOW">
+                        <topic>/chessboard/side/ImgPose</topic>
+                        <topic>/chessboard/top/ImgPose</topic>
+                        <topic>/rosout</topic>
+                        <topic>/parameter_events</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/camera_publisher_sim/set_parameters</service>
+                        <service>/camera_publisher_sim/set_parameters_atomically</service>
+                        <service>/camera_publisher_sim/get_parameter_types</service>
+                        <service>/camera_publisher_sim/get_parameters</service>
+                        <service>/camera_publisher_sim/list_parameters</service>
+                        <service>/camera_publisher_sim/describe_parameters</service>
+                        <service>/camera_publisher_sim/get_type_description</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

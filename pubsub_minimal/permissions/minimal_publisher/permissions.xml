@@ -4,8 +4,8 @@
         <grant name="/minimal_publisher">
             <subject_name>CN=/minimal_publisher</subject_name>
             <validity>
-                <not_before>2024-02-22T14:24:58.193+01:00</not_before>
-                <not_after>2034-02-22T14:24:58.193+01:00</not_after>
+                <not_before>2024-03-13T10:13:29.011+01:00</not_before>
+                <not_after>2034-03-13T10:13:29.011+01:00</not_after>
             </validity>
             <allow_rule>
                 <domains>
@@ -13,28 +13,28 @@
                 </domains>
                 <publish>
                     <topics>
-                        <topic>rr/minimal_publisher/get_parameter_typesReply</topic>
-                        <topic>rt/rosout</topic>
-                        <topic>rr/minimal_publisher/describe_parametersReply</topic>
                         <topic>rr/minimal_publisher/set_parameters_atomicallyReply</topic>
-                        <topic>ros_discovery_info</topic>
+                        <topic>rr/minimal_publisher/set_parametersReply</topic>
                         <topic>rr/minimal_publisher/get_parametersReply</topic>
                         <topic>rt/parameter_events</topic>
-                        <topic>rr/minimal_publisher/get_type_descriptionReply</topic>
-                        <topic>rr/minimal_publisher/list_parametersReply</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rr/minimal_publisher/get_parameter_typesReply</topic>
                         <topic>rt/topic</topic>
-                        <topic>rr/minimal_publisher/set_parametersReply</topic>
+                        <topic>rt/rosout</topic>
+                        <topic>rr/minimal_publisher/list_parametersReply</topic>
+                        <topic>rr/minimal_publisher/describe_parametersReply</topic>
+                        <topic>rr/minimal_publisher/get_type_descriptionReply</topic>
                     </topics>
                 </publish>
                 <subscribe>
                     <topics>
-                        <topic>ros_discovery_info</topic>
-                        <topic>rq/minimal_publisher/set_parametersRequest</topic>
-                        <topic>rq/minimal_publisher/list_parametersRequest</topic>
+                        <topic>rq/minimal_publisher/set_parameters_atomicallyRequest</topic>
                         <topic>rq/minimal_publisher/describe_parametersRequest</topic>
                         <topic>rq/minimal_publisher/get_parametersRequest</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rq/minimal_publisher/list_parametersRequest</topic>
+                        <topic>rq/minimal_publisher/set_parametersRequest</topic>
                         <topic>rq/minimal_publisher/get_type_descriptionRequest</topic>
-                        <topic>rq/minimal_publisher/set_parameters_atomicallyRequest</topic>
                         <topic>rq/minimal_publisher/get_parameter_typesRequest</topic>
                     </topics>
                 </subscribe>

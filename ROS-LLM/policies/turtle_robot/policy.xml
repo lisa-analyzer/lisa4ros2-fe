@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/turtle_robot">
+            <profiles>
+                <profile ns="/" node="turtle_robot">
+                    <topics publish="ALLOW">
+                        <topic>/rosout</topic>
+                        <topic>/parameter_events</topic>
+                        <topic>/turtle1/cmd_vel</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/turtle_robot/get_parameter_types</service>
+                        <service>/turtle_robot/get_parameters</service>
+                        <service>/ChatGPT_function_call_service</service>
+                        <service>/turtle_robot/list_parameters</service>
+                        <service>/turtle_robot/get_type_description</service>
+                        <service>/turtle_robot/describe_parameters</service>
+                        <service>/turtle_robot/set_parameters_atomically</service>
+                        <service>/turtle_robot/set_parameters</service>
+                    </services>
+                    <services request="ALLOW">
+                        <service>/reset</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

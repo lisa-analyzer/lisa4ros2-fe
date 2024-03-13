@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/vehicle_simulator">
+            <profiles>
+                <profile ns="/" node="vehicle_simulator">
+                    <topics publish="ALLOW">
+                        <topic>/parameter_events</topic>
+                        <topic>/vehicle_pose</topic>
+                        <topic>/rosout</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/vehicle_command_twist</topic>
+                        <topic>/vehicle_command_ackermann</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/vehicle_simulator/describe_parameters</service>
+                        <service>/vehicle_simulator/set_parameters</service>
+                        <service>/vehicle_simulator/list_parameters</service>
+                        <service>/vehicle_simulator/set_parameters_atomically</service>
+                        <service>/vehicle_simulator/get_type_description</service>
+                        <service>/vehicle_simulator/get_parameter_types</service>
+                        <service>/vehicle_simulator/get_parameters</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

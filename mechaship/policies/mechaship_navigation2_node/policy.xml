@@ -9,22 +9,22 @@
                         <topic>/parameter_events</topic>
                     </topics>
                     <topics subscribe="ALLOW">
-                        <topic>/scan</topic>
                         <topic>/DetectionArray</topic>
+                        <topic>/scan</topic>
                     </topics>
                     <services reply="ALLOW">
                         <service>/mechaship_navigation2_node/describe_parameters</service>
-                        <service>/mechaship_navigation2_node/list_parameters</service>
-                        <service>/mechaship_navigation2_node/get_type_description</service>
-                        <service>/mechaship_navigation2_node/set_parameters</service>
                         <service>/mechaship_navigation2_node/get_parameters</service>
-                        <service>/mechaship_navigation2_node/get_parameter_types</service>
+                        <service>/mechaship_navigation2_node/set_parameters</service>
+                        <service>/mechaship_navigation2_node/get_type_description</service>
                         <service>/mechaship_navigation2_node/set_parameters_atomically</service>
+                        <service>/mechaship_navigation2_node/list_parameters</service>
+                        <service>/mechaship_navigation2_node/get_parameter_types</service>
                     </services>
                     <services request="ALLOW">
+                        <service>/actuators/key/set</service>
                         <service>/actuators/throttle/set_percentage</service>
                         <service>/set_color</service>
-                        <service>/actuators/key/set</service>
                     </services>
                 </profile>
             </profiles>

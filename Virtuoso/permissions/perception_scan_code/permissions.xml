@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.omg.org/spec/DDS-SECURITY/20170901/omg_shared_ca_permissions.xsd">
+    <permissions>
+        <grant name="/perception_scan_code">
+            <subject_name>CN=/perception_scan_code</subject_name>
+            <validity>
+                <not_before>2024-03-13T09:38:54.485+01:00</not_before>
+                <not_after>2034-03-13T09:38:54.485+01:00</not_after>
+            </validity>
+            <allow_rule>
+                <domains>
+                    <id>0</id>
+                </domains>
+                <publish>
+                    <topics>
+                        <topic>rt/perception/debug/find_code_coord</topic>
+                        <topic>rt/perception/code</topic>
+                        <topic>rt/perception/debug/code_green_filter</topic>
+                        <topic>rt/parameter_events</topic>
+                        <topic>rt/rosout</topic>
+                        <topic>rt/perception/debug/code_blue_filter</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rr/perception_scan_code/describe_parametersReply</topic>
+                        <topic>rr/perception_scan_code/get_parameter_typesReply</topic>
+                        <topic>rr/perception_scan_code/set_parameters_atomicallyReply</topic>
+                        <topic>rr/perception_scan_code/set_parametersReply</topic>
+                        <topic>rt/perception/scan_code/ready</topic>
+                        <topic>rr/perception_scan_code/list_parametersReply</topic>
+                        <topic>rr/perception_scan_code/get_parametersReply</topic>
+                        <topic>rt/perception/debug/code_red_filter</topic>
+                        <topic>rr/perception_scan_code/get_type_descriptionReply</topic>
+                    </topics>
+                </publish>
+                <subscribe>
+                    <topics>
+                        <topic>rt/processing/image/downscaled</topic>
+                        <topic>rq/perception_scan_code/list_parametersRequest</topic>
+                        <topic>rt/perception/get_code</topic>
+                        <topic>rq/perception_scan_code/set_parametersRequest</topic>
+                        <topic>rq/perception_scan_code/set_parameters_atomicallyRequest</topic>
+                        <topic>rq/perception_scan_code/get_parameter_typesRequest</topic>
+                        <topic>ros_discovery_info</topic>
+                        <topic>rq/perception_scan_code/describe_parametersRequest</topic>
+                        <topic>rq/perception_scan_code/get_parametersRequest</topic>
+                        <topic>rq/perception_scan_code/get_type_descriptionRequest</topic>
+                    </topics>
+                </subscribe>
+            </allow_rule>
+            <default>DENY</default>
+        </grant>
+    </permissions>
+</dds>

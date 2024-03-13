@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<policy version="0.2.0">
+    <enclaves>
+        <enclave path="/controller_choose_PID">
+            <profiles>
+                <profile ns="/" node="controller_choose_PID">
+                    <topics publish="ALLOW">
+                        <topic>/controller/waypoint</topic>
+                        <topic>/rosout</topic>
+                        <topic>/controller/navigateToPoint</topic>
+                        <topic>/parameter_events</topic>
+                    </topics>
+                    <topics subscribe="ALLOW">
+                        <topic>/controller/is_translation</topic>
+                        <topic>/controller/path_complete</topic>
+                        <topic>/controller/cmd_vel</topic>
+                        <topic>/navigation/plan</topic>
+                        <topic>/localization/odometry</topic>
+                    </topics>
+                    <services reply="ALLOW">
+                        <service>/controller_choose_PID/describe_parameters</service>
+                        <service>/controller_choose_PID/get_parameter_types</service>
+                        <service>/controller_choose_PID/get_type_description</service>
+                        <service>/controller_choose_PID/list_parameters</service>
+                        <service>/controller_choose_PID/get_parameters</service>
+                        <service>/controller_choose_PID/set_parameters</service>
+                        <service>/controller_choose_PID/set_parameters_atomically</service>
+                    </services>
+                </profile>
+            </profiles>
+        </enclave>
+    </enclaves>
+</policy>

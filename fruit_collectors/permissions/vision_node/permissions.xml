@@ -4,8 +4,8 @@
         <grant name="/vision_node">
             <subject_name>CN=/vision_node</subject_name>
             <validity>
-                <not_before>2024-02-22T16:53:08.968+01:00</not_before>
-                <not_after>2034-02-22T16:53:08.968+01:00</not_after>
+                <not_before>2024-03-13T10:37:39.959+01:00</not_before>
+                <not_after>2034-03-13T10:37:39.959+01:00</not_after>
             </validity>
             <allow_rule>
                 <domains>
@@ -13,15 +13,15 @@
                 </domains>
                 <publish>
                     <topics>
+                        <topic>rt/rosout</topic>
+                        <topic>rr/vision_node/get_parameter_typesReply</topic>
                         <topic>rr/vision_node/list_parametersReply</topic>
+                        <topic>rr/vision_node/get_parametersReply</topic>
                         <topic>rr/vision_node/set_parameters_atomicallyReply</topic>
+                        <topic>rr/vision_node/set_parametersReply</topic>
                         <topic>rt/move</topic>
                         <topic>rt/parameter_events</topic>
                         <topic>rr/registrationReply</topic>
-                        <topic>rr/vision_node/get_parameter_typesReply</topic>
-                        <topic>rt/rosout</topic>
-                        <topic>rr/vision_node/get_parametersReply</topic>
-                        <topic>rr/vision_node/set_parametersReply</topic>
                         <topic>ros_discovery_info</topic>
                         <topic>rr/vision_node/describe_parametersReply</topic>
                         <topic>rr/vision_node/get_type_descriptionReply</topic>
@@ -29,17 +29,17 @@
                 </publish>
                 <subscribe>
                     <topics>
-                        <topic>rq/vision_node/get_parameter_typesRequest</topic>
-                        <topic>rq/vision_node/describe_parametersRequest</topic>
-                        <topic>rq/vision_node/get_parametersRequest</topic>
                         <topic>ros_discovery_info</topic>
                         <topic>rq/vision_node/set_parameters_atomicallyRequest</topic>
+                        <topic>rq/vision_node/get_parametersRequest</topic>
                         <topic>rq/vision_node/get_type_descriptionRequest</topic>
                         <topic>rt/vision</topic>
-                        <topic>rq/registrationRequest</topic>
-                        <topic>rt/finish</topic>
                         <topic>rq/vision_node/set_parametersRequest</topic>
+                        <topic>rt/finish</topic>
+                        <topic>rq/vision_node/get_parameter_typesRequest</topic>
+                        <topic>rq/registrationRequest</topic>
                         <topic>rq/vision_node/list_parametersRequest</topic>
+                        <topic>rq/vision_node/describe_parametersRequest</topic>
                     </topics>
                 </subscribe>
             </allow_rule>

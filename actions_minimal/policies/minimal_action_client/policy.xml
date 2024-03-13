@@ -9,14 +9,17 @@
                         <topic>/parameter_events</topic>
                     </topics>
                     <services reply="ALLOW">
+                        <service>/minimal_action_client/get_type_description</service>
                         <service>/minimal_action_client/get_parameters</service>
-                        <service>/minimal_action_client/set_parameters</service>
                         <service>/minimal_action_client/get_parameter_types</service>
                         <service>/minimal_action_client/describe_parameters</service>
-                        <service>/minimal_action_client/get_type_description</service>
                         <service>/minimal_action_client/list_parameters</service>
                         <service>/minimal_action_client/set_parameters_atomically</service>
+                        <service>/minimal_action_client/set_parameters</service>
                     </services>
+                    <actions call="ALLOW">
+                        <action>/fibonacci</action>
+                    </actions>
                 </profile>
             </profiles>
         </enclave>
