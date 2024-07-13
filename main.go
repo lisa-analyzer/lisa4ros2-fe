@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"log"
 	"mime/multipart"
 	"net/http"
@@ -25,8 +24,9 @@ func main() {
 	r.GET("/", func(c *gin.Context) {
 		c.Redirect(http.StatusMovedPermanently, "/content")
 	})
+
 	r.POST("/analyze", func(c *gin.Context) {
-		timestamp := strconv.FormatInt(time.Now().Unix(), 10)
+		timestamp := c.DefaultQuery("ts", strconv.FormatInt(time.Now().Unix(), 10))
 
 		// Multipart form
 		//var form Form
@@ -49,7 +49,13 @@ func main() {
 		cmd := exec.Command("/bin/sh", s...)
 		cmd.Stdin = os.Stdin
 		cmd.Stderr = os.Stderr
-		stdOut, err := cmd.StdoutPipe()
+		os.Mkdir("html/analysis/"+timestamp, os.ModePerm)
+		outfile, err := os.Create("html/analysis/" + timestamp + "/analysis.log")
+		if err != nil {
+			panic(err)
+		}
+		defer outfile.Close()
+		cmd.Stdout = outfile
 		if err != nil {
 			fmt.Println("Error 1")
 			c.JSON(http.StatusOK, gin.H{
@@ -59,14 +65,6 @@ func main() {
 		}
 		if err = cmd.Start(); err != nil {
 			fmt.Println("Error 2")
-			c.JSON(http.StatusOK, gin.H{
-				"error": true,
-			})
-			return
-		}
-		bytes, err := io.ReadAll(stdOut)
-		if err != nil {
-			fmt.Println("Error 3")
 			c.JSON(http.StatusOK, gin.H{
 				"error": true,
 			})
@@ -82,7 +80,7 @@ func main() {
 				return
 			}
 		}
-		fmt.Println(string(bytes))
+
 		if err != nil {
 			fmt.Printf("error %s", err)
 			c.JSON(http.StatusOK, gin.H{
@@ -91,9 +89,10 @@ func main() {
 			})
 			return
 		}
+
 		c.JSON(http.StatusOK, gin.H{
-			"url":            "analysis/" + timestamp + "/" + "report.html",
-			"analysisStatus": string(bytes),
+			"url": "analysis/" + timestamp + "/" + "report.html",
+			//"analysisStatus": string(bytes),
 		})
 	})
 	r.Run(":9888")
