@@ -804,7 +804,9 @@
         }
         console.log(formData.getAll("files"));
         try {
-          const data = fetch(`/analyze`, {
+          const data = fetch("/analyze?" + new URLSearchParams({
+            ts: Date.now().toString(),
+          }).toString(), {
             body: formData,
             method: "POST",
           }).then(res => res.json())
